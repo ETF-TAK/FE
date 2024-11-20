@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/common/Layout';
 import MainPage from '../pages/MainPage';
-import InvestPage from '../pages/InvestPage';
+import InvestPage from '../pages/investPage/InvestPage';
 import ComparePage from '../pages/ComparePage';
 import GuidePage from '../pages/GuidePage';
 import TestPage from '../pages/TestPage';

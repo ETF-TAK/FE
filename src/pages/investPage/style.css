@@ -1,0 +1,29 @@
+.invest-page-container {
+  display: flex;
+  background-color: pink;
+}
+
+.invest-selection-container {
+}
+
+.invest-selection-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.invest-selection-title-blue {
+  color: #0249ff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selection-title-black {
+  color: #000;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+}
+
+.invest-selected-container {
+}
