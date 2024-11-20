@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
-import CategoryTabs from '../../components/etf/CategoryTabs/CategoryTabs';
+import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
+import InvestCard from '../../components/invest/investCard/investCard';
 
 export default function InvestPage() {
   return (
@@ -15,6 +16,7 @@ export default function InvestPage() {
           </div>
 
           <CategoryTabs />
+          <InvestCard />
         </div>
 
         {/* 오른쪽 : 선택한 etf 목록 */}

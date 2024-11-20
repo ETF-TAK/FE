@@ -1,0 +1,9 @@
+.invest-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 184px;
+  height: 142px;
+  border-radius: 20px;
+  background: #f7f8fa;
+}

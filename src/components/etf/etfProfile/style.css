@@ -1,0 +1,26 @@
+.etf-profile-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.etf-profile-img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+}
+
+.etf-profile-name {
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.16px;
+  margin-bottom: 4px;
+}
+
+.etf-profile-company {
+  color: #c9ccd7;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.16px;
+}
