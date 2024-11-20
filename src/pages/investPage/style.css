@@ -1,5 +1,7 @@
 .invest-page-container {
   display: flex;
+  justify-content: space-between;
+  margin-top: 36px;
 }
 
 .invest-selection-container {
