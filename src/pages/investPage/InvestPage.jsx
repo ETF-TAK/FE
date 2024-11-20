@@ -29,7 +29,14 @@ export default function InvestPage() {
         </div>
 
         {/* 오른쪽 : 선택한 etf 목록 */}
-        <div className="invest-selected-container"></div>
+        <div className="invest-selected-container">
+          <div className="invest-selected-header">
+            <div className="invest-selected-header-title">원하는 ETF를 선택해주세요.</div>
+            <div className="invest-selected-header-cnt">
+              <div className="invest-selected-header-cnt-now">3</div>/4
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

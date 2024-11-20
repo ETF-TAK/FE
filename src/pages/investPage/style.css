@@ -38,4 +38,36 @@
 }
 
 .invest-selected-container {
+  display: flex;
+  justify-content: center;
+  width: 480px;
+  height: 520px;
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+  padding: 36px;
+  box-sizing: border-box;
+}
+
+.invest-selected-header {
+  display: flex;
+  gap: 28px;
+}
+
+.invest-selected-header-title {
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selected-header-cnt {
+  display: flex;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selected-header-cnt-now {
+  color: #0249ff;
 }
