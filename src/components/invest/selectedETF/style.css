@@ -1,0 +1,37 @@
+.selected-etf-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  background: #f7f8fa;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.selected-etf-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.16px;
+}
+
+.selected-etf-img {
+  width: 40px;
+  height: 40px;
+}
+
+.selected-etf-name {
+  color: #000;
+}
+
+.selected-etf-company {
+  color: #c9ccd7;
+}
+
+.selected-etf-delete {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}

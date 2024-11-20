@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
 import InvestCard from '../../components/invest/investCard/investCard';
+import SelectedETF from '../../components/invest/selectedETF/SelectedETF';
 
 export default function InvestPage() {
   return (
@@ -35,6 +36,12 @@ export default function InvestPage() {
             <div className="invest-selected-header-cnt">
               <div className="invest-selected-header-cnt-now">3</div>/4
             </div>
+          </div>
+          <div className="invest-selected-list">
+            <SelectedETF />
+            <SelectedETF />
+            <SelectedETF />
+            <SelectedETF />
           </div>
         </div>
       </div>
