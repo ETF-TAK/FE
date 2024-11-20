@@ -16,7 +16,16 @@ export default function InvestPage() {
           </div>
 
           <CategoryTabs />
-          <InvestCard />
+          <div className="invest-selection-card-list">
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+            <InvestCard />
+          </div>
         </div>
 
         {/* 오른쪽 : 선택한 etf 목록 */}
