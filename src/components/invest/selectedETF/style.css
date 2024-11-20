@@ -1,11 +1,13 @@
 .selected-etf-wrapper {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   border-radius: 12px;
   background: #f7f8fa;
   padding: 10px 20px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .selected-etf-profile {

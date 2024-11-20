@@ -39,28 +39,27 @@
   box-sizing: border-box;
 }
 
+/* 선택한 ETF 목록 */
 .invest-selected-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   width: 480px;
   height: 520px;
   border-radius: 20px;
   border: 1px solid #d9d9d9;
-  padding: 36px;
+  padding: 20px 36px;
   box-sizing: border-box;
 }
 
-.invest-selected-list {
-  margin-top: 36px;
-  width: 100%;
+.invest-seleted-container-top {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .invest-selected-header {
   display: flex;
+  justify-content: center;
   gap: 28px;
 }
 
@@ -81,4 +80,25 @@
 
 .invest-selected-header-cnt-now {
   color: #0249ff;
+}
+
+.invest-selected-list {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.invest-btn {
+  width: 100%;
+  background-color: #0249ff;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 0px;
+  cursor: pointer;
 }
