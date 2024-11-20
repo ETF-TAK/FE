@@ -1,0 +1,20 @@
+.category-tabs-wrapper {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #f7f8fa;
+}
+
+.category-tabs-item {
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  padding: 12px 30px;
+  cursor: pointer;
+}
+
+.category-tabs-item.active {
+  color: #0249ff;
+  font-weight: 700;
+  border-bottom: 2px solid #0249ff;
+}

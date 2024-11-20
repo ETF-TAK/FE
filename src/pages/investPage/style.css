@@ -1,6 +1,5 @@
 .invest-page-container {
   display: flex;
-  background-color: pink;
 }
 
 .invest-selection-container {
@@ -9,6 +8,7 @@
 .invest-selection-title {
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 
 .invest-selection-title-blue {

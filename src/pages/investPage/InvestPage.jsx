@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import CategoryTabs from '../../components/etf/CategoryTabs/CategoryTabs';
 
 export default function InvestPage() {
   return (
@@ -12,6 +13,8 @@ export default function InvestPage() {
             <div className="invest-selection-title-blue">과거로 돌아가</div>
             <div className="invest-selection-title-black">1년 전에 투자했다면?</div>
           </div>
+
+          <CategoryTabs />
         </div>
 
         {/* 오른쪽 : 선택한 etf 목록 */}
