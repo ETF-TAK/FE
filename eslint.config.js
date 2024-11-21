@@ -34,5 +34,10 @@ export default [
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "prettier/prettier": "error",
     },
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+      ]
   },
 ];
