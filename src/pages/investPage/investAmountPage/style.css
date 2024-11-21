@@ -1,0 +1,69 @@
+.invest-amount-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invest-amount-title {
+  color: #000;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.invest-amount-sub-title {
+  color: #a5a5a5;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.invest-amount-box {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  align-items: center;
+  width: 755px;
+  border-radius: 20px;
+  background: #f7f8fa;
+  box-sizing: border-box;
+  margin-top: 60px;
+}
+
+.invest-amount-box-etf-list {
+  display: flex;
+  gap: 44px;
+}
+
+.invest-amount-box-money {
+  color: #000;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.56px;
+  margin: 60px 0px;
+}
+
+.invest-amount-box-content {
+  color: #a5a5a5;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  margin-top: 60px;
+}
+
+/* 투자하기 버튼 */
+.invest-amount-btn {
+  /* width: 100%; */
+  /* 크기 확인하기 */
+  width: 755px;
+  background-color: #0249ff;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 0px;
+  cursor: pointer;
+  margin-top: 40px;
+}

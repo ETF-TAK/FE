@@ -90,7 +90,7 @@ export default function InvestPage() {
               ))}
             </div>
           </div>
-          <Link to={'/invest/amount'}>
+          <Link to={'/invest/amount'} state={{ selectedETFList }}>
             <button
               className={`invest-btn ${selectedETFList.length > 0 ? '' : 'deactivate'}`}
               disabled={selectedETFList.length === 0}
