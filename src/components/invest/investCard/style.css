@@ -6,4 +6,9 @@
   height: 142px;
   border-radius: 20px;
   background: #f7f8fa;
+  cursor: pointer;
+}
+
+.invest-card-wrapper.selected {
+  background: #0249ff;
 }

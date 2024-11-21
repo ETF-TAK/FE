@@ -18,6 +18,10 @@
   margin-bottom: 4px;
 }
 
+.etf-profile-name.selected {
+  color: #fff;
+}
+
 .etf-profile-company {
   color: #c9ccd7;
   font-size: 16px;
