@@ -3,6 +3,7 @@ import './style.css';
 import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
 import InvestCard from '../../components/invest/investCard/investCard';
 import SelectedETF from '../../components/invest/selectedETF/SelectedETF';
+import { Link } from 'react-router-dom';
 
 export default function InvestPage() {
   const [selectedETFList, setSelectedETFList] = useState([]);
@@ -89,7 +90,14 @@ export default function InvestPage() {
               ))}
             </div>
           </div>
-          <button className="invest-btn">투자하기</button>
+          <Link to={'/invest/amount'}>
+            <button
+              className={`invest-btn ${selectedETFList.length > 0 ? '' : 'deactivate'}`}
+              disabled={selectedETFList.length === 0}
+            >
+              투자하기
+            </button>
+          </Link>
         </div>
       </div>
     </>
