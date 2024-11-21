@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
 import InvestCard from '../../components/invest/investCard/investCard';
 import SelectedETF from '../../components/invest/selectedETF/SelectedETF';
 
 export default function InvestPage() {
+  const [selectedETFList, setSelectedETFList] = useState([]);
+
+  const etfData = [
+    {
+      id: 1,
+      name: '한중반도체(합성)',
+      company: 'Kodex',
+    },
+    {
+      id: 2,
+      name: '미국 기술주 ETF',
+      company: 'TIGER',
+    },
+    {
+      id: 3,
+      name: 'S&P 500 인버스',
+      company: 'ARIRANG',
+    },
+    {
+      id: 4,
+      name: '한중반도체(합성)',
+      company: 'Kodex',
+    },
+    {
+      id: 5,
+      name: '미국 헬스케어 ETF',
+      company: 'KBSTAR',
+    },
+    {
+      id: 6,
+      name: '금 투자 ETF',
+      company: 'HANARO',
+    },
+    {
+      id: 7,
+      name: '신흥국 배당주',
+      company: 'TIGER',
+    },
+    {
+      id: 8,
+      name: '차이나 항셍 테크',
+      company: 'KOSEF',
+    },
+  ];
+
   return (
     <>
       <div className="invest-page-container">
@@ -18,14 +63,14 @@ export default function InvestPage() {
 
           <CategoryTabs />
           <div className="invest-selection-card-list">
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
-            <InvestCard />
+            {etfData.map((etf) => (
+              <InvestCard
+                key={etf.id}
+                selectedETFList={selectedETFList}
+                setSelectedETFList={setSelectedETFList}
+                etfData={etf}
+              />
+            ))}
           </div>
         </div>
 
@@ -35,14 +80,13 @@ export default function InvestPage() {
             <div className="invest-selected-header">
               <div className="invest-selected-header-title">원하는 ETF를 선택해주세요.</div>
               <div className="invest-selected-header-cnt">
-                <div className="invest-selected-header-cnt-now">3</div>/4
+                <div className="invest-selected-header-cnt-now">{selectedETFList.length}</div>/4
               </div>
             </div>
             <div className="invest-selected-list">
-              <SelectedETF />
-              <SelectedETF />
-              <SelectedETF />
-              <SelectedETF />
+              {selectedETFList.map((etf, index) => (
+                <SelectedETF key={index} etf={etf} selectedETFList={selectedETFList} />
+              ))}
             </div>
           </div>
           <button className="invest-btn">투자하기</button>
