@@ -89,7 +89,7 @@ video {
 
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -99,6 +99,6 @@ video {
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('./assets/fonts/Pretendard-Regular');
+  font-family: "Pretendard";
+  src: url("./assets/fonts/Pretendard-Regular");
 }
