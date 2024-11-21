@@ -4,8 +4,9 @@ import KoreaIcon from '../../../assets/images/common/sectors/korea.png';
 import DeleteIcon from '../../../assets/images/icons/delete.png';
 
 export default function SelectedETF(props) {
-  const { etf } = props;
+  const { etf, setSelectedETFList } = props;
 
+  // 선택한 ETF가 없다면
   if (!etf) {
     return null;
   }
@@ -17,7 +18,16 @@ export default function SelectedETF(props) {
         <div className="selected-etf-name">{etf.name}</div>
         <div className="selected-etf-company">{etf.company}</div>
       </div>
-      <img className="selected-etf-delete" src={DeleteIcon} />
+      <img
+        className="selected-etf-delete"
+        alt="삭제 이미지"
+        src={DeleteIcon}
+        onClick={() => {
+          setSelectedETFList((prevList) => {
+            return prevList.filter((item) => item.id !== etf.id);
+          });
+        }}
+      />
     </div>
   );
 }

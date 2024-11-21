@@ -85,7 +85,7 @@ export default function InvestPage() {
             </div>
             <div className="invest-selected-list">
               {selectedETFList.map((etf, index) => (
-                <SelectedETF key={index} etf={etf} selectedETFList={selectedETFList} />
+                <SelectedETF key={index} etf={etf} setSelectedETFList={setSelectedETFList} />
               ))}
             </div>
           </div>
