@@ -14,7 +14,7 @@ function ProductInfo() {
     <div>
       {/* 투자포인트 */}
       <div style={{ marginBottom: "20px" }}>
-        <h2 style={{ fontSize: "30px", fontWeight: "500", marginBottom: "64px", marginTop: "64px" }}>투자포인트</h2>
+        <h2 style={{ fontSize: "30px", fontWeight: "500", marginBottom: "10px", marginTop: "10px" }}>투자포인트</h2>
         {productInfo.points.map((point, index) => (
           <div
             key={index}
@@ -32,7 +32,7 @@ function ProductInfo() {
 
       {/* 분배금 */}
       <div>
-        <h2 style={{ fontSize: "30px", fontWeight: "500", marginBottom: "64px", marginTop: "64px" }}>
+        <h2 style={{ fontSize: "30px", fontWeight: "500", marginBottom: "10px", marginTop: "10px" }}>
             분배금
           </h2>
         <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}>
