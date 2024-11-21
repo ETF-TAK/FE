@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { etfData } from "../lib/apis/data";
 import ETFHeader from "../components/common/ETFHeader";
-import ComponentList from "../components/common/ComponentList";
 import DetailTable from "../components/common/DetailTable";
 import ProductInfo from "../components/common/ProductInfo";
+import WeightedTreemap from "../components/common/WeightedTreemap";
 
 export default function DetailPage() {
   const [activeTab, setActiveTab] = useState("구성종목");
@@ -24,31 +24,62 @@ export default function DetailPage() {
             flex: 1,
             padding: "10px",
             border: "none",
-            borderBottom: activeTab === "구성종목" ? "2px solid #0249FF" : "none",
-            fontWeight: activeTab === "구성종목" ? "bold" : "normal",
+            fontSize: "30px",
+            position: "relative", // 언더바 위치를 위한 상대 위치 지정
+            fontWeight: activeTab === "구성종목" ? "600" : "normal",
           }}
           onClick={() => handleTabClick("구성종목")}
         >
           구성종목
+          {activeTab === "구성종목" && (
+            <span
+              style={{
+                position: "absolute",
+                bottom: "0", // 버튼 아래쪽에 위치
+                left: "50%", // 버튼의 중앙으로 이동
+                transform: "translateX(-50%)", // 중앙 정렬
+                width: "30%", // 언더바의 길이
+                height: "3px", // 언더바 두께
+                backgroundColor: "#0249FF", // 언더바 색상
+              }}
+            ></span>
+          )}
         </button>
         <button
           style={{
             flex: 1,
             padding: "10px",
             border: "none",
-            borderBottom: activeTab === "상품정보" ? "2px solid #0249FF" : "none",
-            fontWeight: activeTab === "상품정보" ? "bold" : "normal",
+            fontSize: "30px",
+            position: "relative", // 언더바 위치를 위한 상대 위치 지정
+            fontWeight: activeTab === "상품정보" ? "600" : "normal",
           }}
           onClick={() => handleTabClick("상품정보")}
         >
           상품정보
+          {activeTab === "상품정보" && (
+            <span
+              style={{
+                position: "absolute",
+                bottom: "0", // 버튼 아래쪽에 위치
+                left: "50%", // 버튼의 중앙으로 이동
+                transform: "translateX(-50%)", // 중앙 정렬
+                width: "30%", // 언더바의 길이
+                height: "3px", // 언더바 두께
+                backgroundColor: "#0249FF", // 언더바 색상
+              }}
+            ></span>
+          )}
         </button>
       </div>
 
       {/* 탭 내용 */}
       {activeTab === "구성종목" && (
         <div style={{ marginTop: "20px" }}>
-          <ComponentList components={etfData.components} />
+          <h2 style={{ fontSize: "30px", fontWeight: "500", marginBottom: "64px", marginTop: "64px" }}>
+            구성종목(비율)
+          </h2>
+          <WeightedTreemap data={etfData} />
           <DetailTable details={etfData.details} />
         </div>
       )}
