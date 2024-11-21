@@ -7,8 +7,8 @@ export default function ComparePage() {
   return (
     <div>
       <h1>ComparePage</h1>
-      <button onClick={() => navigate("/detail?etfId=1")}>Go to DetailPage (ETF1)</button>
-      <button onClick={() => navigate("/detail?etfId=2")}>Go to DetailPage (ETF2)</button>
+      <button onClick={() => navigate("/compare/detail?etfId=1")}>Go to DetailPage (ETF1)</button>
+      <button onClick={() => navigate("/compare/detail?etfId=2")}>Go to DetailPage (ETF2)</button>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link to="/compare" className={location.pathname === "/compare" ? "active" : ""}>
+          <Link to="/compare" className={location.pathname.startsWith("/compare") ? "active" : ""}>
             ETF 비교
           </Link>
         </li>

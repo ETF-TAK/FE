@@ -16,7 +16,7 @@ export const mainRoutes = [
       { element: <InvestPage />, path: "invest" },
       { element: <ComparePage />, path: "compare" },
       { element: <GuidePage />, path: "guide" },
-      { element: <DetailPage />, path: "detail" },
+      { element: <DetailPage />, path: "compare/detail" },
       { element: <TestPage />, path: "test" },
     ],
   },
