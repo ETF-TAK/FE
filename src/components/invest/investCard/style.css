@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.invest-card-wrapper:hover {
+  background: #e0e0e0;
+}
+
 .invest-card-wrapper.selected {
   background: #0249ff;
 }

@@ -27,15 +27,15 @@
 }
 
 .swiper-slide:nth-child(2n) {
-  background-color: #a641a8;
+  background-color: #dc4233;
 }
 
 .swiper-slide:nth-child(3n) {
-  background-color: rgb(0, 140, 255);
+  background-color: #f4b400;
 }
 
 .swiper-slide:nth-child(4n) {
-  background-color: #61ba47;
+  background-color: #049d56;
 }
 
 .invest-result-title {
@@ -63,4 +63,8 @@
   letter-spacing: -0.24px;
   margin-top: 48px;
   margin-bottom: 20px;
+}
+
+.invest-result-compare-btn:hover {
+  background-color: #3b72ff;
 }

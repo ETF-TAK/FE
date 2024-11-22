@@ -104,6 +104,10 @@
   cursor: pointer;
 }
 
+.invest-btn:hover {
+  background-color: #3b72ff;
+}
+
 .invest-btn.deactivate {
   background-color: #cdcdcd;
   cursor: default;

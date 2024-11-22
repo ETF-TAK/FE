@@ -18,3 +18,8 @@
   font-weight: 700;
   border-bottom: 2px solid #0249ff;
 }
+
+.category-tabs-item:hover {
+  color: #0249ff;
+  font-weight: 700;
+}
