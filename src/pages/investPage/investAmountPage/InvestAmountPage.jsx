@@ -4,12 +4,12 @@ import ETFProfile from '../../../components/etf/etfProfile/ETFProfile';
 import { useLocation } from 'react-router-dom';
 import { Slider } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function InvestAmountPage() {
   const location = useLocation();
   const { selectedETFList } = location.state || {};
   const [amount, setAmount] = useState(0);
-  // const handleSliderChange = (event, value)
 
   return (
     <div className="invest-amount-wrapper">
@@ -55,7 +55,9 @@ export default function InvestAmountPage() {
         <div className="invest-amount-box-content">모든 ETF 상품에는 같은 금액이 적용돼요</div>
       </div>
 
-      <button className="invest-amount-btn">투자하기</button>
+      <Link to={'/invest/result'}>
+        <button className="invest-amount-btn">투자하기</button>
+      </Link>
     </div>
   );
 }

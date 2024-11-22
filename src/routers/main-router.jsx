@@ -6,6 +6,7 @@ import ComparePage from '../pages/ComparePage';
 import GuidePage from '../pages/GuidePage';
 import TestPage from '../pages/TestPage';
 import InvestAmountPage from '../pages/investPage/investAmountPage/InvestAmountPage';
+import InvestResult from '../pages/investPage/investResult/InvestResult';
 
 export const mainRoutes = [
   {
@@ -15,6 +16,7 @@ export const mainRoutes = [
       { element: <MainPage />, index: true },
       { element: <InvestPage />, path: 'invest' },
       { element: <InvestAmountPage />, path: 'invest/amount' },
+      { element: <InvestResult />, path: 'invest/result' },
       { element: <ComparePage />, path: 'compare' },
       { element: <GuidePage />, path: 'guide' },
       { element: <TestPage />, path: 'test' },
