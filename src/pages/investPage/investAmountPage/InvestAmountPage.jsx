@@ -19,7 +19,7 @@ export default function InvestAmountPage() {
       <div className="invest-amount-box">
         <div className="invest-amount-box-etf-list">
           {selectedETFList && selectedETFList.length > 0 ? (
-            selectedETFList.map((item) => <ETFProfile etfData={item} />)
+            selectedETFList.map((item) => <ETFProfile etfData={item} size="40px" fontsize="12px" />)
           ) : (
             <div>선택된 ETF가 없습니다.</div>
           )}
