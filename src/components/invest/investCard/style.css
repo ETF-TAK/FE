@@ -1,0 +1,18 @@
+.invest-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 184px;
+  height: 142px;
+  border-radius: 20px;
+  background: #f7f8fa;
+  cursor: pointer;
+}
+
+.invest-card-wrapper:hover {
+  background: #e0e0e0;
+}
+
+.invest-card-wrapper.selected {
+  background: #0249ff;
+}
