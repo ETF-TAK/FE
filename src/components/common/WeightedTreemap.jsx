@@ -39,7 +39,7 @@ export default function WeightedTreemap({ data }) {
   const CustomTreemapContent = ({ x, y, width, height, name = "", payload }) => {
     const validName = name || "데이터 없음";
     const nameParts = validName.split("\n");
-    const padding = 10;
+    const padding = 0;
 ;
 
     return (

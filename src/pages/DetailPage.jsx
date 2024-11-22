@@ -33,7 +33,7 @@ export default function DetailPage() {
         style={{
           position: "relative",
           width: "80%",
-          height: "200px", // 높이 유지
+          height: "250px", // 높이 유지
           marginLeft: "auto",
           marginRight: "auto",
           background: "#0249FF",
@@ -115,10 +115,11 @@ export default function DetailPage() {
             justifyContent: "space-around",
             alignItems: "center",
             height: "100%",
+            width: "100%",
           }}
         >
           {/* 현재가 */}
-          <div style={{ textAlign: "center", position: "relative" }}>
+          <div style={{ textAlign: "center", position: "relative", flex: 1 }}>
             <p
               style={{
                 fontSize: "16px",
@@ -134,15 +135,15 @@ export default function DetailPage() {
                 style={{
                   width: "16px",
                   height: "16px",
-                  marginRight: "5px", // 텍스트와 이미지 간격
+                  marginRight: "1px",
                   cursor: "pointer",
-                  verticalAlign: "middle", // 이미지와 텍스트 라인 맞춤
+                  verticalAlign: "middle",
                   display: "inline-block",
                 }}
                 onMouseEnter={(e) =>
                   showTooltip(
-                    "현재가(원):\nETF가 시장에서 매매되는 1좌당 거래가격을 말합니다. ETF를 투자할 때에는 현재가와 실시간 추정 순자산가치(iNAV)와 차이가 얼마나 나는지 체크해보는 것이 중요합니다.",
-                    e
+                    "ETF가 시장에서 매매되는 1좌당 거래가격을 말합니다.\nETF를 투자할 때에는 현재가와 실시간 추정 순자산가치(iNAV)와 차이가 얼마나 나는지 체크해보는 것이 중요합니다.",
+                    e,
                   )
                 }
                 onMouseLeave={hideTooltip}
@@ -153,8 +154,18 @@ export default function DetailPage() {
             <p style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.marketChange}</p>
           </div>
 
+          {/* 세로 선 */}
+          <div
+            style={{
+              width: "1px",
+              height: "60%", // 높이 조정
+              backgroundColor: "#CCCCCC",
+              margin: "0 10px",
+            }}
+          ></div>
+
           {/* 기준가 */}
-          <div style={{ textAlign: "center", position: "relative" }}>
+          <div style={{ textAlign: "center", position: "relative", flex: 1.2 }}>
             <p
               style={{
                 fontSize: "16px",
@@ -170,27 +181,37 @@ export default function DetailPage() {
                 style={{
                   width: "16px",
                   height: "16px",
-                  marginRight: "5px", // 텍스트와 이미지 간격
+                  marginRight: "1px",
                   cursor: "pointer",
-                  verticalAlign: "middle", // 이미지와 텍스트 라인 맞춤
+                  verticalAlign: "middle",
                   display: "inline-block",
                 }}
                 onMouseEnter={(e) =>
                   showTooltip(
-                    "기준가(NAV):\nETF의 자산에서 ETF가 갚아야 할 부채를 차감한 것을 순자산총액이라고 하는데, 이 순자산 총액을 ETF의 총 증권수로 나눈 값을 기준가 또는 순자산가치라고 부릅니다. 다시 말해 ETF 1좌당 가치를 의미하며, 전일 종가를 기준 하루 1번 발표됩니다.\n\n추정기준가(iNAV, indicative NAV):\nETF가 편입하고 있는 자산들의 현재 가격을 반영하여 실시간으로 산출되는 ETF의 가치입니다. 투자자들은 이 가격을 참고하면서 매매합니다. 따라서 ETF의 거래가격은 대체로 iNAV 근처에서 형성됩니다. 하지만, 시장 참여자들의 심리에 따라 거래가격이 iNAV에 비하여 높은 수준에 형성(고평가)되거나, 반대로 iNAV보다 낮은 수준에 형성(저평가)될 수도 있습니다.",
-                    e
+                    "기준가(NAV)\nETF의 자산에서 ETF가 갚아야 할 부채를 차감한 것을 순자산총액이라고 하는데, 이 순자산 총액을 ETF의 총 증권수로 나눈 값을 기준가 또는 순자산가치라고 부릅니다. 다시 말해 ETF 1좌당 가치를 의미하며, 전일 종가를 기준 하루 1번 발표됩니다.\n\n추정기준가(iNAV, indicative NAV)\nETF가 편입하고 있는 자산들의 현재 가격을 반영하여 실시간으로 산출되는 ETF의 가치입니다. 투자자들은 이 가격을 참고하면서 매매합니다. 따라서 ETF의 거래가격은 대체로 iNAV 근처에서 형성됩니다. 하지만, 시장 참여자들의 심리에 따라 거래가격이 iNAV에 비하여 높은 수준에 형성(고평가)되거나, 반대로 iNAV보다 낮은 수준에 형성(저평가)될 수도 있습니다.",
+                    e,
                   )
                 }
                 onMouseLeave={hideTooltip}
               />
-              기준가(NAV)
+              기준가(iNAV)
             </p>
             <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>{etfData.navPrice}</p>
             <p style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.navChange}</p>
           </div>
 
+          {/* 세로 선 */}
+          <div
+            style={{
+              width: "1px",
+              height: "60%", // 높이 조정
+              backgroundColor: "#CCCCCC",
+              margin: "0 10px",
+            }}
+          ></div>
+
           {/* 수익률 */}
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center", flex: 1 }}>
             <p style={{ fontSize: "16px", fontWeight: "400" }}>수익률</p>
             <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0", color: "#FF3D00" }}>{etfData.yield}</p>
             <p style={{ fontSize: "16px", fontWeight: "400" }}>1개월</p>
@@ -206,7 +227,7 @@ export default function DetailPage() {
           background: "#FFFFFF",
           boxShadow: "0px 4px 30px 1px rgba(0, 0, 0, 0.26)",
           borderRadius: "32px",
-          padding: "20px 40px 40px 40px",
+          padding: "0 40px 40px 40px",
         }}
       >
         {/* 탭 메뉴 */}
@@ -228,6 +249,7 @@ export default function DetailPage() {
               background: "none",
               border: "none",
               cursor: "pointer",
+              fontFamily: "Pretendard, sans-serif",
             }}
             onClick={() => handleTabClick("구성종목")}
           >
@@ -257,6 +279,7 @@ export default function DetailPage() {
               background: "none",
               border: "none",
               cursor: "pointer",
+              fontFamily: "Pretendard, sans-serif",
             }}
             onClick={() => handleTabClick("상품정보")}
           >
