@@ -92,6 +92,7 @@
 
 /* 투자하기 버튼 */
 .invest-btn {
+  font-family: 'Pretendard';
   width: 100%;
   background-color: #0249ff;
   color: #fff;
