@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .swiper {
@@ -26,15 +27,15 @@
 }
 
 .swiper-slide:nth-child(2n) {
-  background-color: rgb(0, 140, 255);
+  background-color: #a641a8;
 }
 
 .swiper-slide:nth-child(3n) {
-  background-color: rgb(10, 184, 111);
+  background-color: rgb(0, 140, 255);
 }
 
 .swiper-slide:nth-child(4n) {
-  background-color: rgb(211, 122, 7);
+  background-color: #61ba47;
 }
 
 .invest-result-title {

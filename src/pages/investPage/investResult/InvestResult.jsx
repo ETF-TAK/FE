@@ -12,6 +12,7 @@ import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
 import ETFProfile from '../../../components/etf/etfProfile/ETFProfile';
 import { Link } from 'react-router-dom';
+import ResultConfetti from '../../../components/invest/resultConfetti/ResultConfetti';
 
 export default function InvestResult() {
   const etfData = [
@@ -39,6 +40,7 @@ export default function InvestResult() {
 
   return (
     <div className="invest-result-wrapper">
+      <ResultConfetti />
       <div className="invest-result-title">
         총 13,234,123원의 <br />
         수익금을 받았을거예요!
