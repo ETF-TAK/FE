@@ -1,7 +1,7 @@
 function DetailTable({ details }) {
   return (
     <div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "20px" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ backgroundColor: "#F5F5F5" }}>
             <th style={{ border: "1px solid #CCC", padding: "10px" }}>종목</th>
