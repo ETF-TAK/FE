@@ -7,10 +7,11 @@ import GuidePage from '../pages/GuidePage';
 import TestPage from '../pages/TestPage';
 import InvestAmountPage from '../pages/investPage/investAmountPage/InvestAmountPage';
 import InvestResult from '../pages/investPage/investResult/InvestResult';
+import DetailPage from "../pages/DetailPage";
 
 export const mainRoutes = [
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       { element: <MainPage />, index: true },
@@ -20,6 +21,8 @@ export const mainRoutes = [
       { element: <ComparePage />, path: 'compare' },
       { element: <GuidePage />, path: 'guide' },
       { element: <TestPage />, path: 'test' },
+      { element: <DetailPage />, path: "compare/detail" },
+      { element: <TestPage />, path: "test" },
     ],
   },
 ];
