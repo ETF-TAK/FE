@@ -1,0 +1,162 @@
+.container {
+    display: flex;
+}
+
+.left-panel {
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.etfSearch-Top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    padding-bottom: 10px;
+}
+
+.etfSearch-Top h1 {
+    font-size: 32px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.etfSearch-Top input {
+    padding: 20px;
+    padding-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    width: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    color: #949494;
+}
+
+.etfSearch-Bottom {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+table {
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+.etfSearch-Bottom tbody tr {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;  
+    border-radius: 10px;
+}
+
+.etfSearch-Bottom tbody tr:hover {
+    background-color: #F1F3F7;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+    gap: 1rem;
+}
+
+.right-panel {
+    gap: 3rem;
+    min-width: 50%;
+}
+
+.etfSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 50px;
+
+}
+.etfSelect-1 {
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    width: 400%;
+    height: 300px;
+    padding: 20px;
+    background-color: #F1F3F7;
+    align-items: center;
+}
+
+.etfSelect-1 h1 {
+    padding-top: 120px;
+    text-align: center;
+    color: #ADADAD;
+}
+
+.etfSelect-2 {
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    width: 400%;
+    height: 300px;
+    padding: 20px;
+    background-color: #F1F3F7;
+    align-items: center;
+   
+}
+
+.etfSelect-2 h1 {
+    padding-top: 120px;
+    text-align: center;
+    color: #ADADAD;
+}
+
+.compare-btn {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+    gap: 2rem;
+    margin-top: 190px;
+    margin-left: 40px;
+    min-height: 50px;
+    padding-top: 20px;
+    background-color: #ccc;
+}
+
+.compare-btn h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+}
+
+.compare-btn.inactive {
+    background-color: #CCC;
+}
+
+/* 비활성화 상태 */
+.compare-btn.inactive:hover {
+    background-color: #cdcdcd;
+    cursor: not-allowed;
+}
+
+/* 활성화 상태 */
+.compare-btn.active {
+    background-color: #007BFF;
+}
+
+/* 활성화 상태의 호버 */
+.compare-btn.active:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}
