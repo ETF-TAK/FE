@@ -14,6 +14,7 @@ import ETFProfile from '../../../components/etf/etfProfile/ETFProfile';
 import { Link } from 'react-router-dom';
 import ResultConfetti from '../../../components/invest/resultConfetti/ResultConfetti';
 import ResultRain from '../../../components/invest/resultRain/ResultRain';
+import InvestResultCard from '../../../components/invest/investResultCard/InvestResultCard';
 
 export default function InvestResult() {
   const etfData = [
@@ -21,24 +22,32 @@ export default function InvestResult() {
       id: 1,
       name: '한중반도체(합성)',
       company: 'Kodex',
+      profitAmount: 3241223,
+      profitRate: 10.0,
       isPositive: true,
     },
     {
       id: 2,
       name: '미국 기술주 ETF',
       company: 'TIGER',
+      profitAmount: 1001230,
+      profitRate: 11.0,
       isPositive: false,
     },
     {
       id: 3,
       name: 'S&P 500 인버스',
       company: 'ARIRANG',
+      profitAmount: 10234500,
+      profitRate: 23.0,
       isPositive: true,
     },
     {
       id: 4,
       name: '한중반도체(합성)',
       company: 'Kodex',
+      profitAmount: 10011,
+      profitRate: 78.0,
       isPositive: false,
     },
   ];
@@ -63,11 +72,7 @@ export default function InvestResult() {
       >
         {etfData.map((etf) => (
           <SwiperSlide>
-            <div className="invest-result-card-container">
-              <ETFProfile etfData={etf} color="white" />
-              <div className="invest-result-card-amount">3,234,123원</div>
-              <div className="invest-result-card-rate">수익률 +48%</div>
-            </div>
+            <InvestResultCard etf={etf} />
           </SwiperSlide>
         ))}
       </Swiper>
