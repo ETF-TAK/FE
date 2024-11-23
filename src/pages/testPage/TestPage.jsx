@@ -3,13 +3,14 @@ import "./style.css";
 import QuestionMarkIcon from "../../assets/images/mbti/questionMark.png";
 import Button from "../../components/common/button/Button";
 import { useState } from "react";
+import QuestionCard from "../../components/common/test/questionCard/QuestionCard";
 
 export default function TestPage() {
   const [showQuestion, setShowQuestion] = useState(false);
   return (
     <div className="test-page-container">
       {showQuestion ? (
-        <>asd</>
+        <QuestionCard />
       ) : (
         <>
           <div className="test-page-title">ETF MBTI 테스트하기</div>
