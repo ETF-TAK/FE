@@ -8,6 +8,7 @@ import TestPage from "../pages/testPage/TestPage";
 import InvestAmountPage from "../pages/investPage/investAmountPage/InvestAmountPage";
 import InvestResult from "../pages/investPage/investResult/InvestResult";
 import DetailPage from "../pages/DetailPage";
+import TestResultPage from "../pages/testPage/testResultPage/TestResultPage";
 
 export const mainRoutes = [
   {
@@ -23,6 +24,7 @@ export const mainRoutes = [
       { element: <TestPage />, path: "test" },
       { element: <DetailPage />, path: "compare/detail" },
       { element: <TestPage />, path: "test" },
+      { element: <TestResultPage />, path: "test/result" },
     ],
   },
 ];
