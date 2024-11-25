@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./style.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MbtiCard, { mbtiData } from "../../../components/common/test/mbtiCard/MbtiCard";
 import CategoryCard from "../../../components/common/test/categoryCard/CategoryCard";
 import Button from "../../../components/common/button/Button";
 import { useEffect } from "react";
+import ShinhanIcon from "../../../assets/images/common/shinhanLogo.png";
 
 export default function TestResultPage() {
   const location = useLocation();
   const { answer } = location.state || { answers: 0 };
 
   const [mbtiResult, setMbtiResult] = useState([]);
+  const naviagte = useNavigate();
 
   const mbtiCalculation = () => {
     const result = [];
@@ -78,11 +80,34 @@ export default function TestResultPage() {
         )}
       </div>
 
-      <Button text="ETF 확인하러가기" />
+      <Button
+        text="ETF 확인하러가기"
+        onClickFunction={() => {
+          naviagte("/compare");
+        }}
+      />
 
       <div className="test-result-page-shinhan-button-wrapper">
-        <Button text="신한 SOL 증권 앱 다운로드" />
-        <Button text="신한투자증권 홈페이지" />
+        <Button
+          text="신한 SOL 증권 앱 다운로드"
+          onClickFunction={() => {
+            window.open("https://play.google.com/store/apps/details?id=com.shinhaninvest.nsmts&hl=ko", "_blank");
+            window.open(
+              "https://apps.apple.com/kr/app/%EC%8B%A0%ED%95%9C-sol%EC%A6%9D%EA%B6%8C-%EB%8C%80%ED%91%9Cmts/id1168512940",
+              "_blank",
+            );
+          }}
+          imgSrc={ShinhanIcon}
+          padding="12px"
+        />
+        <Button
+          text="신한투자증권 홈페이지"
+          onClickFunction={() => {
+            window.open("https://www.shinhansec.com/", "_blank");
+          }}
+          imgSrc={ShinhanIcon}
+          padding="12px"
+        />
       </div>
     </div>
   );
