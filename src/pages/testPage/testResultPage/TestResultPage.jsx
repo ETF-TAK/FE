@@ -1,37 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { useLocation } from "react-router-dom";
 import MbtiCard, { mbtiData } from "../../../components/common/test/mbtiCard/MbtiCard";
 import CategoryCard from "../../../components/common/test/categoryCard/CategoryCard";
 import Button from "../../../components/common/button/Button";
+import { useEffect } from "react";
 
 export default function TestResultPage() {
   const location = useLocation();
-  const { answers } = location.state || { answers: [] };
-  console.log(location.state);
+  const { answer } = location.state || { answers: 0 };
 
-  const mbtiResult = [1, 3]; // 공격투자형 , 한국 선호형
+  const [mbtiResult, setMbtiResult] = useState([]);
+
+  const mbtiCalculation = () => {
+    const result = [];
+    let new_answer = answer;
+
+    if (answer > 100) {
+      result.push(4); // 100 넘으면 한국
+      new_answer = new_answer % 100;
+    } else {
+      result.push(3); // 100 안 넘으면 미국
+    }
+
+    if (new_answer >= 2 && new_answer <= 3) {
+      // 안정추구 index 1
+      result.push(1);
+    } else if (new_answer >= 4 && new_answer <= 5) {
+      // 위험중립 index 2
+      result.push(2);
+    } else if (new_answer >= 6 && new_answer <= 8) {
+      // 공격투자 index 0
+      result.push(0);
+    }
+
+    setMbtiResult(result);
+  };
+
+  useEffect(() => {
+    mbtiCalculation();
+  }, [answer]);
 
   return (
     <div className="test-result-page-container">
       <div className="test-result-page-title">ETF MBTI 테스트 결과 확인</div>
       <div className="test-result-page-sub-title">나의 ETF MBTI는?</div>
       <div className="test-result-page-mbti-card-wrapper">
-        <MbtiCard index={1} />
-        <MbtiCard index={4} />
+        <MbtiCard index={mbtiResult[1]} />
+        <MbtiCard index={mbtiResult[0]} />
       </div>
       <div className="test-result-page-mbti-text">
-        <span>{mbtiData[mbtiResult[0]].title}</span>, <span>{mbtiData[mbtiResult[1]].title}</span>
-        &nbsp;성향을 가진 당신을 위한 ETF 추천
-        <br />#<span>{mbtiData[mbtiResult[0]].categoryData[0]}</span> #
-        <span>{mbtiData[mbtiResult[0]].categoryData[1]}</span> #<span>{mbtiData[mbtiResult[1]].categoryData[0]}</span>{" "}
-        카테고리를 확인해보세요
+        {mbtiData[mbtiResult[0]] && mbtiData[mbtiResult[1]] ? (
+          <>
+            <span>{mbtiData[mbtiResult[1]].title}</span>, <span>{mbtiData[mbtiResult[0]].title}</span>
+            &nbsp;성향을 가진 당신을 위한 ETF 추천
+            <br />#<span>{mbtiData[mbtiResult[1]].categoryData[0]}</span> #
+            <span>{mbtiData[mbtiResult[1]].categoryData[1]}</span> #
+            <span>{mbtiData[mbtiResult[0]].categoryData[0]}</span> 카테고리를 확인해보세요
+          </>
+        ) : (
+          <span>결과를 불러오는 중입니다...</span>
+        )}
       </div>
 
       <div className="test-result-page-category-card-wrapper">
-        <CategoryCard index={1} />
-        <CategoryCard index={2} />
-        <CategoryCard index={4} />
+        {mbtiData[mbtiResult[1]] &&
+        mbtiData[mbtiResult[1]].categoryIndex &&
+        mbtiData[mbtiResult[0]] &&
+        mbtiData[mbtiResult[0]].categoryIndex ? (
+          <>
+            <CategoryCard index={mbtiData[mbtiResult[1]].categoryIndex[0]} />
+            <CategoryCard index={mbtiData[mbtiResult[1]].categoryIndex[1]} />
+            <CategoryCard index={mbtiData[mbtiResult[0]].categoryIndex[0]} />
+          </>
+        ) : (
+          <span>결과를 불러오는 중입니다...</span>
+        )}
       </div>
 
       <Button text="ETF 확인하러가기" />

@@ -15,6 +15,7 @@ export const mbtiData = [
     imgSrc: AggressiveImg,
     bgColor: "#FB6D52",
     categoryData: [categoryData[0].title, categoryData[1].title],
+    categoryIndex: [0, 1],
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ export const mbtiData = [
     imgSrc: StableImg,
     bgColor: "#A0D369",
     categoryData: [categoryData[2].title, categoryData[3].title],
+    categoryIndex: [2, 3],
   },
 
   {
@@ -32,6 +34,7 @@ export const mbtiData = [
     imgSrc: NeutralImg,
     bgColor: "#FFCE55",
     categoryData: [categoryData[1].title, categoryData[2].title],
+    categoryIndex: [1, 2],
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ export const mbtiData = [
     imgSrc: AmericanImg,
     bgColor: "#AC92ED",
     categoryData: [categoryData[4].title],
+    categoryIndex: [4],
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ export const mbtiData = [
     imgSrc: KoreanImg,
     bgColor: "#5C9CEC",
     categoryData: [categoryData[5].title],
+    categoryIndex: [5],
   },
 ];
 
