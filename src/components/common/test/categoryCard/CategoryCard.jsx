@@ -9,7 +9,7 @@ import AmericanIcon from "../../../../assets/images/mbti/category/american.png";
 import KoreanIcon from "../../../../assets/images/mbti/category/korean.png";
 
 // 카테고리 데이터
-const categoryData = [
+export const categoryData = [
   {
     id: 1,
     title: "레버리지",
