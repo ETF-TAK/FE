@@ -1,0 +1,38 @@
+/* 회전 */
+@keyframes spin3D {
+  from {
+    transform: perspective(800px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(800px) rotateY(360deg);
+  }
+}
+
+.test-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 52px;
+}
+
+.test-page-title {
+  color: #0249ff;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.test-page-sub-title {
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 36px;
+  margin: 20px 0px;
+}
+
+.test-page-icon {
+  width: 320px;
+  /* animation: spin3D 2s infinite; */
+}
