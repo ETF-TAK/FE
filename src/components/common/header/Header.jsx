@@ -24,12 +24,12 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link to="/guide" className={location.pathname === '/guide' ? 'active' : ''}>
+          <Link to="/guide" className={location.pathname.startsWith('/guide') ? 'active' : ''}>
             ETF 투자 가이드
           </Link>
         </li>
         <li>
-          <Link to="/test" className={location.pathname === '/test' ? 'active' : ''}>
+          <Link to="/test" className={location.pathname.startsWith('/test') ? 'active' : ''}>
             투자 성향 테스트
           </Link>
         </li>
