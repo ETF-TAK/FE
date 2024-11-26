@@ -1,0 +1,57 @@
+.test-result-page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 80px 0;
+}
+
+.test-result-page-title {
+  color: #0249ff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.test-result-page-sub-title {
+  color: #000;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 12px;
+}
+
+.test-result-page-mbti-card-wrapper {
+  display: flex;
+  gap: 48px;
+  margin-top: 100px;
+}
+
+.test-result-page-mbti-text {
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.test-result-page-mbti-text span {
+  color: #0249ff;
+}
+
+.test-result-page-category-card-wrapper {
+  width: 966px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+.test-result-page-shinhan-button-wrapper {
+  display: flex;
+  gap: 60px;
+  margin-top: 120px;
+}

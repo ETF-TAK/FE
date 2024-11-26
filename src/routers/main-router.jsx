@@ -8,7 +8,9 @@ import TestPage from '../pages/TestPage';
 import InvestAmountPage from '../pages/investPage/investAmountPage/InvestAmountPage';
 import InvestResult from '../pages/investPage/investResult/InvestResult';
 import DetailPage from "../pages/DetailPage";
-import GuideDetailPage from '../pages/guidePage/guideDetalPage/\bGuideDetailPage';
+import GuideDetailPage from '../pages/guidePage/guideDetalPage/GuideDetailPage';
+import TestResultPage from "../pages/testPage/testResultPage/TestResultPage";
+
 
 export const mainRoutes = [
   {
@@ -22,9 +24,9 @@ export const mainRoutes = [
       { element: <ComparePage />, path: 'compare' },
       { element: <GuidePage />, path: 'guide' },
       { element: <GuideDetailPage />, path: 'guide/detail/:num' },
-      { element: <TestPage />, path: 'test' },
       { element: <DetailPage />, path: "compare/detail" },
       { element: <TestPage />, path: "test" },
+      { element: <TestResultPage />, path: "test/result" },
     ],
   },
 ];
