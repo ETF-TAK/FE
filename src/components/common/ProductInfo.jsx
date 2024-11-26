@@ -5,8 +5,8 @@ function ProductInfo() {
       "장기적으로 성장 가능성이 높은 조선업 관련 산업에 투자",
     ],
     dividends: [
-      { date: "2024.03.31", basePrice: "10,000", amount: "16", rate: "1.6%", afterPrice: "10,002.71" },
-      { date: "2024.01.31", basePrice: "10,002.77", amount: "16", rate: "1.6%", afterPrice: "10,002.71" },
+      { date: "2024.03.31", actualDate: "2024.04.01", amount: "16.7", unit: "$" },
+      { date: "2024.04.28", actualDate: "2024.05.01", amount: "1,700", unit: "₩" },
     ],
   };
 
@@ -32,27 +32,32 @@ function ProductInfo() {
 
       {/* 분배금 */}
       <div>
-        <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>
-            분배금
-          </h2>
-        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}>
+        <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>분배금</h2>
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            marginTop: "10px",
+            tableLayout: "fixed",
+          }}
+        >
           <thead>
             <tr style={{ backgroundColor: "#F5F5F5" }}>
-              <th style={{ padding: "10px", border: "1px solid #CCC" }}>지급일</th>
-              <th style={{ padding: "10px", border: "1px solid #CCC" }}>기준가격</th>
+              <th style={{ padding: "10px", border: "1px solid #CCC" }}>지급기준일</th>
+              <th style={{ padding: "10px", border: "1px solid #CCC" }}>실제지급일</th>
               <th style={{ padding: "10px", border: "1px solid #CCC" }}>분배금액</th>
-              <th style={{ padding: "10px", border: "1px solid #CCC" }}>분배금율</th>
-              <th style={{ padding: "10px", border: "1px solid #CCC" }}>기준가격(분배 후)</th>
+              <th style={{ padding: "10px", border: "1px solid #CCC" }}>단위</th>
             </tr>
           </thead>
           <tbody>
             {productInfo.dividends.map((dividend, index) => (
               <tr key={index}>
-                <td style={{ padding: "10px", border: "1px solid #CCC" }}>{dividend.date}</td>
-                <td style={{ padding: "10px", border: "1px solid #CCC" }}>{dividend.basePrice}</td>
-                <td style={{ padding: "10px", border: "1px solid #CCC" }}>{dividend.amount}</td>
-                <td style={{ padding: "10px", border: "1px solid #CCC" }}>{dividend.rate}</td>
-                <td style={{ padding: "10px", border: "1px solid #CCC" }}>{dividend.afterPrice}</td>
+                <td style={{ padding: "10px", border: "1px solid #CCC", textAlign: "center" }}>{dividend.date}</td>
+                <td style={{ padding: "10px", border: "1px solid #CCC", textAlign: "center" }}>
+                  {dividend.actualDate}
+                </td>
+                <td style={{ padding: "10px", border: "1px solid #CCC", textAlign: "center" }}>{dividend.amount}</td>
+                <td style={{ padding: "10px", border: "1px solid #CCC", textAlign: "center" }}>{dividend.unit}</td>
               </tr>
             ))}
           </tbody>
