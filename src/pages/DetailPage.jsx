@@ -325,9 +325,12 @@ export default function DetailPage() {
         <div
           style={{
             position: "fixed",
-            bottom: `calc(100vh - ${tooltipPosition.y + 300}px)`,
-            left: `${tooltipPosition.x}px`,
-            transform: "translateY(-100%)",
+            // bottom: `calc(100vh - ${tooltipPosition.y + 300}px)`,
+            // left: `${tooltipPosition.x}px`,
+            // transform: "translateY(-100%)",
+            top: `${tooltipPosition.y - 20}px`, // 마우스 커서의 Y 좌표를 기준으로
+            left: `${tooltipPosition.x}px`, // 마우스 커서의 X 좌표를 기준으로
+            transform: "translate(-50%, -100%)", // 커서 위에 툴팁 배치 및 X축 중심 맞춤
             background: "#F7F8FA",
             boxShadow: "0px 4px 30px 1px rgba(0, 0, 0, 0.26)",
             borderRadius: "16px",
