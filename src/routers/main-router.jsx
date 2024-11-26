@@ -3,11 +3,12 @@ import Layout from '../components/common/Layout';
 import MainPage from '../pages/MainPage';
 import InvestPage from '../pages/investPage/InvestPage';
 import ComparePage from '../pages/ComparePage';
-import GuidePage from '../pages/GuidePage';
+import GuidePage from '../pages/guidePage/guidePages/GuidePage';
 import TestPage from '../pages/TestPage';
 import InvestAmountPage from '../pages/investPage/investAmountPage/InvestAmountPage';
 import InvestResult from '../pages/investPage/investResult/InvestResult';
 import DetailPage from "../pages/DetailPage";
+import GuideDetailPage from '../pages/guidePage/guideDetalPage/\bGuideDetailPage';
 
 export const mainRoutes = [
   {
@@ -20,6 +21,7 @@ export const mainRoutes = [
       { element: <InvestResult />, path: 'invest/result' },
       { element: <ComparePage />, path: 'compare' },
       { element: <GuidePage />, path: 'guide' },
+      { element: <GuideDetailPage />, path: 'guide/detail/:num' },
       { element: <TestPage />, path: 'test' },
       { element: <DetailPage />, path: "compare/detail" },
       { element: <TestPage />, path: "test" },
