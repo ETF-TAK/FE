@@ -1,0 +1,115 @@
+.invest-page-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 36px;
+}
+
+.invest-selection-container {
+}
+
+.invest-selection-title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.invest-selection-title-blue {
+  color: #0249ff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selection-title-black {
+  color: #000;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+}
+
+.invest-selection-card-list {
+  width: 668px;
+  height: 330px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 선택한 ETF 목록 */
+.invest-selected-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 480px;
+  height: 520px;
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+  padding: 20px 36px;
+  box-sizing: border-box;
+}
+
+.invest-seleted-container-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.invest-selected-header {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.invest-selected-header-title {
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selected-header-cnt {
+  display: flex;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+}
+
+.invest-selected-header-cnt-now {
+  color: #0249ff;
+}
+
+.invest-selected-list {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 투자하기 버튼 */
+.invest-btn {
+  font-family: 'Pretendard';
+  width: 100%;
+  background-color: #0249ff;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 0px;
+  cursor: pointer;
+}
+
+.invest-btn:hover {
+  background-color: #3b72ff;
+}
+
+.invest-btn.deactivate {
+  background-color: #cdcdcd;
+  cursor: default;
+}

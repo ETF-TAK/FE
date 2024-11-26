@@ -1,0 +1,70 @@
+.invest-result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.swiper {
+  width: 420px;
+  height: 448px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  /* background-color: rgb(206, 17, 17); */
+  background-color: #2260ff;
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: #dc4233;
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: #f4b400;
+}
+
+.swiper-slide:nth-child(4n) {
+  background-color: #049d56;
+}
+
+.invest-result-title {
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: -0.4px;
+  margin-bottom: 36px;
+}
+
+.invest-result-compare-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  width: 420px;
+  height: 60px;
+  background-color: #0249ff;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  margin-top: 48px;
+  margin-bottom: 20px;
+}
+
+.invest-result-compare-btn:hover {
+  background-color: #3b72ff;
+}

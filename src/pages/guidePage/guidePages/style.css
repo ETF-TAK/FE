@@ -1,0 +1,41 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 20px;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    place-items: center;
+  }
+
+  .etf-guide-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0056FF;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 100px;
+    line-height: 1.5;
+  }
+  
+  /* 중간 크기 화면: 한 줄에 3개 */
+  @media (max-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* 작은 화면: 한 줄에 2개 */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* 아주 작은 화면: 한 줄에 1개 */
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
