@@ -4,7 +4,7 @@ import MainPage from '../pages/MainPage';
 import InvestPage from '../pages/investPage/InvestPage';
 import ComparePage from '../pages/ComparePage';
 import GuidePage from '../pages/guidePage/guidePages/GuidePage';
-import TestPage from '../pages/TestPage';
+import TestPage from '../pages/testPage/TestPage';
 import InvestAmountPage from '../pages/investPage/investAmountPage/InvestAmountPage';
 import InvestResult from '../pages/investPage/investResult/InvestResult';
 import DetailPage from "../pages/DetailPage";

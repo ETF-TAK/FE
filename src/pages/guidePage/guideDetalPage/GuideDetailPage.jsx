@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import './style.css'
-import GuideData from "../guideDetalPage/guideData"
+import GuideData from "./guideData"
 
 export default function GuideDetailPage(){
     const { num } = useParams()
