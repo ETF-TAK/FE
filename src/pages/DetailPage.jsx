@@ -38,7 +38,7 @@ export default function DetailPage() {
           marginRight: "auto",
           background: "#0249FF",
           borderRadius: "32px",
-          padding: "20px",
+          padding: "20px 40px 20px 40px",
           display: "flex",
           flexDirection: "column", // 내부 요소를 위아래로 정렬
           justifyContent: "flex-start", // 내부 요소를 위쪽으로 정렬
@@ -223,7 +223,7 @@ export default function DetailPage() {
       <div
         style={{
           width: "80%",
-          margin: "40px auto 0",
+          margin: "40px auto 40px",
           background: "#FFFFFF",
           boxShadow: "0px 4px 30px 1px rgba(0, 0, 0, 0.26)",
           borderRadius: "32px",
@@ -325,9 +325,9 @@ export default function DetailPage() {
         <div
           style={{
             position: "fixed",
-            top: `${tooltipPosition.y - 20}px`, // 마우스 커서의 Y 좌표를 기준으로
-            left: `${tooltipPosition.x}px`, // 마우스 커서의 X 좌표를 기준으로
-            transform: "translate(-50%, -100%)", // 커서 위에 툴팁 배치 및 X축 중심 맞춤
+            bottom: `calc(100vh - ${tooltipPosition.y + 300}px)`,
+            left: `${tooltipPosition.x}px`,
+            transform: "translateY(-100%)",
             background: "#F7F8FA",
             boxShadow: "0px 4px 30px 1px rgba(0, 0, 0, 0.26)",
             borderRadius: "16px",
