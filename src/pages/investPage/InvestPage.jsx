@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
-import InvestCard from '../../components/invest/investCard/investCard';
+import InvestCard from '../../components/invest/investCard/InvestCard';
 import SelectedETF from '../../components/invest/selectedETF/SelectedETF';
 import { Link } from 'react-router-dom';
 
