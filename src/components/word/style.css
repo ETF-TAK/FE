@@ -9,7 +9,7 @@
     color: #fff;
     font-family: 'Pretendard';
     font-weight: bold;
-    transition: transform 0.8s ease, box-shadow 0.3s ease;
+    transition: transform 1.0s ease, box-shadow 0.3s ease;
     transform-style: preserve-3d;
     backface-visibility: hidden;
   }
