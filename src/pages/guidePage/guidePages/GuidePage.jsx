@@ -13,6 +13,7 @@ import wordImg8 from "../../../assets/images/word/word_card8.svg";
 import wordImg9 from "../../../assets/images/word/word_card9.svg";
 import wordImg10 from "../../../assets/images/word/word_card10.svg";
 
+//
 export default function GuidePage() {
   const navigate = useNavigate();
 
