@@ -6,6 +6,9 @@ import CategoryCard from "../../../components/common/test/categoryCard/CategoryC
 import Button from "../../../components/common/button/Button";
 import { useEffect } from "react";
 import ShinhanIcon from "../../../assets/images/common/shinhanLogo.png";
+import ShinhanWebPageBtn from "../../../assets/images/icons/webpage.png";
+import AndroidBtn from "../../../assets/images/icons/android.png";
+import AppleBtn from "../../../assets/images/icons/apple.png";
 
 export default function TestResultPage() {
   const location = useLocation();
@@ -88,25 +91,29 @@ export default function TestResultPage() {
       />
 
       <div className="test-result-page-shinhan-button-wrapper">
-        <Button
-          text="신한 SOL 증권 앱 다운로드"
-          onClickFunction={() => {
+        <img
+          src={AndroidBtn}
+          className="download-btn"
+          onClick={() => {
             window.open("https://play.google.com/store/apps/details?id=com.shinhaninvest.nsmts&hl=ko", "_blank");
+          }}
+        />
+        <img
+          src={AppleBtn}
+          className="download-btn"
+          onClick={() => {
             window.open(
               "https://apps.apple.com/kr/app/%EC%8B%A0%ED%95%9C-sol%EC%A6%9D%EA%B6%8C-%EB%8C%80%ED%91%9Cmts/id1168512940",
               "_blank",
             );
           }}
-          imgSrc={ShinhanIcon}
-          padding="12px"
         />
-        <Button
-          text="신한투자증권 홈페이지"
-          onClickFunction={() => {
+        <img
+          src={ShinhanWebPageBtn}
+          className="download-btn"
+          onClick={() => {
             window.open("https://www.shinhansec.com/", "_blank");
           }}
-          imgSrc={ShinhanIcon}
-          padding="12px"
         />
       </div>
     </div>
