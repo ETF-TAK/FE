@@ -10,6 +10,7 @@ import InvestResult from '../pages/investPage/investResult/InvestResult';
 import DetailPage from "../pages/DetailPage";
 import GuideDetailPage from '../pages/guidePage/guideDetalPage/GuideDetailPage';
 import TestResultPage from "../pages/testPage/testResultPage/TestResultPage";
+import ListPage from '../pages/listPage/ListPage';
 
 
 export const mainRoutes = [
@@ -27,6 +28,7 @@ export const mainRoutes = [
       { element: <DetailPage />, path: "compare/detail" },
       { element: <TestPage />, path: "test" },
       { element: <TestResultPage />, path: "test/result" },
+      { element: <ListPage />, path: "etf/list" },
     ],
   },
 ];
