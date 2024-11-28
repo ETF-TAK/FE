@@ -2,19 +2,20 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 279px;
-  height: 408px;
+  width: 260px;
+  height: 320px;
   border-radius: 20px;
   background: #fff;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.26);
   padding: 20px;
+  position: relative;
 }
 
 .selected-compare-card-img {
   display: flex;
-  width: 160px;
-  height: 160px;
-  margin: 20px 0;
+  width: 130px;
+  height: 130px;
+  /* margin: 20px 0; */
 }
 
 .selected-compare-card-name {
@@ -38,7 +39,7 @@
   line-height: normal;
   letter-spacing: -0.16px;
   width: 206px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .selected-compare-card-content-title {
@@ -52,4 +53,12 @@
 .selected-compare-card-logo {
   width: 98px;
   margin-top: 40px;
+}
+
+.selected-compare-card-delete-icon {
+  position: absolute;
+  width: 30px;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
 }

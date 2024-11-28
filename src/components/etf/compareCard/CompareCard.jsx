@@ -5,7 +5,7 @@ import GoldIcon from "../../../assets/images/sectors/gold.png";
 import Logo from "../.././../assets/images/common/logo.png";
 
 export default function CompareCard(props) {
-  const { etf } = props;
+  const { etf, index, handleRemoveEtf } = props;
   return (
     <div className="selected-compare-card">
       <img src={GoldIcon} className="selected-compare-card-img" alt="섹터 이미지" />
@@ -21,7 +21,7 @@ export default function CompareCard(props) {
       </div>
 
       <img src={Logo} className="selected-compare-card-logo" alt="로고 이미지" />
-      <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
+      <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="selected-compare-card-delete-icon"></img>
     </div>
   );
 }
