@@ -10,7 +10,7 @@ import InvestResult from "../pages/investPage/investResult/InvestResult";
 import DetailPage from "../pages/DetailPage";
 import GuideDetailPage from "../pages/guidePage/guideDetalPage/GuideDetailPage";
 import TestResultPage from "../pages/testPage/testResultPage/TestResultPage";
-import ListPage from "../pages/listPage/ListPage";
+import ListPage from '../pages/listPage/ListPage';
 
 export const mainRoutes = [
   {
