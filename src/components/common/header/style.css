@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 35px 100px;
+  padding: 0px 100px;
   background-color: #ffffff;
   font-size: 16px;
 }
@@ -21,6 +21,7 @@
 
 .navbar-links li {
   margin-left: 70px;
+  padding: 35px 0px;
 }
 
 .navbar-links a {
@@ -35,6 +36,78 @@
 }
 
 .navbar-links a.active {
+  color: #0249ff;
+  font-weight: 700;
+}
+
+/* 드롭다운 */
+.dropdown {
+  position: relative;
+}
+
+.dropdown p {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 90px;
+  left: -50%;
+  z-index: 1000;
+  border: 0.5px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  display: block;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+}
+
+.dropdown-menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0px;
+  width: 180px;
+  height: 52px;
+}
+
+/* 마우스를 올리면 드롭다운 표시 */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.navbar-links > li > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.navbar-links > li > a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; /* 초기 너비는 0으로 설정 */
+  height: 2px;
+  background-color: blue;
+  transition: width 0.3s ease;
+  opacity: 0; /* 기본 상태에서 숨김 */
+}
+
+.navbar-links > li > a:hover::after {
+  width: 20%;
+  opacity: 1;
+}
+
+.dropdown:hover > a {
   color: #0249ff;
   font-weight: 700;
 }
