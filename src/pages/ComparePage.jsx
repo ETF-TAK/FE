@@ -3,6 +3,7 @@ import "../styles/ComparePage.css";
 import deleteIcon from "../assets/images/icons/delete.png";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CompareCard from "../components/etf/compareCard/CompareCard";
 
 export default function ComparePage() {
   const [etfData, setEtfData] = useState([
@@ -260,10 +261,13 @@ export default function ComparePage() {
       <div className="right-panel">
         <div className="etfSelect">
           {selectedEtfs.map((etf, index) => (
-            <div className={`etfSelect-${index + 1}`} key={index}>
-              <h1>{etf.name}</h1>
-              <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
-            </div>
+            <>
+              <CompareCard etf={etf} />
+              {/* <div className={`etfSelect-${index + 1}`} key={index}>
+                <h1>{etf.name}</h1>
+                <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
+              </div> */}
+            </>
           ))}
           {Array.from({ length: 2 - selectedEtfs.length }).map((_, index) => (
             <div className={`etfSelect-${selectedEtfs.length + index + 1}`} key={index}>
