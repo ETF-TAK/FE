@@ -1,174 +1,181 @@
 .container {
-    display: flex;
+  display: flex;
 }
 
 .left-panel {
-    border-radius: 20px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    width: 50%;
-    height: 600px;
-    overflow-y: auto;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  height: 600px;
+  overflow-y: auto;
 }
 
 .etfSearch-Top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  padding-bottom: 10px;
 }
 
 .etfSearch-Top h1 {
-    font-size: 32px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .etfSearch-Top input {
-    padding: 20px;
-    padding-bottom: 10px;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    outline: none;
-    width: 50%;
-    font-size: 15px;
-    font-weight: bold;
-    color: #949494;
+  padding: 20px;
+  padding-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  width: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  color: #949494;
 }
 
 .etfSearch-Bottom {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 table {
-    border-collapse: collapse;
-    padding: 20px;
+  border-collapse: collapse;
+  padding: 20px;
 }
 
 .etfSearch-Bottom thead {
-    display: flex;
+  display: flex;
 }
 
 .etfSearch-Bottom tbody tr {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    padding-left: 50px;  
-    border-radius: 10px;
-    margin-bottom: 10px;
-    display: flex;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .etfSearch-Bottom tbody tr:hover {
-    background-color: #F1F3F7;
+  background-color: #f1f3f7;
 }
 
-th, td {
-    text-align: center;
-    padding: 10px;
-    gap: 1rem;
-    vertical-align: middle;
+th,
+td {
+  text-align: center;
+  padding: 10px;
+  gap: 1rem;
+  vertical-align: middle;
 }
 
 .right-panel {
-    gap: 3rem;
-    min-width: 50%;
+  gap: 3rem;
+  min-width: 50%;
 }
 
 .etfSelect {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding-left: 50px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 50px;
 }
 
 .etfSelect img {
-   position: absolute;
-
+  position: absolute;
 }
 
 .etfSelect-1 {
-    border-radius: 20px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    width: 400%;
-    height: 300px;
-    padding: 20px;
-    background-color: #F1F3F7;
-    align-items: center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 400%;
+  height: 300px;
+  padding: 20px;
+  background-color: #f1f3f7;
+  align-items: center;
+  position: relative;
 }
 
 .etfSelect-1 h1 {
-    padding-top: 120px;
-    text-align: center;
-    color: #ADADAD;
+  padding-top: 120px;
+  text-align: center;
+  color: #adadad;
 }
 
 .etfSelect-2 {
-    border-radius: 20px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    width: 400%;
-    height: 300px;
-    padding: 20px;
-    background-color: #F1F3F7;
-    align-items: center;
-   
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 400%;
+  height: 300px;
+  padding: 20px;
+  background-color: #f1f3f7;
+  align-items: center;
 }
 
 .etfSelect-2 h1 {
-    padding-top: 120px;
-    text-align: center;
-    color: #ADADAD;
+  padding-top: 120px;
+  text-align: center;
+  color: #adadad;
 }
 
 .compare-btn {
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    min-width: 50%;
-    gap: 2rem;
-    margin-top: 190px;
-    margin-left: 40px;
-    min-height: 50px;
-    padding-top: 20px;
-    background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  min-width: 50%;
+  gap: 2rem;
+  margin-top: 190px;
+  margin-left: 40px;
+  min-height: 50px;
+  padding-top: 20px;
+  background-color: #ccc;
 }
 
 .compare-btn h1 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
 }
 
 .compare-btn.inactive {
-    background-color: #CCC;
+  background-color: #ccc;
 }
 
 /* 비활성화 상태 */
 .compare-btn.inactive:hover {
-    background-color: #cdcdcd;
+  background-color: #cdcdcd;
 }
 
 /* 활성화 상태 */
 .compare-btn.active {
-    background-color: #0249FF;
+  background-color: #0249ff;
 }
 
 /* 활성화 상태의 호버 */
 .compare-btn.active:hover {
-    background-color: #3b72ff;
+  background-color: #3b72ff;
 }
 
 .message {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-    font-weight: bold;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
+
+.etfSelect-delete-icon {
+  width: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
 }

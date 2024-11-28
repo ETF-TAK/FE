@@ -262,7 +262,7 @@ export default function ComparePage() {
           {selectedEtfs.map((etf, index) => (
             <div className={`etfSelect-${index + 1}`} key={index}>
               <h1>{etf.name}</h1>
-              <img src={deleteIcon} onClick={() => handleRemoveEtf(index)}></img>
+              <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
             </div>
           ))}
           {Array.from({ length: 2 - selectedEtfs.length }).map((_, index) => (
