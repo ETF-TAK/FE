@@ -14,7 +14,7 @@
     flex: 1;
     max-width: 50%;
     height: 630px;
-    background-color: yellow;
+    /* border: 2px solid #007bff; */
 }
 
 .cardList {
@@ -51,6 +51,11 @@
     background-repeat: no-repeat;
 }
 
+.tagSearch:focus {
+    outline: none;
+    border: none;
+}
+
 .sectorTitle {
     color: #4E4E4E;
     font-size: 20px;
@@ -67,4 +72,54 @@
     margin-top: 20px;
     margin-right: 50px;
     margin-left: 100px;
+}
+
+.searchTitle {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard';
+    margin-top: 40px;
+    margin-left: 50px;
+}
+
+.searchCount {
+    color: #0349FD;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard';
+}
+
+.etflist-right {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+thead th {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+.etflist-right tbody tr {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    padding-left: 50px;  
+    padding-right: 50px; 
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.price-list {
+    font-size: 12px;
+}
+
+
+.price-change-value {
+    font-size: 14px;
+    color: red;
 }
