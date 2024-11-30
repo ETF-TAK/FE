@@ -71,7 +71,10 @@ export default function ListPage(){
         })
         .then(res => {
             console.log("API Response:", res.data);
-            setData(res.data)
+            const mappedData = res.data.result.map(item => ({
+                name: item,
+            }));
+            setData(mappedData);
         })
         .catch(err => console.log("error"))
     }, [activeTag, activeSectorTag])
@@ -162,7 +165,7 @@ export default function ListPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            {etfData.map((etf, index) => (
+                            {data.map((etf, index) => (
                                 <tr key={index}>
                                     <th>{etf.name}</th>
                                     <th>
