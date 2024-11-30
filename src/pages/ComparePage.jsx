@@ -250,7 +250,7 @@ export default function ComparePage() {
           </div>
         </div>
         <div className="etfSearch-Bottom">
-          <CategoryTabs />
+          <CategoryTabs fontsize="16px" />
 
           <table>
             <thead>
@@ -262,7 +262,14 @@ export default function ComparePage() {
             <div className="etfSearch-Bottom-List">
               <tbody>
                 {etfData.map((etf, index) => (
-                  <tr key={index} onClick={() => handleSelectedEtf(etf)}>
+                  <tr
+                    key={index}
+                    onClick={() => handleSelectedEtf(etf)}
+                    className={
+                      // 나중에 name => id로 바꿔야할 수도
+                      selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
+                    }
+                  >
                     <td className="etfSearch-Bottom-List-Title">
                       <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
                       <span>{etf.name}</span>
