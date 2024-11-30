@@ -4,6 +4,8 @@ import deleteIcon from "../assets/images/icons/delete.png";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CompareCard from "../components/etf/compareCard/CompareCard";
+import CategoryTabs from "../components/etf/categoryTabs/CategoryTabs";
+import SectorKorea from "../assets/images/common/sectors/korea.png";
 
 export default function ComparePage() {
   const [etfData, setEtfData] = useState([
@@ -125,12 +127,12 @@ export default function ComparePage() {
       listedDate: "2021-07-10",
       baseAsset: "ESG주",
       netAsset: 1900000000,
-      dividendRate: 1.7,
+      dividendRate: -1.7,
       components: ["삼성SDI", "LG화학", "포스코홀딩스"],
     },
     {
-      name: "Kodex 자동차",
-      price: 13000,
+      name: "Kodex 자동차alsdkjlaskjdlajsl",
+      price: 130000000,
       type: "자동차",
       operator: "미래에셋자산운용",
       listedDate: "2019-04-20",
@@ -240,21 +242,35 @@ export default function ComparePage() {
           <input type="text" placeholder="검색어를 입력해주세요"></input>
         </div>
         <div className="etfSearch-Bottom">
+          <CategoryTabs />
+
           <table>
             <thead>
               <tr>
-                <th>종목</th>
-                <th>현재가</th>
+                <th className="etfSearch-Bottom-List-Title-th">종목</th>
+                <th className="etfSearch-Bottom-List-Price-th">현재가</th>
               </tr>
             </thead>
-            <tbody>
-              {etfData.map((etf, index) => (
-                <tr key={index} onClick={() => handleSelectedEtf(etf)}>
-                  <td>{etf.name}</td>
-                  <td>{etf.price.toLocaleString()}원</td>
-                </tr>
-              ))}
-            </tbody>
+            <div className="etfSearch-Bottom-List">
+              <tbody>
+                {etfData.map((etf, index) => (
+                  <tr key={index} onClick={() => handleSelectedEtf(etf)}>
+                    <td className="etfSearch-Bottom-List-Title">
+                      <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
+                      {etf.name}
+                    </td>
+                    <td className="etfSearch-Bottom-List-Price">
+                      <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                      <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
+                        {etf.dividendRate >= 0 ? "+" : ""}
+                        {etf.dividendRate}%
+                      </span>
+                      )
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </div>
           </table>
         </div>
       </div>

@@ -7,7 +7,6 @@
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   width: 50%;
   height: 600px;
-  overflow-y: auto;
 }
 
 .etfSearch-Top {
@@ -44,31 +43,82 @@
 
 table {
   border-collapse: collapse;
-  padding: 20px;
+  width: 100%;
+}
+
+.etfSearch-Bottom-List {
+  height: 360px;
+  overflow-y: auto;
 }
 
 .etfSearch-Bottom thead {
   display: flex;
+  justify-content: space-around;
+  margin: 16px 0;
+}
+
+.etfSearch-Bottom thead tr {
+  display: flex;
+  gap: 12px;
 }
 
 .etfSearch-Bottom tbody tr {
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-  padding-left: 50px;
-  border-radius: 10px;
-  margin-bottom: 10px;
   display: flex;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  justify-content: space-between;
 }
 
 .etfSearch-Bottom tbody tr:hover {
   background-color: #f1f3f7;
+  cursor: pointer;
+}
+
+.etfSearch-Bottom tbody tr {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
 }
 
 th,
 td {
   text-align: center;
-  padding: 10px;
   gap: 1rem;
   vertical-align: middle;
+}
+
+.etfSearch-Bottom-List-Img {
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
+}
+
+.etfSearch-Bottom-List-Title {
+  display: flex;
+  width: 320px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.etfSearch-Bottom-List-Price {
+  font-size: 14px;
+  width: 200px;
+}
+
+.etfSearch-Bottom-List-Price-Bold {
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.35px;
+}
+
+.etfSearch-Bottom-List-Title-th {
+  display: flex;
+  width: 260px;
+  margin-left: 40px;
+}
+
+.etfSearch-Bottom-List-Price-th {
+  width: 160px;
 }
 
 .right-panel {
