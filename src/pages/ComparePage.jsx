@@ -132,7 +132,7 @@ export default function ComparePage() {
       components: ["삼성SDI", "LG화학", "포스코홀딩스"],
     },
     {
-      name: "Kodex 자동차alsdkjlaskjdlajsl",
+      name: "Kodex 자동차alsdkjlaskjdladkjlaskjdlajsl",
       price: 130000000,
       type: "자동차",
       operator: "미래에셋자산운용",
@@ -168,6 +168,7 @@ export default function ComparePage() {
   const [selectedEtfs, setSelectedEtfs] = useState([]);
   const [isCompareEnabled, setIsCompareEnabled] = useState(false);
   const [showScrollMessage, setShowScrollMessage] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [scrollInfo, setScrollInfo] = useState([]);
   const navigate = useNavigate();
 
@@ -175,9 +176,11 @@ export default function ComparePage() {
     if (selectedEtfs.length < 2 && !selectedEtfs.some((item) => item.name === etf.name)) {
       setSelectedEtfs([...selectedEtfs, etf]);
     }
+    setShowScrollMessage(false);
   };
 
   const handleRemoveEtf = (index) => {
+    setShowResult(false);
     const updateEtfs = [...selectedEtfs];
     updateEtfs.splice(index, 1);
     setSelectedEtfs(updateEtfs);
@@ -190,6 +193,7 @@ export default function ComparePage() {
 
   const handleCompareClick = () => {
     if (isCompareEnabled) {
+      setShowResult(true);
       setShowScrollMessage(true);
 
       const selectedData = selectedEtfs.map((etf) => ({
@@ -261,7 +265,7 @@ export default function ComparePage() {
                   <tr key={index} onClick={() => handleSelectedEtf(etf)}>
                     <td className="etfSearch-Bottom-List-Title">
                       <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
-                      {etf.name}
+                      <span>{etf.name}</span>
                     </td>
                     <td className="etfSearch-Bottom-List-Price">
                       <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
@@ -295,9 +299,19 @@ export default function ComparePage() {
             </div>
           ))}
         </div>
+
+        <div className="comparison-result-summary">
+          {showResult && (
+            <>
+              <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.
+            </>
+          )}
+        </div>
+
         <div className={`compare-btn ${isCompareEnabled ? "active" : "inactive"}`} onClick={handleCompareClick}>
           <h1>비교하기</h1>
         </div>
+
         {showScrollMessage && <div className="message">스크롤 해보세요</div>}
         {!showScrollMessage && scrollInfo.length > 0 && (
           <div className="comparison-result">

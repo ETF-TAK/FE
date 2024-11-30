@@ -15,12 +15,10 @@
   display: flex;
   width: 130px;
   height: 130px;
-  /* margin: 20px 0; */
 }
 
 .selected-compare-card-name {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   color: #000;
   font-size: 20px;
   font-weight: 700;
@@ -29,6 +27,9 @@
   width: 206px;
   padding-bottom: 20px;
   border-bottom: 1px solid #c4c4c4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .selected-compare-card-content-wrapper {
