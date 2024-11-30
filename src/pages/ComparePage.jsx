@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CompareCard from "../components/etf/compareCard/CompareCard";
 import CategoryTabs from "../components/etf/categoryTabs/CategoryTabs";
 import SectorKorea from "../assets/images/common/sectors/korea.png";
+import SearchIcon from "../assets/images/icons/search.png";
 
 export default function ComparePage() {
   const [etfData, setEtfData] = useState([
@@ -239,7 +240,10 @@ export default function ComparePage() {
       <div className="left-panel">
         <div className="etfSearch-Top">
           <h1>ETF 둘러보기</h1>
-          <input type="text" placeholder="검색어를 입력해주세요"></input>
+          <div className="etfSearch-Wrapper">
+            <input type="text" placeholder="검색어를 입력해주세요"></input>
+            <img src={SearchIcon} alt="돋보기 아이콘" className="etfSearch-Icon" />
+          </div>
         </div>
         <div className="etfSearch-Bottom">
           <CategoryTabs />

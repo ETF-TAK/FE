@@ -17,21 +17,38 @@
   padding-bottom: 10px;
 }
 
-.etfSearch-Top h1 {
-  font-size: 32px;
-  font-weight: bold;
+.etfSearch-Wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .etfSearch-Top input {
-  padding: 20px;
-  padding-bottom: 10px;
+  padding: 10px 30px 10px 10px;
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 280px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
   outline: none;
-  width: 50%;
-  font-size: 15px;
-  font-weight: bold;
+}
+
+.etfSearch-Top input::placeholder {
   color: #949494;
+}
+
+.etfSearch-Icon {
+  position: absolute;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.etfSearch-Top h1 {
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .etfSearch-Bottom {
