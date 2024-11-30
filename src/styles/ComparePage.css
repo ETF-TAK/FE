@@ -141,8 +141,8 @@ td {
 .etfSelect-1 {
   border-radius: 20px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  width: 400%;
-  height: 300px;
+  width: 240px;
+  height: 320px;
   padding: 20px;
   background-color: #f1f3f7;
   align-items: center;
@@ -159,8 +159,8 @@ td {
   position: relative;
   border-radius: 20px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  width: 400%;
-  height: 300px;
+  width: 240px;
+  height: 320px;
   padding: 20px;
   background-color: #f1f3f7;
   align-items: center;
