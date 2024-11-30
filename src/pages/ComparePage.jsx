@@ -307,10 +307,10 @@ export default function ComparePage() {
           ))}
         </div>
 
-        <div className="comparison-result-summary">
+        <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
           {showResult && (
             <>
-              <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.
+              <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.👍🏻
             </>
           )}
         </div>
