@@ -19,15 +19,48 @@ import esg from "../../assets/images/tag/esg_tag.svg"
 import truck from "../../assets/images/tag/truck_tag.svg"
 import heart from "../../assets/images/tag/heart_tag.svg"
 import reits from "../../assets/images/tag/reits_tag.svg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function ListPage(){
+    const nationMap = {
+        "전체": "ALL",
+        "미국": "US",
+        "한국": "KOREA",
+    };
+    
+    const [data, setData] = useState([]);
+    const [count, setCount] = useState(200);
     const [activeTag, setActiveTag] = useState("전체");
     const [activeSectorTag, setActiveSectorTag] = useState("전체");
+    
+    useEffect(() => {
+        const validNation = nationMap[activeTag] || "전체";
+        console.log("현재 validNation 값:", validNation);
+        console.log("현재 activeTag 값:", activeTag);
+        console.log("현재 activeSectorTag 값:", activeSectorTag);
+
+        axios.get("http://localhost:8080/api/tag/search", {
+            params: {
+                keyword: "",
+                nation: validNation,
+                sector: activeSectorTag
+            }
+        })
+        .then(res => {
+            console.log("API Response:", res.data);
+            setCount(res.data.result.length)
+            const mappedData = res.data.result.map(item => ({
+                name: item,
+            }));
+            setData(mappedData);
+        })
+        .catch(err => console.log("error"))
+    }, [activeTag, activeSectorTag])
 
     const changeCountryTag = (tagTitle) => {
         if (activeTag === tagTitle) {
-            setActiveTag(null);
+            setActiveTag("전체");
             console.log(`Country 태그 ${tagTitle} 취소됨`);
         } else {
             setActiveTag(tagTitle);
@@ -37,11 +70,11 @@ export default function ListPage(){
 
     const changeSectorTag = (tagTitle) => {
         if (activeSectorTag === tagTitle) {
-            setActiveSectorTag(null)
+            setActiveSectorTag("전체")
             console.log(`Sector 태그 ${tagTitle} 취소됨`);
         } else {
             setActiveSectorTag(tagTitle)
-            console.log(`Sector 태그 ${tagTitle} 취소됨`);
+            console.log(`Sector 태그 ${tagTitle}`);
         }
     }
 
@@ -78,7 +111,7 @@ export default function ListPage(){
                     <div className="tags-container">
                         {tags_country.map(({ img, title }) => (
                             <Tag  
-                            kwy={title}
+                            kye={title}
                             img={img}
                             title={title}
                             onClick={()=>changeCountryTag(title)}
@@ -100,7 +133,31 @@ export default function ListPage(){
                 </div>
             </div>
             <div className="listContent2">
-                <p>Second Div Content</p>
+                <div>{data.result}</div>
+                <div className="searchTitle"><span className="searchCount">{count}</span>건의 검색결과</div>
+                <div className="etflist-right">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>종목</th>
+                                <th>현재가</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((etf, index) => (
+                                <tr key={index}>
+                                    <th>{etf.name}</th>
+                                    <th>
+                                        {etf.price}<span className="price-list"> 원</span>
+                                        <span> (</span>
+                                        <span className="price-change-value">+20%</span>
+                                        <span>)</span>
+                                    </th>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )

@@ -3,7 +3,10 @@ import "../styles/ComparePage.css";
 import deleteIcon from "../assets/images/icons/delete.png";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ScrollPage from "./scrollPage/ScrollPage";
+import CompareCard from "../components/etf/compareCard/CompareCard";
+import CategoryTabs from "../components/etf/categoryTabs/CategoryTabs";
+import SectorKorea from "../assets/images/common/sectors/korea.png";
+import SearchIcon from "../assets/images/icons/search.png";
 
 export default function ComparePage() {
   const [etfData, setEtfData] = useState([
@@ -103,12 +106,13 @@ export default function ComparePage() {
       operator: "삼성자산운용",
       listedDate: "2021-07-10",
       netAsset: 1900000000,
-      dividendRate: 1.7,
+      dividendRate: -1.7,
       components: ["삼성SDI", "LG화학", "포스코홀딩스"],
     },
     {
-      name: "Kodex 자동차",
-      price: 13000,
+      name: "Kodex 자동차alsdkjlaskjdladkjlaskjdlajsl",
+      price: 130000000,
+      type: "자동차",
       operator: "미래에셋자산운용",
       listedDate: "2019-04-20",
       netAsset: 2100000000,
@@ -136,7 +140,8 @@ export default function ComparePage() {
   ]);
   const [selectedEtfs, setSelectedEtfs] = useState([]);
   const [isCompareEnabled, setIsCompareEnabled] = useState(false);
-  const [showScrollMessage, setShowScrollMessage] = useState(true);
+  const [showScrollMessage, setShowScrollMessage] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [scrollInfo, setScrollInfo] = useState([]);
   const [isContentVisible, setIsContentVisible] = useState(false);
   const navigate = useNavigate();
@@ -145,9 +150,11 @@ export default function ComparePage() {
     if (selectedEtfs.length < 2 && !selectedEtfs.some((item) => item.name === etf.name)) {
       setSelectedEtfs([...selectedEtfs, etf]);
     }
+    setShowScrollMessage(false);
   };
 
   const handleRemoveEtf = (index) => {
+    setShowResult(false);
     const updateEtfs = [...selectedEtfs];
     updateEtfs.splice(index, 1);
     setSelectedEtfs(updateEtfs);
@@ -160,6 +167,7 @@ export default function ComparePage() {
 
   const handleCompareClick = () => {
     if (isCompareEnabled) {
+      setShowResult(true);
       setShowScrollMessage(true);
 
       const selectedData = selectedEtfs.map((etf) => ({
@@ -199,34 +207,61 @@ export default function ComparePage() {
       <div className="left-panel">
         <div className="etfSearch-Top">
           <h1>ETF 둘러보기</h1>
-          <input type="text" placeholder="검색어를 입력해주세요"></input>
+          <div className="etfSearch-Wrapper">
+            <input type="text" placeholder="검색어를 입력해주세요"></input>
+            <img src={SearchIcon} alt="돋보기 아이콘" className="etfSearch-Icon" />
+          </div>
         </div>
         <div className="etfSearch-Bottom">
+          <CategoryTabs fontsize="16px" />
+
           <table>
             <thead>
               <tr>
-                <th>종목</th>
-                <th>현재가</th>
+                <th className="etfSearch-Bottom-List-Title-th">종목</th>
+                <th className="etfSearch-Bottom-List-Price-th">현재가</th>
               </tr>
             </thead>
-            <tbody>
-              {etfData.map((etf, index) => (
-                <tr key={index} onClick={() => handleSelectedEtf(etf)}>
-                  <td>{etf.name}</td>
-                  <td>{etf.price.toLocaleString()}원</td>
-                </tr>
-              ))}
-            </tbody>
+            <div className="etfSearch-Bottom-List">
+              <tbody>
+                {etfData.map((etf, index) => (
+                  <tr
+                    key={index}
+                    onClick={() => handleSelectedEtf(etf)}
+                    className={
+                      // 나중에 name => id로 바꿔야할 수도
+                      selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
+                    }
+                  >
+                    <td className="etfSearch-Bottom-List-Title">
+                      <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
+                      <span>{etf.name}</span>
+                    </td>
+                    <td className="etfSearch-Bottom-List-Price">
+                      <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                      <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
+                        {etf.dividendRate >= 0 ? "+" : ""}
+                        {etf.dividendRate}%
+                      </span>
+                      )
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </div>
           </table>
         </div>
       </div>
       <div className="right-panel">
         <div className="etfSelect">
           {selectedEtfs.map((etf, index) => (
-            <div className={`etfSelect-${index + 1}`} key={index}>
-              <h1>{etf.name}</h1>
-              <img src={deleteIcon} onClick={() => handleRemoveEtf(index)}></img>
-            </div>
+            <>
+              <CompareCard etf={etf} index={index} handleRemoveEtf={handleRemoveEtf} />
+              {/* <div className={`etfSelect-${index + 1}`} key={index}>
+                <h1>{etf.name}</h1>
+                <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
+              </div> */}
+            </>
           ))}
           {Array.from({ length: 2 - selectedEtfs.length }).map((_, index) => (
             <div className={`etfSelect-${selectedEtfs.length + index + 1}`} key={index}>
@@ -234,8 +269,78 @@ export default function ComparePage() {
             </div>
           ))}
         </div>
+
+        <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
+          {showResult && (
+            <>
+              <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.👍🏻
+            </>
+          )}
+        </div>
+
         <div className={`compare-btn ${isCompareEnabled ? "active" : "inactive"}`} onClick={handleCompareClick}>
           <h1>비교하기</h1>
+        </div>
+
+        {showScrollMessage && <div className="message">스크롤 해보세요</div>}
+        {!showScrollMessage && scrollInfo.length > 0 && (
+          <div className="comparison-result">
+            <h1>기본 정보</h1>
+            <table>
+              <thead>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <th key={index}>{info.name}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.type}</td>
+                  ))}
+                </tr>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.operator}</td>
+                  ))}
+                </tr>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.listedDate}</td>
+                  ))}
+                </tr>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.baseAsset}</td>
+                  ))}
+                </tr>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.netAsset.toLocaleString()}원</td>
+                  ))}
+                </tr>
+                <tr>
+                  {scrollInfo.map((info, index) => (
+                    <td key={index}>{info.dividendRate}%</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+            <h2>구성 종목</h2>
+            <ul>
+              {scrollInfo.map((info, index) => (
+                <li key={index}>
+                  {info.name}: {info.components.join(", ")}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div>
+          <h1>ComparePage</h1>
+          <button onClick={() => navigate("/compare/detail?etfId=1")}>Go to DetailPage (ETF1)</button>
+          <button onClick={() => navigate("/compare/detail?etfId=2")}>Go to DetailPage (ETF2)</button>
         </div>
       </div>
       <ScrollPage
