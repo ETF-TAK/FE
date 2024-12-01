@@ -203,83 +203,85 @@ export default function ComparePage() {
   }, [selectedEtfs]);
 
   return (
-    <div className="container">
-      <div className="left-panel">
-        <div className="etfSearch-Top">
-          <h1>ETF 둘러보기</h1>
-          <div className="etfSearch-Wrapper">
-            <input type="text" placeholder="검색어를 입력해주세요"></input>
-            <img src={SearchIcon} alt="돋보기 아이콘" className="etfSearch-Icon" />
+    <div className="page-container">
+      <div className="container">
+        <div className="left-panel">
+          <div className="etfSearch-Top">
+            <h1>ETF 둘러보기</h1>
+            <div className="etfSearch-Wrapper">
+              <input type="text" placeholder="검색어를 입력해주세요"></input>
+              <img src={SearchIcon} alt="돋보기 아이콘" className="etfSearch-Icon" />
+            </div>
+          </div>
+          <div className="etfSearch-Bottom">
+            <CategoryTabs fontsize="16px" />
+
+            <table>
+              <thead>
+                <tr>
+                  <th className="etfSearch-Bottom-List-Title-th">종목</th>
+                  <th className="etfSearch-Bottom-List-Price-th">현재가</th>
+                </tr>
+              </thead>
+              <div className="etfSearch-Bottom-List">
+                <tbody>
+                  {etfData.map((etf, index) => (
+                    <tr
+                      key={index}
+                      onClick={() => handleSelectedEtf(etf)}
+                      className={
+                        // 나중에 name => id로 바꿔야할 수도
+                        selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
+                      }
+                    >
+                      <td className="etfSearch-Bottom-List-Title">
+                        <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
+                        <span>{etf.name}</span>
+                      </td>
+                      <td className="etfSearch-Bottom-List-Price">
+                        <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                        <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
+                          {etf.dividendRate >= 0 ? "+" : ""}
+                          {etf.dividendRate}%
+                        </span>
+                        )
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </div>
+            </table>
           </div>
         </div>
-        <div className="etfSearch-Bottom">
-          <CategoryTabs fontsize="16px" />
-
-          <table>
-            <thead>
-              <tr>
-                <th className="etfSearch-Bottom-List-Title-th">종목</th>
-                <th className="etfSearch-Bottom-List-Price-th">현재가</th>
-              </tr>
-            </thead>
-            <div className="etfSearch-Bottom-List">
-              <tbody>
-                {etfData.map((etf, index) => (
-                  <tr
-                    key={index}
-                    onClick={() => handleSelectedEtf(etf)}
-                    className={
-                      // 나중에 name => id로 바꿔야할 수도
-                      selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
-                    }
-                  >
-                    <td className="etfSearch-Bottom-List-Title">
-                      <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
-                      <span>{etf.name}</span>
-                    </td>
-                    <td className="etfSearch-Bottom-List-Price">
-                      <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
-                      <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
-                        {etf.dividendRate >= 0 ? "+" : ""}
-                        {etf.dividendRate}%
-                      </span>
-                      )
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </div>
-          </table>
-        </div>
-      </div>
-      <div className="right-panel">
-        <div className="etfSelect">
-          {selectedEtfs.map((etf, index) => (
-            <>
-              <CompareCard etf={etf} index={index} handleRemoveEtf={handleRemoveEtf} />
-              {/* <div className={`etfSelect-${index + 1}`} key={index}>
+        <div className="right-panel">
+          <div className="etfSelect">
+            {selectedEtfs.map((etf, index) => (
+              <>
+                <CompareCard etf={etf} index={index} handleRemoveEtf={handleRemoveEtf} />
+                {/* <div className={`etfSelect-${index + 1}`} key={index}>
                 <h1>{etf.name}</h1>
                 <img src={deleteIcon} onClick={() => handleRemoveEtf(index)} className="etfSelect-delete-icon"></img>
               </div> */}
-            </>
-          ))}
-          {Array.from({ length: 2 - selectedEtfs.length }).map((_, index) => (
-            <div className={`etfSelect-${selectedEtfs.length + index + 1}`} key={index}>
-              <h1>ETF를 선택해주세요.</h1>
-            </div>
-          ))}
-        </div>
+              </>
+            ))}
+            {Array.from({ length: 2 - selectedEtfs.length }).map((_, index) => (
+              <div className={`etfSelect-${selectedEtfs.length + index + 1}`} key={index}>
+                <h1>ETF를 선택해주세요.</h1>
+              </div>
+            ))}
+          </div>
 
-        <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
-          {showResult && (
-            <>
-              <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.👍🏻
-            </>
-          )}
-        </div>
+          <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
+            {showResult && (
+              <>
+                <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.👍🏻
+              </>
+            )}
+          </div>
 
-        <div className={`compare-btn ${isCompareEnabled ? "active" : "inactive"}`} onClick={handleCompareClick}>
-          <h1>비교하기</h1>
+          <div className={`compare-btn ${isCompareEnabled ? "active" : "inactive"}`} onClick={handleCompareClick}>
+            <h1>비교하기</h1>
+          </div>
         </div>
       </div>
       <ScrollPage

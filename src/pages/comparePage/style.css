@@ -1,7 +1,12 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin: 40px 0px;
 }
 
 .left-panel {
