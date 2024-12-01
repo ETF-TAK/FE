@@ -143,7 +143,8 @@ export default function ComparePage() {
   const [showScrollMessage, setShowScrollMessage] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [scrollInfo, setScrollInfo] = useState([]);
-  const [isContentVisible, setIsContentVisible] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [filterdData, setFilterdData] = useState(etfData);
   const navigate = useNavigate();
 
   const handleSelectedEtf = (etf) => {
@@ -202,6 +203,20 @@ export default function ComparePage() {
     setIsCompareEnabled(selectedEtfs.length === 2);
   }, [selectedEtfs]);
 
+  useEffect(() => {
+    if (searchKeyword.trim() === "") {
+      setFilterdData(etfData);
+    } else {
+      const regex = new RegExp(searchKeyword, "i");
+      const filtered = etfData.filter((etf) => regex.test(etf.name));
+      setFilterdData(filtered);
+    }
+  }, [searchKeyword, etfData]);
+
+  const handleInputChange = (e) => {
+    setSearchKeyword(e.target.value);
+  };
+
   return (
     <div className="page-container">
       <div className="container">
@@ -209,7 +224,12 @@ export default function ComparePage() {
           <div className="etfSearch-Top">
             <h1>ETF 둘러보기</h1>
             <div className="etfSearch-Wrapper">
-              <input type="text" placeholder="검색어를 입력해주세요"></input>
+              <input
+                type="text"
+                placeholder="검색어를 입력해주세요"
+                value={searchKeyword}
+                onChange={handleInputChange}
+              ></input>
               <img src={SearchIcon} alt="돋보기 아이콘" className="etfSearch-Icon" />
             </div>
           </div>
@@ -225,29 +245,35 @@ export default function ComparePage() {
               </thead>
               <div className="etfSearch-Bottom-List">
                 <tbody>
-                  {etfData.map((etf, index) => (
-                    <tr
-                      key={index}
-                      onClick={() => handleSelectedEtf(etf)}
-                      className={
-                        // 나중에 name => id로 바꿔야할 수도
-                        selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
-                      }
-                    >
-                      <td className="etfSearch-Bottom-List-Title">
-                        <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
-                        <span>{etf.name}</span>
-                      </td>
-                      <td className="etfSearch-Bottom-List-Price">
-                        <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
-                        <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
-                          {etf.dividendRate >= 0 ? "+" : ""}
-                          {etf.dividendRate}%
-                        </span>
-                        )
-                      </td>
+                  {filterdData.length > 0 ? (
+                    filterdData.map((etf, index) => (
+                      <tr
+                        key={index}
+                        onClick={() => handleSelectedEtf(etf)}
+                        className={
+                          // 나중에 name => id로 바꿔야할 수도
+                          selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
+                        }
+                      >
+                        <td className="etfSearch-Bottom-List-Title">
+                          <img src={SectorKorea} alt="섹터 이미지" className="etfSearch-Bottom-List-Img" />
+                          <span>{etf.name}</span>
+                        </td>
+                        <td className="etfSearch-Bottom-List-Price">
+                          <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                          <span style={{ color: etf.dividendRate >= 0 ? "#EB1B1D" : "#0249FF" }}>
+                            {etf.dividendRate >= 0 ? "+" : ""}
+                            {etf.dividendRate}%
+                          </span>
+                          )
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="no-Result">
+                      <td colSpan="2">검색결과가 없습니다.</td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </div>
             </table>
