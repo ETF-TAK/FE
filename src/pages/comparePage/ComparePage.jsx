@@ -1,12 +1,12 @@
 import axios from "axios";
-import "../styles/ComparePage.css";
-import deleteIcon from "../assets/images/icons/delete.png";
+import "../comparePage/style.css";
+import ScrollPage from "../scrollPage/ScrollPage";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CompareCard from "../components/etf/compareCard/CompareCard";
-import CategoryTabs from "../components/etf/categoryTabs/CategoryTabs";
-import SectorKorea from "../assets/images/common/sectors/korea.png";
-import SearchIcon from "../assets/images/icons/search.png";
+import CompareCard from "../../components/etf/compareCard/CompareCard";
+import CategoryTabs from "../../components/etf/categoryTabs/CategoryTabs";
+import SectorKorea from "../../assets/images/common/sectors/korea.png";
+import SearchIcon from "../../assets/images/icons/search.png";
 
 export default function ComparePage() {
   const [etfData, setEtfData] = useState([
@@ -280,67 +280,6 @@ export default function ComparePage() {
 
         <div className={`compare-btn ${isCompareEnabled ? "active" : "inactive"}`} onClick={handleCompareClick}>
           <h1>비교하기</h1>
-        </div>
-
-        {showScrollMessage && <div className="message">스크롤 해보세요</div>}
-        {!showScrollMessage && scrollInfo.length > 0 && (
-          <div className="comparison-result">
-            <h1>기본 정보</h1>
-            <table>
-              <thead>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <th key={index}>{info.name}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.type}</td>
-                  ))}
-                </tr>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.operator}</td>
-                  ))}
-                </tr>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.listedDate}</td>
-                  ))}
-                </tr>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.baseAsset}</td>
-                  ))}
-                </tr>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.netAsset.toLocaleString()}원</td>
-                  ))}
-                </tr>
-                <tr>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.dividendRate}%</td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-            <h2>구성 종목</h2>
-            <ul>
-              {scrollInfo.map((info, index) => (
-                <li key={index}>
-                  {info.name}: {info.components.join(", ")}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <div>
-          <h1>ComparePage</h1>
-          <button onClick={() => navigate("/compare/detail?etfId=1")}>Go to DetailPage (ETF1)</button>
-          <button onClick={() => navigate("/compare/detail?etfId=2")}>Go to DetailPage (ETF2)</button>
         </div>
       </div>
       <ScrollPage
