@@ -33,7 +33,7 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
   return (
     <div className={`scroll-page-container ${isScrolled ? "visible" : "hidden"}`}>
       {showScrollMessage && <div className="message">스크롤 해보세요</div>}
-      {isContentVisible && scrollInfo.length > 0 && (
+      {scrollInfo.length > 0 && (
         <>
           <div className="comparison-result">
             <h1>기본 정보</h1>

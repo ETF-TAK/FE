@@ -1,15 +1,13 @@
 .scroll-page-container {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 85%;
     background-color: white;
-    padding: 100px;
-    transform: translateY(100%);
+    transform: translateY(0);
     transition: transform 0.3s ease;
     z-index: 100;
 }
 
+.comparison-result {
+    padding-top: 60px;
+}
 
 .scroll-page-container table {
     width: 100%;
