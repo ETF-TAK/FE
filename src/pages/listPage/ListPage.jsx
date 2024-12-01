@@ -33,29 +33,7 @@ export default function ListPage(){
     const [count, setCount] = useState(200);
     const [activeTag, setActiveTag] = useState("전체");
     const [activeSectorTag, setActiveSectorTag] = useState("전체");
-    const [etfData, setEtfData] = useState([
-        {
-          name: "Kodex 성장주",
-          price: 12800,
-        },
-        {
-          name: "Kodex 배당주",
-          price: 15000,
-        },
-        {
-          name: "Kodex 가치주",
-          price: 14200,
-        },
-        {
-          name: "Kodex 인덱스",
-          price: 13500,
-        },
-        {
-          name: "Kodex 코스닥",
-          price: 12100
-        }
-    ])
-
+    
     useEffect(() => {
         const validNation = nationMap[activeTag] || "전체";
         console.log("현재 validNation 값:", validNation);
@@ -71,6 +49,7 @@ export default function ListPage(){
         })
         .then(res => {
             console.log("API Response:", res.data);
+            setCount(res.data.result.length)
             const mappedData = res.data.result.map(item => ({
                 name: item,
             }));
