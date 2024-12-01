@@ -1,7 +1,12 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin: 40px 0px;
 }
 
 .left-panel {
@@ -207,6 +212,7 @@ td {
   margin-top: 40px;
   padding: 10px;
   background-color: #ccc;
+  transition: backaground-color 0.3s ease, transform 0.2s ease;
 }
 
 .compare-btn h1 {
@@ -233,14 +239,8 @@ td {
 /* 활성화 상태의 호버 */
 .compare-btn.active:hover {
   background-color: #3b72ff;
-}
+  transform: scale(1.03);
 
-.message {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #333;
-  text-align: center;
-  font-weight: bold;
 }
 
 .etfSelect-delete-icon {
