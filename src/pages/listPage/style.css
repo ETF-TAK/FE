@@ -7,14 +7,12 @@
     flex: 1;
     max-width: 50%;
     height: 630px;
-    /* background-color: aqua; */
 }
 
 .listContent2 {
     flex: 1;
     max-width: 50%;
     height: 630px;
-    /* border: 2px solid #007bff; */
 }
 
 .cardList {
@@ -78,8 +76,9 @@
     font-size: 20px;
     font-weight: bold;
     font-family: 'Pretendard';
-    margin-top: 40px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 40px;
+    text-align: left;
 }
 
 .searchCount {
@@ -92,34 +91,65 @@
 .etflist-right {
     padding-left: 20px;
     padding-right: 20px;
+    overflow-y: auto;
+    max-height: 560px;
 }
 
 table {
+    border-collapse: collapse;
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
+    margin-top: 10px;
+    table-layout: fixed;
+}
+
+th:first-child {
+    width: 70%;
+}
+
+th:nth-child(2) {
+    width: 30%;
+    text-align: center;
 }
 
 thead th {
     text-align: center;
     font-weight: bold;
+    font-size: 16px;
     border-bottom: 2px solid #ddd;
+    padding: 10px;
+}
+
+td, th {
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Pretendard';
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .etflist-right tbody tr {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    padding-left: 50px;  
-    padding-right: 50px; 
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 50px;
+    padding-left: 15px;  
+    padding-right: 15px; 
+    border-bottom: 1px solid #eee;
+}
+
+.etflist-right tbody tr:hover {
+    background-color: #f1f3f7;
+    cursor: pointer;
+    overflow: visible;
 }
 
 .price-list {
-    font-size: 12px;
+    font-size: 14px;
+    text-align: left;
+    width: 120px;
+    color: #555;
 }
-
 
 .price-change-value {
     font-size: 14px;
-    color: red;
+    color: #FF0000;
+    font-weight: bold;
 }
