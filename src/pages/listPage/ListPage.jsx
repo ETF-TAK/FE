@@ -30,9 +30,14 @@ export default function ListPage(){
     };
     
     const [data, setData] = useState([]);
-    const [count, setCount] = useState(200);
+    const [count, setCount] = useState(0);
     const [activeTag, setActiveTag] = useState("전체");
     const [activeSectorTag, setActiveSectorTag] = useState("전체");
+    const [keyword, setKeyword] = useState("");
+
+    const inputText = (event) => {
+        setKeyword(event.target.value)
+    }
     
     useEffect(() => {
         const validNation = nationMap[activeTag] || "전체";
@@ -42,7 +47,7 @@ export default function ListPage(){
 
         axios.get("http://localhost:8080/api/tag/search", {
             params: {
-                keyword: "",
+                keyword: keyword,
                 nation: validNation,
                 sector: activeSectorTag
             }
@@ -56,7 +61,7 @@ export default function ListPage(){
             setData(mappedData);
         })
         .catch(err => console.log("error"))
-    }, [activeTag, activeSectorTag])
+    }, [keyword, activeTag, activeSectorTag])
 
     const changeCountryTag = (tagTitle) => {
         if (activeTag === tagTitle) {
@@ -107,6 +112,7 @@ export default function ListPage(){
                 <div className="cardList" style={{ backgroundImage: `url(${listBack})`}} >
                     <div className="tagTitle">ETF 관련 정보를<br />검색해보세요!</div>
                     <input type="text" placeholder="ETF 종목명이나 코드명을 입력해주세요" 
+                    onChange={inputText}
                     className="tagSearch" style={{ backgroundImage: `url(${searchList})`}}/>
                     <div className="tags-container">
                         {tags_country.map(({ img, title }) => (
