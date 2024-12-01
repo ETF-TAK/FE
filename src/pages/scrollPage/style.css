@@ -1,0 +1,153 @@
+.scroll-page-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    background-color: white;
+    padding: 100px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+
+.scroll-page-container table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.scroll-page-container h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.scroll-page-container thead {
+    font-weight: bold;
+    font-size: 20px;
+    border-top:  1px solid #D2D2D7;
+    border-bottom: 1px solid #D2D2D7;
+}
+
+.scroll-page-container td.label-cell {
+    text-align: left;
+    padding-left: 60px;
+}
+
+
+.scroll-page-container th,
+.scroll-page-container td {
+    padding: 10px;
+    text-align: center;
+}
+
+.scroll-page-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.scroll-page-container ul li {
+    margin: 10px 0;
+}
+
+.duplicated-result h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.duplicated-result th, 
+.duplicated-result td {
+    padding: 10px;
+    text-align: center;
+}
+
+.duplicated-result tbody {
+    margin-top: 10px;
+}
+
+.compare-detail-page .left-button {
+    border-radius: 20px;
+}
+
+.compare-detail-page {
+    display: flex;
+    gap: 2rem;
+}
+
+.button-container {
+    border-radius: 20px;
+    min-width: 45%;
+    margin-left: 9px;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    transition: backaground-color 0.3s ease, transform 0.2s ease;
+
+}
+
+.button-container:nth-child(odd) {
+    background-color: #DCC5C5;
+}
+
+.button-container:nth-child(even) {
+    background-color: #5C9CEC;
+}
+
+.button-container:nth-child(odd):hover {
+    background-color: #D2D2D7;
+    transform: scale(1.03);
+}
+
+.button-container:nth-child(even):hover {
+    background-color: #4883CD;
+    transform: scale(1.03);
+}
+
+.button-container:nth-child(odd) h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.button-container:nth-child(odd) h2 {
+    font-size: 16px;
+    color: #fff;
+}
+
+.button-container:nth-child(even) h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.button-container:nth-child(even) h2 {
+    font-size: 16px;
+    color: #fff;
+}
+
+.button-container .image img {
+    width: 80px;
+    padding-right: 30px;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    animation: moveUpDown 1.5s ease-in-out infinite;
+}
+  
+  @keyframes moveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-10px);
+      opacity: 0.5;
+    }
+  }
