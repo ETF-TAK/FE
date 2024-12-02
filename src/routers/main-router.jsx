@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/common/Layout";
-import MainPage from "../pages/MainPage";
+import MainPage from "../pages/mainPage/MainPage";
 import InvestPage from "../pages/investPage/InvestPage";
 import ComparePage from "../pages/ComparePage";
 import GuidePage from "../pages/guidePage/guidePages/GuidePage";
@@ -10,7 +10,7 @@ import InvestResult from "../pages/investPage/investResult/InvestResult";
 import DetailPage from "../pages/DetailPage";
 import GuideDetailPage from "../pages/guidePage/guideDetalPage/GuideDetailPage";
 import TestResultPage from "../pages/testPage/testResultPage/TestResultPage";
-import ListPage from '../pages/listPage/ListPage';
+import ListPage from "../pages/listPage/ListPage";
 
 export const mainRoutes = [
   {
