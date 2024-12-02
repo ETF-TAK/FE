@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import "./style.css";
 
 export default function MainPage() {
+  // 페이지 로드 시, 스크롤 내리기
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="main-container">
       <video className="main-video-background" autoPlay loop muted>
