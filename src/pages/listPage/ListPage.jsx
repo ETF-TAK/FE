@@ -54,13 +54,24 @@ export default function ListPage(){
         })
         .then(res => {
             console.log("API Response:", res.data);
-            setCount(res.data.result.length)
-            const mappedData = res.data.result.map(item => ({
-                name: item,
+            const resultData = res.data.result
+            setCount(resultData.length)
+            const formatter = new Intl.NumberFormat('en-US');
+
+            const mappedData = resultData.map(item => ({
+                name: item.name,
+                price: formatter.format(item.price),
+                profitRate: item.profitRate,
+                positive: item.positive
             }));
             setData(mappedData);
         })
         .catch(err => console.log("error"))
+
+        const timeoutId = setTimeout(() => {
+            fetchData();
+        }, 1000);
+        return () => clearTimeout(timeoutId);
     }, [keyword, activeTag, activeSectorTag])
 
     const changeCountryTag = (tagTitle) => {
@@ -139,7 +150,6 @@ export default function ListPage(){
                 </div>
             </div>
             <div className="listContent2">
-                <div>{data.result}</div>
                 <div className="searchTitle"><span className="searchCount">{count}</span>건의 검색결과</div>
                 <div className="etflist-right">
                     <table>
@@ -154,9 +164,11 @@ export default function ListPage(){
                                 <tr key={index}>
                                     <th>{etf.name}</th>
                                     <th>
-                                        {etf.price}<span className="price-list"> 원</span>
+                                        {etf.price}<span className="price-list">원</span>
                                         <span> (</span>
-                                        <span className="price-change-value">+20%</span>
+                                            <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
+                                                {etf.profitRate}
+                                            </span>
                                         <span>)</span>
                                     </th>
                                 </tr>
