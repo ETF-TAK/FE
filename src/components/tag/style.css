@@ -24,3 +24,7 @@
     background-color: #0249FF;
     color: white;
 }
+
+.tag:hover {
+    transform: scale(1.07);
+}

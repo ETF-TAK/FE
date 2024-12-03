@@ -55,7 +55,8 @@ export default function ListPage(){
         .then(res => {
             console.log("API Response:", res.data);
             const resultData = res.data.result
-            setCount(resultData.length)
+            const filteredData = resultData.filter(item => item.price !== 0); 
+            setCount(filteredData.length);
             const formatter = new Intl.NumberFormat('en-US');
 
             const mappedData = resultData.map(item => ({
@@ -81,7 +82,7 @@ export default function ListPage(){
 
     const changeSectorTag = (tagTitle) => {
         if (activeSectorTag === tagTitle) {
-            setActiveSectorTag("ALL")
+            setActiveSectorTag("전체")
             console.log(`Sector 태그 ${tagTitle} 취소됨`);
         } else {
             setActiveSectorTag(tagTitle)
@@ -132,15 +133,49 @@ export default function ListPage(){
                         ))}      
                     </div>
                     <div className="sectorTitle">섹터별 ETF</div>
-                    <div className="tags-container">
-                        {tags_sector.map(({ img, title }) => (
+                        <div className="tags-container">
+                            {tags_sector.slice(0, 4).map(({ img, title }) => (
+                                <Tag  
+                                    key={title}
+                                    img={img}
+                                    title={title}
+                                    onClick={() => changeSectorTag(title)}
+                                    isActive={activeSectorTag === title}
+                                />
+                            ))}
+                        </div>
+                        <div className="tags-container">
+                        {tags_sector.slice(4, 8).map(({ img, title }) => (
                             <Tag  
-                            img={img}
-                            title={title}
-                            onClick={()=>changeSectorTag(title)}
-                            isActive={activeSectorTag === title}
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
                             />
-                        ))}      
+                        ))}
+                    </div>
+                    <div className="tags-container">
+                        {tags_sector.slice(8, 12).map(({ img, title }) => (
+                            <Tag  
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
+                            />
+                        ))}
+                    </div>
+                    <div className="tags-container">
+                        {tags_sector.slice(12, 14).map(({ img, title }) => (
+                            <Tag  
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -155,7 +190,9 @@ export default function ListPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((etf, index) => (
+                            {data
+                            .filter(etf => etf.price !== "0")
+                            .map((etf, index) => (
                                 <tr key={index}>
                                     <th>{etf.name}</th>
                                     <th>
