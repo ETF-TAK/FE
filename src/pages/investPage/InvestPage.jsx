@@ -1,56 +1,64 @@
-import React, { useState } from 'react';
-import './style.css';
-import CategoryTabs from '../../components/etf/categoryTabs/CategoryTabs';
-import InvestCard from '../../components/invest/investCard/InvestCard';
-import SelectedETF from '../../components/invest/selectedETF/SelectedETF';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import CategoryTabs from "../../components/etf/categoryTabs/CategoryTabs";
+import InvestCard from "../../components/invest/investCard/InvestCard";
+import SelectedETF from "../../components/invest/selectedETF/SelectedETF";
+import { Link } from "react-router-dom";
+import { getInvestETFList } from "../../lib/apis/invest";
 
 export default function InvestPage() {
+  const [etfData, setEtfData] = useState([]);
   const [selectedETFList, setSelectedETFList] = useState([]);
 
-  const etfData = [
-    {
-      id: 1,
-      name: '한중반도체(합성)',
-      company: 'Kodex',
-    },
-    {
-      id: 2,
-      name: '미국 기술주 ETF',
-      company: 'TIGER',
-    },
-    {
-      id: 3,
-      name: 'S&P 500 인버스',
-      company: 'ARIRANG',
-    },
-    {
-      id: 4,
-      name: '한중반도체(합성)',
-      company: 'Kodex',
-    },
-    {
-      id: 5,
-      name: '미국 헬스케어 ETF',
-      company: 'KBSTAR',
-    },
-    {
-      id: 6,
-      name: '금 투자 ETF',
-      company: 'HANARO',
-    },
-    {
-      id: 7,
-      name: '신흥국 배당주',
-      company: 'TIGER',
-    },
-    {
-      id: 8,
-      name: '차이나 항셍 테크',
-      company: 'KOSEF',
-    },
-  ];
+  // const etfData = [
+  //   {
+  //     id: 1,
+  //     name: "한중반도체(합성)",
+  //     company: "Kodex",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "미국 기술주 ETF",
+  //     company: "TIGER",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "S&P 500 인버스",
+  //     company: "ARIRANG",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "한중반도체(합성)",
+  //     company: "Kodex",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "미국 헬스케어 ETF",
+  //     company: "KBSTAR",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "금 투자 ETF",
+  //     company: "HANARO",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "신흥국 배당주",
+  //     company: "TIGER",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "차이나 항셍 테크",
+  //     company: "KOSEF",
+  //   },
+  // ];
 
+  useEffect(() => {
+    getInvestETFList().then((data) => {
+      console.log(data);
+      setEtfData(data);
+    });
+  }, []);
   return (
     <>
       <div className="invest-page-container">
@@ -90,9 +98,9 @@ export default function InvestPage() {
               ))}
             </div>
           </div>
-          <Link to={'/invest/amount'} state={{ selectedETFList }}>
+          <Link to={"/invest/amount"} state={{ selectedETFList }}>
             <button
-              className={`invest-btn ${selectedETFList.length > 0 ? '' : 'deactivate'}`}
+              className={`invest-btn ${selectedETFList.length > 0 ? "" : "deactivate"}`}
               disabled={selectedETFList.length === 0}
             >
               투자하기
