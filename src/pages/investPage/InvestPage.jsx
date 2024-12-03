@@ -11,49 +11,6 @@ export default function InvestPage() {
   const [selectedETFList, setSelectedETFList] = useState([]);
   const [category, setCategory] = useState("GROWTH");
 
-  // const etfData = [
-  //   {
-  //     id: 1,
-  //     name: "한중반도체(합성)",
-  //     company: "Kodex",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "미국 기술주 ETF",
-  //     company: "TIGER",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "S&P 500 인버스",
-  //     company: "ARIRANG",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "한중반도체(합성)",
-  //     company: "Kodex",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "미국 헬스케어 ETF",
-  //     company: "KBSTAR",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "금 투자 ETF",
-  //     company: "HANARO",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "신흥국 배당주",
-  //     company: "TIGER",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "차이나 항셍 테크",
-  //     company: "KOSEF",
-  //   },
-  // ];
-
   useEffect(() => {
     getInvestETFList(category).then((data) => {
       setEtfData(data);
