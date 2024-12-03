@@ -7,7 +7,7 @@ import CompareCard from "../../components/etf/compareCard/CompareCard";
 import CategoryTabs from "../../components/etf/categoryTabs/CategoryTabs";
 import SectorKorea from "../../assets/images/common/sectors/korea.png";
 import SearchIcon from "../../assets/images/icons/search.png";
-import { getCompareETFList } from "../../lib/apis/compare";
+import { getCompareETFList, postCompareETF } from "../../lib/apis/compare";
 import SectorMapper from "../../components/etf/sectorMapper/SectorMapper";
 
 export default function ComparePage() {
@@ -148,6 +148,8 @@ export default function ComparePage() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filterdData, setFilterdData] = useState(etfData);
   const [category, setCategory] = useState("GROWTH");
+  const [basicInfo, setBasicInfo] = useState([]); // 기본정보
+  const [overlappingStocks, setOverlappingStocks] = useState([]); // 중복종목
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -176,21 +178,55 @@ export default function ComparePage() {
     }
   };
 
-  const handleCompareClick = () => {
+  // const handleCompareClick = () => {
+  //   if (isCompareEnabled) {
+  //     setShowResult(true);
+  //     setShowScrollMessage(true);
+
+  //     const selectedData = selectedEtfs.map((etf) => ({
+  //       name: etf.name,
+  //       operator: etf.operator,
+  //       listedDate: etf.listedDate,
+  //       netAsset: etf.netAsset,
+  //       dividendRate: etf.dividendRate,
+  //       components: etf.components,
+  //     }));
+  //     setScrollInfo(selectedData);
+  //     setIsContentVisible(true);
+  //   }
+  // };
+
+  const handleCompareClick = async () => {
     if (isCompareEnabled) {
       setShowResult(true);
       setShowScrollMessage(true);
 
-      const selectedData = selectedEtfs.map((etf) => ({
-        name: etf.name,
-        operator: etf.operator,
-        listedDate: etf.listedDate,
-        netAsset: etf.netAsset,
-        dividendRate: etf.dividendRate,
-        components: etf.components,
-      }));
-      setScrollInfo(selectedData);
-      setIsContentVisible(true);
+      const payload = {
+        // etfList: selectedEtfs.map((etf) => etf.ticker),
+        etfList: ["139240", "117680"],
+      };
+
+      try {
+        const data = await postCompareETF(payload);
+        console.log(data);
+        setBasicInfo(data.basicInfo);
+        setOverlappingStocks(data.overlappingStocks);
+        setScrollInfo(data);
+      } catch (e) {
+        console.error(e);
+      }
+
+      // const selectedData = selectedEtfs.map((etf) => ({
+      //   name: etf.name,
+      //   operator: etf.operator,
+      //   listedDate: etf.listedDate,
+      //   netAsset: etf.netAsset,
+      //   dividendRate: etf.dividendRate,
+      //   components: etf.components,
+      // }));
+
+      // setScrollInfo(selectedData);
+      // setIsContentVisible(true);
     }
   };
 
@@ -314,7 +350,8 @@ export default function ComparePage() {
           <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
             {showResult && (
               <>
-                <span>15</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수 있어요.👍🏻
+                <span>{scrollInfo.overlapCount}</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수
+                있어요.👍🏻
               </>
             )}
           </div>
@@ -328,6 +365,8 @@ export default function ComparePage() {
         scrollInfo={scrollInfo}
         showScrollMessage={showScrollMessage}
         setShowScrollMessage={setShowScrollMessage}
+        basicInfo={basicInfo}
+        overlappingStocks={overlappingStocks}
       />
     </div>
   );

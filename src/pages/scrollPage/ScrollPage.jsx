@@ -3,10 +3,18 @@ import { useNavigate } from "react-router-dom";
 import "../scrollPage/style.css";
 import goldImage from "../../assets/images/common/sectors/gold.png";
 
-export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrollMessage }) {
+export default function ScrollPage({
+  scrollInfo,
+  showScrollMessage,
+  setShowScrollMessage,
+  basicInfo,
+  overlappingStocks,
+}) {
   const [isScrolled, setIsScrolled] = useState(false); // 스크롤 여부 상태
   const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 표시 여부 상태
   const navigate = useNavigate();
+  console.log("basicInfo", basicInfo);
+  console.log("overlappingStocks", overlappingStocks);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +41,7 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
   return (
     <div className={`scroll-page-container ${isScrolled ? "visible" : "hidden"}`}>
       {showScrollMessage && <div className="message">스크롤 해보세요</div>}
-      {scrollInfo.length > 0 && (
+      {basicInfo.length > 0 && (
         <>
           <div className="comparison-result">
             <h1>기본 정보</h1>
@@ -41,7 +49,7 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
               <thead>
                 <tr>
                   <th></th>
-                  {scrollInfo.map((info, index) => (
+                  {basicInfo.map((info, index) => (
                     <th key={index}>{info.name}</th>
                   ))}
                 </tr>
@@ -49,25 +57,25 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
               <tbody>
                 <tr>
                   <td className="label-cell">운용사</td>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.operator}</td>
+                  {basicInfo.map((info, index) => (
+                    <td key={index}>{info.company}</td>
                   ))}
                 </tr>
                 <tr>
                   <td className="label-cell">상장일</td>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.listedDate}</td>
+                  {basicInfo.map((info, index) => (
+                    <td key={index}>{info.listingDate}</td>
                   ))}
                 </tr>
                 <tr>
                   <td className="label-cell">순자산</td>
-                  {scrollInfo.map((info, index) => (
-                    <td key={index}>{info.netAsset.toLocaleString()}원</td>
+                  {basicInfo.map((info, index) => (
+                    <td key={index}>{info.netWorth.toLocaleString()}원</td>
                   ))}
                 </tr>
                 <tr>
                   <td className="label-cell">연간배당률</td>
-                  {scrollInfo.map((info, index) => (
+                  {basicInfo.map((info, index) => (
                     <td key={index}>{info.dividendRate}%</td>
                   ))}
                 </tr>
@@ -84,18 +92,21 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
               <thead>
                 <tr>
                   <th></th>
-                  {scrollInfo.map((info, index) => (
+                  {basicInfo.map((info, index) => (
                     <th key={index}>{info.name}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {scrollInfo.map((info, rowIndex) => (
+                {overlappingStocks.map((info, rowIndex) => (
                   <tr key={rowIndex}>
                     <td className="label-cell">구성종목 {rowIndex + 1}</td>
-                    {scrollInfo.map((info, colIndex) => (
-                      <td key={colIndex}>삼성전자 (8.1%)</td>
-                    ))}
+                    <td className="label-cell">
+                      {info.stockName} ({info.etf1Weight}%)
+                    </td>
+                    <td className="label-cell">
+                      {info.stockName} ({info.etf2Weight}%)
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -108,7 +119,7 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
 
           {/* ComparePage 섹션 */}
           <div className="compare-detail-page">
-            {scrollInfo.map((info, index) => (
+            {basicInfo.map((info, index) => (
               <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=1")}>
                 <div className="footer">
                   <h1>{info.name}</h1>
