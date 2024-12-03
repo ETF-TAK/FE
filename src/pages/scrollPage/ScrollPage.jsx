@@ -4,15 +4,15 @@ import "../scrollPage/style.css";
 import goldImage from "../../assets/images/common/sectors/gold.png";
 
 export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrollMessage }) {
-  const [isScrolled, setIsScrolled] = useState(false); // 스크롤 여부 상태
-  const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 표시 여부 상태
+  const [isScrolled, setIsScrolled] = useState(false);              // 스크롤 여부 상태
+  const [isContentVisible, setIsContentVisible] = useState(false);  // 콘텐츠 표시 여부 상태
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const triggerHeight = 100; // 스크롤 여부를 판단하는 높이
-      const contentTriggerHeight = 200; // 콘텐츠 표시를 위한 높이
+      const triggerHeight = 100;             // 스크롤 여부를 판단하는 높이
+      const contentTriggerHeight = 200;      // 콘텐츠 표시를 위한 높이
 
       setIsScrolled(scrollY > triggerHeight);
 
@@ -109,7 +109,8 @@ export default function ScrollPage({ scrollInfo, showScrollMessage, setShowScrol
           {/* ComparePage 섹션 */}
           <div className="compare-detail-page">
             {scrollInfo.map((info, index) => (
-              <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=1")}>
+              // <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=484880")}>
+              <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=NVDY")}>
                 <div className="footer">
                   <h1>{info.name}</h1>
                   <h2>더 알아보기</h2>
