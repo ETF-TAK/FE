@@ -273,7 +273,9 @@ export default function DetailPage() {
             </p>
             <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>
               <span style={{ fontSize: "22px", fontWeight: "400" }}>{etfData.data.ticker ? "$ " : ""}</span>
-              {etfData.data.price}
+              {new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+                etfData.data.price,
+              )}
               <span style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.data.ticker ? "" : " 원"}</span>
             </p>
             <p
@@ -343,9 +345,12 @@ export default function DetailPage() {
             </p>
             <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>
               <span style={{ fontSize: "22px", fontWeight: "400" }}>{etfData.data.ticker ? "$ " : ""}</span>
-              {etfData.data.inav}
+              {new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+                etfData.data.inav,
+              )}
               <span style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.data.ticker ? "" : " 원"}</span>
             </p>
+
             {/* <p
               style={{
                 fontSize: "16px",
@@ -521,29 +526,29 @@ export default function DetailPage() {
               <WeightedTreemap data={etfData.componentStocks} />
             ) : (
               // 한국투자증권 답변 메일
-              // <div style={{ textAlign: "center", marginTop: "20px" }}>
-              //   <img
-              //     src="..\src\assets\images\common\koreaInvest_answer.png"
-              //     alt="데이터 없음"
-              //     style={{ width: "90%", height: "auto", opacity: 0.6 }}
-              //   />
-              // </div>
-              // 미국 구성종목 준비 중 안내 문구
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "200px",
-                  backgroundColor: "#F5F5F5",
-                  borderRadius: "16px", // 둥글게 만들기
-                  margin: "20px auto",
-                  width: "80%",
-                }}
-              >
-                <p style={{ fontSize: "35px", fontWeight: "500", color: "#555" }}>미국 구성종목은 준비 중입니다.</p>
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
+                <img
+                  src="..\src\assets\images\common\koreaInvest_answer.png"
+                  alt="데이터 없음"
+                  style={{ width: "90%", height: "auto", opacity: 0.6 }}
+                />
               </div>
+              // 미국 구성종목 준비 중 안내 문구
+              // <div
+              //   style={{
+              //     display: "flex",
+              //     flexDirection: "column",
+              //     justifyContent: "center",
+              //     alignItems: "center",
+              //     height: "200px",
+              //     backgroundColor: "#F5F5F5",
+              //     borderRadius: "16px", // 둥글게 만들기
+              //     margin: "20px auto",
+              //     width: "80%",
+              //   }}
+              // >
+              //   <p style={{ fontSize: "35px", fontWeight: "500", color: "#555" }}>미국 구성종목은 준비 중입니다.</p>
+              // </div>
             )}
 
             {/* <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>
