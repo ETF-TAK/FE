@@ -11,11 +11,17 @@
 }
 
 .etf-profile-name {
+  width: 140px;
   color: #000;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.16px;
   margin-bottom: 4px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .etf-profile-name.selected {
@@ -27,4 +33,10 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.16px;
+
+  width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }

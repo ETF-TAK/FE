@@ -24,15 +24,66 @@
 }
 
 .selected-etf-name {
+  display: flex;
   color: #000;
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-etf-name span {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-etf-name:hover span {
+  animation: scroll-text 3s linear infinite;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .selected-etf-company {
+  display: flex;
   color: #c9ccd7;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-etf-company span {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-etf-company:hover span {
+  animation: scroll-text 2s linear infinite;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .selected-etf-delete {
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
