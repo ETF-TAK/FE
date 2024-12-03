@@ -1,15 +1,31 @@
-import React from 'react';
-import './style.css';
-import ETFProfile from '../../../components/etf/etfProfile/ETFProfile';
-import { useLocation } from 'react-router-dom';
-import { Slider } from '@mui/material';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./style.css";
+import ETFProfile from "../../../components/etf/etfProfile/ETFProfile";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Slider } from "@mui/material";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { postInvestETF } from "../../../lib/apis/invest";
 
 export default function InvestAmountPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedETFList } = location.state || {};
   const [amount, setAmount] = useState(0);
+
+  const onClickInvestBtn = async () => {
+    const payload = {
+      investAmount: amount,
+      etfList: selectedETFList.map((etf) => ({ name: etf.name })),
+    };
+
+    try {
+      const data = await postInvestETF(payload);
+      navigate("/invest/result", { state: { data: data.result } });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <div className="invest-amount-wrapper">
@@ -37,27 +53,32 @@ export default function InvestAmountPage() {
           min={0}
           max={100000000}
           sx={{
-            color: '#0249FF', // 슬라이더 색상
+            color: "#0249FF", // 슬라이더 색상
             width: 500, // 슬라이더 길이
             height: 12, // 슬라이더 높이
-            '& .MuiSlider-thumb': {
+            "& .MuiSlider-thumb": {
               height: 24, // 핸들 크기
               width: 24,
-              backgroundColor: '#fff', // 핸들 색상
+              backgroundColor: "#fff", // 핸들 색상
             },
 
-            '& .MuiSlider-rail': {
+            "& .MuiSlider-rail": {
               opacity: 0.3,
-              backgroundColor: '#ddd', // 트랙의 뒷배경 색상
+              backgroundColor: "#ddd", // 트랙의 뒷배경 색상
             },
           }}
         />
         <div className="invest-amount-box-content">모든 ETF 상품에는 같은 금액이 적용돼요</div>
       </div>
 
-      <Link to={'/invest/result'}>
-        <button className="invest-amount-btn">투자하기</button>
-      </Link>
+      <button
+        className="invest-amount-btn"
+        onClick={() => {
+          onClickInvestBtn();
+        }}
+      >
+        투자하기
+      </button>
     </div>
   );
 }
