@@ -18,7 +18,9 @@ export default function SelectedETF(props) {
         <div className="selected-etf-name">
           <span>{etf.name}</span>
         </div>
-        <div className="selected-etf-company">{etf.company}</div>
+        <div className="selected-etf-company">
+          <span>{etf.company}</span>
+        </div>
       </div>
       <img
         className="selected-etf-delete"
