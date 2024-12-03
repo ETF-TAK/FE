@@ -67,11 +67,6 @@ export default function ListPage(){
             setData(mappedData);
         })
         .catch(err => console.log("error"))
-
-        const timeoutId = setTimeout(() => {
-            fetchData();
-        }, 1000);
-        return () => clearTimeout(timeoutId);
     }, [keyword, activeTag, activeSectorTag])
 
     const changeCountryTag = (tagTitle) => {
@@ -86,7 +81,7 @@ export default function ListPage(){
 
     const changeSectorTag = (tagTitle) => {
         if (activeSectorTag === tagTitle) {
-            setActiveSectorTag("전체")
+            setActiveSectorTag("ALL")
             console.log(`Sector 태그 ${tagTitle} 취소됨`);
         } else {
             setActiveSectorTag(tagTitle)
@@ -164,7 +159,8 @@ export default function ListPage(){
                                 <tr key={index}>
                                     <th>{etf.name}</th>
                                     <th>
-                                        {etf.price}<span className="price-list">원</span>
+                                        {etf.price}
+                                        <span className="price-list">원</span>
                                         <span> (</span>
                                             <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
                                                 {etf.profitRate}
