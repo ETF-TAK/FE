@@ -10,7 +10,7 @@ export default function InvestResultCard(props) {
       <div className="invest-result-card-amount">{etf.profitAmount.toLocaleString()}원</div>
       <div className={`invest-result-card-rate ${etf.positive ? "" : "blue"}`}>
         수익률 {etf.positive ? "+" : ""}
-        {etf.profitRate}%
+        {etf.profitAmount == 0 ? "0%" : <>{etf.profitRate}% </>}
       </div>
     </div>
   );
