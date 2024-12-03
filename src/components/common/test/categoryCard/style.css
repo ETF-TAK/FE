@@ -16,6 +16,10 @@
   user-select: none;
 }
 
+.category-card-container:hover {
+  transform: scale(1.05);
+}
+
 .category-card-text {
   display: flex;
   flex-direction: column;

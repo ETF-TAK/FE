@@ -7,6 +7,7 @@ import DividendIcon from "../../../../assets/images/mbti/category/dividend.png";
 import GoldIcon from "../../../../assets/images/mbti/category/gold.png";
 import AmericanIcon from "../../../../assets/images/mbti/category/american.png";
 import KoreanIcon from "../../../../assets/images/mbti/category/korean.png";
+import { useNavigate } from "react-router-dom";
 
 // 카테고리 데이터
 export const categoryData = [
@@ -49,9 +50,26 @@ export const categoryData = [
 ];
 
 export default function CategoryCard({ index }) {
+  const navigate = useNavigate();
   const category = categoryData[index] || categoryData[0];
+  const categoryMap = {
+    "레버리지": "LEVERAGE",
+    "성장": "GROWTH",
+    "배당": "DIVIDEND",
+    "금": "GOLD",
+    "미국": "US",
+    "한국": "KOREA",
+};
+
+  const cardList = (category) => {
+    const filterValue = categoryMap[category.title];
+    console.log(`${filterValue}`)
+    // console.log("Navigating to /compare with state:", { selectedTab: filterValue });
+    // navigate("/compare", { state: { selectedTab: filterValue } });
+  }
+
   return (
-    <div className="category-card-container">
+    <div className="category-card-container" onClick={() => cardList(category)}>
       <div className="category-card-text">
         <div className="category-card-text-title">{category.title}</div>
         <div className="category-card-text-content">{category.content}</div>
