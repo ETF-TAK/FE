@@ -1,4 +1,5 @@
 .tag {
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     border-radius: 30px;
@@ -11,9 +12,15 @@
     text-align: center;
     padding-right: 20px;
     height: 18px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .tag.active {
+    cursor: pointer;
     background-color: #0249FF;
     color: white;
 }
