@@ -56,7 +56,6 @@ export default function InvestPage() {
 
   useEffect(() => {
     getInvestETFList(category).then((data) => {
-      console.log(data);
       setEtfData(data);
     });
   }, [category]);
