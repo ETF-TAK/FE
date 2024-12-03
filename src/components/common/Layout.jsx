@@ -1,8 +1,12 @@
 import React from "react";
 import Header from "./header/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function Layout() {
+  const location = useLocation();
+
+  // 메인 페이지인가 체크
+  const isMainPage = location.pathname === "/";
   return (
     <div
       style={{
@@ -13,8 +17,8 @@ export default function Layout() {
       <Header />
       <div
         style={{
-          marginLeft: "100px",
-          marginRight: "100px",
+          marginLeft: isMainPage ? "0px" : "100px",
+          marginRight: isMainPage ? "0px" : "100px",
         }}
       >
         <Outlet />
