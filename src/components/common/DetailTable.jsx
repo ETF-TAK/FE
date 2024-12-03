@@ -40,7 +40,7 @@ function DetailTable({ details }) {
             <th
               style={{
                 padding: "12px 8px",
-                width: "20%", 
+                width: "20%",
                 fontSize: "16px",
                 fontWeight: "600",
               }}
@@ -50,7 +50,7 @@ function DetailTable({ details }) {
             <th
               style={{
                 padding: "12px 8px",
-                width: "20%", 
+                width: "20%",
                 fontSize: "16px",
                 fontWeight: "600",
               }}
