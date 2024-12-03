@@ -9,6 +9,7 @@ import { getInvestETFList } from "../../lib/apis/invest";
 export default function InvestPage() {
   const [etfData, setEtfData] = useState([]);
   const [selectedETFList, setSelectedETFList] = useState([]);
+  const [category, setCategory] = useState("GROWTH");
 
   // const etfData = [
   //   {
@@ -54,11 +55,12 @@ export default function InvestPage() {
   // ];
 
   useEffect(() => {
-    getInvestETFList().then((data) => {
+    getInvestETFList(category).then((data) => {
       console.log(data);
       setEtfData(data);
     });
-  }, []);
+  }, [category]);
+
   return (
     <>
       <div className="invest-page-container">
@@ -70,16 +72,17 @@ export default function InvestPage() {
             <div className="invest-selection-title-black">1년 전에 투자했다면?</div>
           </div>
 
-          <CategoryTabs />
+          <CategoryTabs setCategory={setCategory} />
           <div className="invest-selection-card-list">
-            {etfData.map((etf) => (
-              <InvestCard
-                key={etf.id}
-                selectedETFList={selectedETFList}
-                setSelectedETFList={setSelectedETFList}
-                etfData={etf}
-              />
-            ))}
+            {etfData &&
+              etfData.map((etf) => (
+                <InvestCard
+                  key={etf.id}
+                  selectedETFList={selectedETFList}
+                  setSelectedETFList={setSelectedETFList}
+                  etfData={etf}
+                />
+              ))}
           </div>
         </div>
 
