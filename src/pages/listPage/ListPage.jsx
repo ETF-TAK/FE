@@ -21,6 +21,7 @@ import heart from "../../assets/images/tag/heart_tag.svg"
 import reits from "../../assets/images/tag/reits_tag.svg"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function ListPage(){
     const nationMap = {
@@ -28,7 +29,7 @@ export default function ListPage(){
         "미국": "US",
         "한국": "KOREA",
     };
-    
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
     const [activeTag, setActiveTag] = useState("전체");
@@ -61,6 +62,8 @@ export default function ListPage(){
 
             const mappedData = resultData.map(item => ({
                 name: item.name,
+                tiker: item.tiker,
+                etfNum: item.etfNum,
                 price: formatter.format(item.price),
                 profitRate: item.profitRate,
                 positive: item.positive
@@ -194,7 +197,7 @@ export default function ListPage(){
                             .filter(etf => etf.price !== "0")
                             .map((etf, index) => (
                                 <tr key={index}>
-                                    <th>{etf.name}</th>
+                                    <th onClick={() => navigate(`/compare/detail?etfId=${etf.tiker ? etf.tiker : etf.etfNum}`)}>{etf.name}</th>
                                     <th>
                                         {etf.price}
                                         <span className="price-list">원</span>
