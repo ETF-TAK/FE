@@ -42,7 +42,7 @@ export default function InvestResult() {
       >
         {data.etfResults.map((etf) => (
           <SwiperSlide>
-            <InvestResultCard etf={etf} />
+            <InvestResultCard etf={etf} textWidth="360px" />
           </SwiperSlide>
         ))}
       </Swiper>
