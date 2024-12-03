@@ -20,40 +20,7 @@ export default function InvestResult() {
   const location = useLocation();
   const { data } = location.state || {};
   console.log("data", location.state);
-  // const etfData = [
-  //   {
-  //     id: 1,
-  //     name: "한중반도체(합성)",
-  //     company: "Kodex",
-  //     profitAmount: 3241223,
-  //     profitRate: 10.0,
-  //     isPositive: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "미국 기술주 ETF",
-  //     company: "TIGER",
-  //     profitAmount: 1001230,
-  //     profitRate: 11.0,
-  //     isPositive: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "S&P 500 인버스",
-  //     company: "ARIRANG",
-  //     profitAmount: 10234500,
-  //     profitRate: 23.0,
-  //     isPositive: true,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "한중반도체(합성)",
-  //     company: "Kodex",
-  //     profitAmount: 10011,
-  //     profitRate: 78.0,
-  //     isPositive: false,
-  //   },
-  // ];
+
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
