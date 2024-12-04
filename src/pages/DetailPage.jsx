@@ -6,6 +6,7 @@ import WeightedTreemap from "../components/common/WeightedTreemap";
 import questionIcon from "../assets/images/common/question.png";
 import ProductInfo from "../components/common/ProductInfo";
 import SectorMapperNoCircle from "../components/etf/sectorMapper/SectorMapperNoCircle";
+import { SyncLoader } from "react-spinners";
 
 export default function DetailPage() {
   const [searchParams] = useSearchParams();
@@ -24,6 +25,7 @@ export default function DetailPage() {
   const [activeTab, setActiveTab] = useState("구성종목");
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(`http://localhost:8080/api/compare/detail/${etfId}`);
       console.log(response.data.result[0]);
@@ -34,7 +36,7 @@ export default function DetailPage() {
         componentStocks: result.componentStocks,
         investPoint: result.investPoint,
       });
-
+      setIsLoading(false);
       console.log(result.data);
       setIsLoading(false);
     } catch (e) {
@@ -100,7 +102,24 @@ export default function DetailPage() {
   };
 
   if (isLoading) {
-    return <>로딩중</>;
+    return (
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "80vh",
+        fontFamily: "Pretendard, sans-serif",
+      }}>
+        <SyncLoader color="#0249FF" loading={isLoading} size={15} />
+        <p style={{
+          marginTop: "40px",
+          fontSize: "16px",
+          color: "#555",
+          textAlign: "center",
+        }}>데이터를 불러오는 중입니다. 잠시만 기다려 주세요!</p>
+      </div>
+    )
   }
 
   return (

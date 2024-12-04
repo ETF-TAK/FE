@@ -15,10 +15,11 @@ export const getCompareETFList = async (filter) => {
   }
 };
 
-export const postCompareETF = async (data) => {
+export const postCompareETF = async (data, signal) => {
   try {
     const response = await axios.post("http://localhost:8080/api/compare", data, {
       headers: { "Content-Type": "application/json" },
+      signal,
     });
     console.log(response.data);
 
