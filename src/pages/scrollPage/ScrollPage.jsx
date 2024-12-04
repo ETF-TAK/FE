@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../scrollPage/style.css";
 import goldImage from "../../assets/images/common/sectors/gold.png";
+import SectorMapperNoCircle from "../../components/etf/sectorMapper/SectorMapperNoCircle";
 
 export default function ScrollPage({
   scrollInfo,
@@ -122,11 +123,13 @@ export default function ScrollPage({
             {basicInfo.map((info, index) => (
               <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=1")}>
                 <div className="footer">
-                  <h1>{info.name}</h1>
+                  <h1>
+                    {info.name} {info.sector}
+                  </h1>
                   <h2>더 알아보기</h2>
                 </div>
                 <div className="image">
-                  <img src={goldImage} alt="Gold"></img>
+                  <img src={SectorMapperNoCircle[info.sector] || SectorMapperNoCircle.default} alt="Gold"></img>
                 </div>
               </div>
             ))}

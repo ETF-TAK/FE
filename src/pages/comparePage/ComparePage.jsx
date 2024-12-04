@@ -205,7 +205,7 @@ export default function ComparePage() {
         etfList: selectedEtfs.map((etf) => etf.ticker || etf.etfNum),
       };
 
-      console.log("payload", payload);
+      console.log("payload!!!!!!!!!!!!!!", payload);
 
       try {
         const data = await postCompareETF(payload);
