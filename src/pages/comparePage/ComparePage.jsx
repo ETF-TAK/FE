@@ -2,7 +2,7 @@ import axios from "axios";
 import "../comparePage/style.css";
 import ScrollPage from "../scrollPage/ScrollPage";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CompareCard from "../../components/etf/compareCard/CompareCard";
 import CategoryTabs from "../../components/etf/categoryTabs/CategoryTabs";
 import SectorKorea from "../../assets/images/common/sectors/korea.png";
@@ -11,6 +11,10 @@ import { getCompareETFList, postCompareETF } from "../../lib/apis/compare";
 import SectorMapper from "../../components/etf/sectorMapper/SectorMapper";
 
 export default function ComparePage() {
+  const location = useLocation();
+  const { filterValue } = location.state || {};
+  console.log("Filter Value:", filterValue);
+  
   const [etfData, setEtfData] = useState([
     // {
     //   name: "Kodex 성장주",
@@ -281,7 +285,7 @@ export default function ComparePage() {
             </div>
           </div>
           <div className="etfSearch-Bottom">
-            <CategoryTabs fontsize="16px" setCategory={setCategory} />
+            <CategoryTabs fontsize="16px" filterValue={filterValue} />
 
             <table>
               <thead>

@@ -62,7 +62,7 @@ export default function ListPage(){
 
             const mappedData = resultData.map(item => ({
                 name: item.name,
-                tiker: item.tiker,
+                ticker: item.ticker,
                 etfNum: item.etfNum,
                 price: formatter.format(item.price),
                 profitRate: item.profitRate,
@@ -197,7 +197,7 @@ export default function ListPage(){
                             .filter(etf => etf.price !== "0")
                             .map((etf, index) => (
                                 <tr key={index}>
-                                    <th onClick={() => navigate(`/compare/detail?etfId=${etf.tiker ? etf.tiker : etf.etfNum}`)}>{etf.name}</th>
+                                    <th onClick={() => navigate(`/compare/detail?etfId=${etf.tikcer !== null ? etf.ticker : etf.etfNum}`)}>{etf.name}</th>
                                     <th>
                                         {etf.price}
                                         <span className="price-list">원</span>
