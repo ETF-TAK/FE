@@ -193,22 +193,28 @@ export default function ListPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            {data
-                            .filter(etf => etf.price !== "0")
-                            .map((etf, index) => (
-                                <tr key={index}>
-                                    <th onClick={() => navigate(`/compare/detail?etfId=${etf.tikcer !== null ? etf.ticker : etf.etfNum}`)}>{etf.name}</th>
-                                    <th>
-                                        {etf.price}
-                                        <span className="price-list">원</span>
-                                        <span> (</span>
-                                            <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
-                                                {etf.profitRate}
-                                            </span>
-                                        <span>)</span>
-                                    </th>
-                                </tr>
-                            ))}
+                            {data.length > 0 ? (
+                                data
+                                .filter(etf => etf.price !== "0")
+                                .map((etf, index) => (
+                                    <tr key={index}>
+                                        <th onClick={() => navigate(`/compare/detail?etfId=${etf.ticker !== null ? etf.ticker : etf.etfNum}`)}>{etf.name}</th>
+                                        <th>
+                                            {etf.price}
+                                            <span className="price-list">원</span>
+                                            <span> (</span>
+                                                <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
+                                                    {etf.profitRate}
+                                                </span>
+                                            <span>)</span>
+                                        </th>
+                                    </tr>
+                                ))
+                            ) : (
+                                <div className="no-tag-Result">
+                                  <div>검색결과가 없습니다.</div>
+                                </div>
+                            )}
                         </tbody>
                     </table>
                 </div>
