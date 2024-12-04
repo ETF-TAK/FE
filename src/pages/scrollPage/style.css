@@ -74,15 +74,13 @@
 .compare-detail-page {
   display: flex;
   gap: 2rem;
+  margin-bottom: 100px;
 }
 
 .button-container {
   border-radius: 20px;
   min-width: 45%;
-  margin-left: 9px;
-  padding-left: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
   transition:
@@ -109,7 +107,7 @@
 }
 
 .button-container:nth-child(odd) h1 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
   color: #fff;
 }
@@ -120,7 +118,7 @@
 }
 
 .button-container:nth-child(even) h1 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
   color: #fff;
 }
@@ -132,7 +130,7 @@
 
 .button-container .image img {
   width: 80px;
-  padding-right: 30px;
+  /* padding-right: 30px; */
 }
 
 .message {
@@ -155,4 +153,25 @@
     transform: translateY(-10px);
     opacity: 0.5;
   }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-name {
+  width: 400px;
+  font-size: 24px;
+}
+
+.footer-image-wraaper {
+  display: flex;
+  align-items: center;
+}
+
+.footer-image {
+  width: 100px;
+  height: 100px;
 }
