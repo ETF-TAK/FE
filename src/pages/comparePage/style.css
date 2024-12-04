@@ -1,0 +1,291 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0px;
+}
+
+.left-panel {
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 611px;
+  height: 600px;
+}
+
+.etfSearch-Top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  padding-bottom: 10px;
+}
+
+.etfSearch-Wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.etfSearch-Top input {
+  padding: 10px 30px 10px 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 280px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+}
+
+.etfSearch-Top input::placeholder {
+  color: #949494;
+}
+
+.etfSearch-Icon {
+  position: absolute;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.etfSearch-Top h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.etfSearch-Bottom {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.etfSearch-Bottom-List {
+  height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.etfSearch-Bottom thead {
+  display: flex;
+  justify-content: space-around;
+  margin: 16px 0;
+}
+
+.etfSearch-Bottom thead tr {
+  display: flex;
+  gap: 12px;
+}
+
+.etfSearch-Bottom tbody tr {
+  display: flex;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  justify-content: space-between;
+}
+
+.etfSearch-Bottom tbody tr:hover {
+  background-color: #f1f3f7;
+  cursor: pointer;
+}
+
+.etfSearch-Bottom-Selected {
+  background-color: #f1f3f7;
+}
+
+.etfSearch-Bottom tbody tr {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  padding-right: 0px;
+  /* margin-right: 16px; */
+}
+
+th,
+td {
+  text-align: center;
+  gap: 16px;
+  vertical-align: middle;
+}
+
+.etfSearch-Bottom-List-Img {
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
+}
+
+.etfSearch-Bottom-List-Title {
+  display: flex;
+  width: 320px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.etfSearch-Bottom-List-Title span {
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.etfSearch-Bottom-List-Price {
+  font-size: 14px;
+  width: 200px;
+}
+
+.etfSearch-Bottom-List-Price-Bold {
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.35px;
+}
+
+.etfSearch-Bottom-List-Title-th {
+  display: flex;
+  width: 260px;
+  margin-left: 40px;
+}
+
+.etfSearch-Bottom-List-Price-th {
+  width: 160px;
+}
+
+.right-panel {
+  height: 600px;
+}
+
+.etfSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.etfSelect-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 240px;
+  height: 320px;
+  padding: 20px;
+  background-color: #f1f3f7;
+  align-items: center;
+  position: relative;
+}
+
+.etfSelect-1 h1 {
+  color: #adadad;
+}
+
+.etfSelect-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 240px;
+  height: 320px;
+  padding: 20px;
+  background-color: #f1f3f7;
+  align-items: center;
+}
+
+.etfSelect-2 h1 {
+  color: #adadad;
+}
+
+.compare-btn {
+  display: flex;
+  justify-content: center;
+  border-radius: 16px;
+  margin-top: 40px;
+  padding: 10px;
+  background-color: #ccc;
+  transition:
+    backaground-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.compare-btn h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+}
+
+.compare-btn.inactive {
+  background-color: #ccc;
+}
+
+/* 비활성화 상태 */
+.compare-btn.inactive:hover {
+  background-color: #cdcdcd;
+}
+
+/* 활성화 상태 */
+.compare-btn.active {
+  background-color: #0249ff;
+}
+
+/* 활성화 상태의 호버 */
+.compare-btn.active:hover {
+  background-color: #3b72ff;
+  transform: scale(1.03);
+}
+
+.etfSelect-delete-icon {
+  width: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+}
+
+/* 비교하기 결과 */
+.comparison-result-summary {
+  height: 100px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+  margin-top: 50px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.comparison-result-summary.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.comparison-result-summary span {
+  color: #0249ff;
+  font-weight: 700;
+}
+
+.no-Result {
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  color: #848484;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+}

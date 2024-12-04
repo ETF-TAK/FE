@@ -1,0 +1,65 @@
+.selected-compare-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 240px;
+  height: 320px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.26);
+  padding: 20px;
+  position: relative;
+}
+
+.selected-compare-card-img {
+  display: flex;
+  width: 130px;
+  height: 130px;
+}
+
+.selected-compare-card-name {
+  text-align: center;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  width: 206px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #c4c4c4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-compare-card-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  color: #3a3131;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: -0.16px;
+  width: 206px;
+  margin-top: 20px;
+}
+
+.selected-compare-card-content-title {
+  font-weight: 500;
+}
+
+.selected-compare-card-content-value {
+  font-weight: 700;
+}
+
+.selected-compare-card-logo {
+  width: 98px;
+  margin-top: 40px;
+}
+
+.selected-compare-card-delete-icon {
+  position: absolute;
+  width: 30px;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+}
