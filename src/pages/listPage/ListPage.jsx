@@ -21,6 +21,7 @@ import heart from "../../assets/images/tag/heart_tag.svg"
 import reits from "../../assets/images/tag/reits_tag.svg"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function ListPage(){
     const nationMap = {
@@ -28,7 +29,7 @@ export default function ListPage(){
         "미국": "US",
         "한국": "KOREA",
     };
-    
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
     const [activeTag, setActiveTag] = useState("전체");
@@ -55,11 +56,14 @@ export default function ListPage(){
         .then(res => {
             console.log("API Response:", res.data);
             const resultData = res.data.result
-            setCount(resultData.length)
+            const filteredData = resultData.filter(item => item.price !== 0); 
+            setCount(filteredData.length);
             const formatter = new Intl.NumberFormat('en-US');
 
             const mappedData = resultData.map(item => ({
                 name: item.name,
+                tiker: item.tiker,
+                etfNum: item.etfNum,
                 price: formatter.format(item.price),
                 profitRate: item.profitRate,
                 positive: item.positive
@@ -81,7 +85,7 @@ export default function ListPage(){
 
     const changeSectorTag = (tagTitle) => {
         if (activeSectorTag === tagTitle) {
-            setActiveSectorTag("ALL")
+            setActiveSectorTag("전체")
             console.log(`Sector 태그 ${tagTitle} 취소됨`);
         } else {
             setActiveSectorTag(tagTitle)
@@ -132,15 +136,49 @@ export default function ListPage(){
                         ))}      
                     </div>
                     <div className="sectorTitle">섹터별 ETF</div>
-                    <div className="tags-container">
-                        {tags_sector.map(({ img, title }) => (
+                        <div className="tags-container">
+                            {tags_sector.slice(0, 4).map(({ img, title }) => (
+                                <Tag  
+                                    key={title}
+                                    img={img}
+                                    title={title}
+                                    onClick={() => changeSectorTag(title)}
+                                    isActive={activeSectorTag === title}
+                                />
+                            ))}
+                        </div>
+                        <div className="tags-container">
+                        {tags_sector.slice(4, 8).map(({ img, title }) => (
                             <Tag  
-                            img={img}
-                            title={title}
-                            onClick={()=>changeSectorTag(title)}
-                            isActive={activeSectorTag === title}
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
                             />
-                        ))}      
+                        ))}
+                    </div>
+                    <div className="tags-container">
+                        {tags_sector.slice(8, 12).map(({ img, title }) => (
+                            <Tag  
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
+                            />
+                        ))}
+                    </div>
+                    <div className="tags-container">
+                        {tags_sector.slice(12, 14).map(({ img, title }) => (
+                            <Tag  
+                                key={title}
+                                img={img}
+                                title={title}
+                                onClick={() => changeSectorTag(title)}
+                                isActive={activeSectorTag === title}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -155,9 +193,11 @@ export default function ListPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((etf, index) => (
+                            {data
+                            .filter(etf => etf.price !== "0")
+                            .map((etf, index) => (
                                 <tr key={index}>
-                                    <th>{etf.name}</th>
+                                    <th onClick={() => navigate(`/compare/detail?etfId=${etf.tiker ? etf.tiker : etf.etfNum}`)}>{etf.name}</th>
                                     <th>
                                         {etf.price}
                                         <span className="price-list">원</span>
