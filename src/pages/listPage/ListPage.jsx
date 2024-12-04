@@ -23,6 +23,7 @@ import reits from "../../assets/images/tag/reits_tag.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SyncLoader } from "react-spinners";
 
 export default function ListPage() {
   const nationMap = {
@@ -37,12 +38,18 @@ export default function ListPage() {
   const [activeTag, setActiveTag] = useState("전체");
   const [activeSectorTag, setActiveSectorTag] = useState("전체");
   const [keyword, setKeyword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const inputText = (event) => {
     setKeyword(event.target.value);
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    setLoading(true)
+    setData([]);
     const validNation = nationMap[activeTag] || "전체";
     console.log("현재 validNation 값:", validNation);
     console.log("현재 activeTag 값:", activeTag);
@@ -55,6 +62,7 @@ export default function ListPage() {
           nation: validNation,
           sector: activeSectorTag,
         },
+        signal,
       })
       .then((res) => {
         console.log("API Response:", res.data);
@@ -72,8 +80,14 @@ export default function ListPage() {
           positive: item.positive,
         }));
         setData(mappedData);
+        setLoading(false);
       })
-      .catch((err) => console.log("error"));
+      .catch((err) => {
+        console.log("error")
+      });
+    return () => {
+      controller.abort();
+    }
   }, [keyword, activeTag, activeSectorTag]);
 
   const changeCountryTag = (tagTitle) => {
@@ -201,6 +215,12 @@ export default function ListPage() {
           <span className="searchCount">{count}</span>건의 검색결과
         </div>
         <div className="etflist-right">
+        {loading ? (
+          <div className="loading-spinner">
+            <SyncLoader color="#123abc" loading={loading} size={15} />
+            <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
+          </div>
+        ) : data.length > 0 ? (
           <table>
             <thead>
               <tr>
@@ -209,37 +229,42 @@ export default function ListPage() {
               </tr>
             </thead>
             <tbody>
-              {data.length > 0 ? (
-                data
-                  .filter((etf) => etf.price !== "0")
-                  .map((etf, index) => (
-                    <tr key={index}>
-                      <th
-                        onClick={() =>
-                          navigate(`/compare/detail?etfId=${etf.ticker !== null ? etf.ticker : etf.etfNum}`)
-                        }
-                      >
-                        {etf.name}
-                      </th>
-                      <th>
-                        {etf.price}
-                        <span className="price-list">원</span>
-                        <span> (</span>
-                        <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
-                          {etf.profitRate}
-                        </span>
-                        <span>)</span>
-                      </th>
-                    </tr>
-                  ))
-              ) : (
-                <div className="no-tag-Result">
-                  <div>검색결과가 없습니다.</div>
-                </div>
-              )}
+              {data.map((etf, index) => (
+                <tr key={index}>
+                  <th
+                    onClick={() =>
+                      navigate(
+                        `/compare/detail?etfId=${
+                          etf.ticker !== null ? etf.ticker : etf.etfNum
+                        }`
+                      )
+                    }
+                  >
+                    {etf.name}
+                  </th>
+                  <th>
+                    {etf.price}
+                    <span className="price-list">원</span>
+                    <span> (</span>
+                    <span
+                      className={`price-change-value ${
+                        etf.positive ? "positive" : "negative"
+                      }`}
+                    >
+                      {etf.profitRate}
+                    </span>
+                    <span>)</span>
+                  </th>
+                </tr>
+              ))}
             </tbody>
           </table>
-        </div>
+        ) : (
+          <div className="no-tag-Result">
+            <div>검색결과가 없습니다.</div>
+          </div>
+        )}
+      </div>
       </div>
     </div>
   );
