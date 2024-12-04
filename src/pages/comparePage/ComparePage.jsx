@@ -297,7 +297,9 @@ export default function ComparePage() {
               <div className="etfSearch-Bottom-List">
                 <tbody>
                   {filterdData.length > 0 ? (
-                    filterdData.map((etf, index) => (
+                    filterdData
+                    .filter(etf => etf.price.toLocaleString() !== "0")
+                    .map((etf, index) => (
                       <tr
                         key={index}
                         onClick={() => handleSelectedEtf(etf)}

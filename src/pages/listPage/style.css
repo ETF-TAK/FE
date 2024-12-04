@@ -165,3 +165,12 @@
 .etflist-right  .price-change-value.negative {
     color: #0349FD;
 }
+
+
+.no-tag-Result {
+    padding-top: 200px;
+    padding-left: 250px;
+    color: #848484;
+    font-size: 16px;
+    font-weight: 500;
+}
