@@ -14,7 +14,7 @@ export default function ComparePage() {
   const location = useLocation();
   const { filterValue } = location.state || {};
   console.log("Filter Value:", filterValue);
-  
+
   const [etfData, setEtfData] = useState([
     // {
     //   name: "Kodex 성장주",
@@ -166,11 +166,10 @@ export default function ComparePage() {
   const handleSelectedEtf = (etf) => {
     const isAlreadySelected = selectedEtfs.some((item) => item.name === etf.name);
 
-    if(isAlreadySelected) {
+    if (isAlreadySelected) {
       const updatedEtfs = selectedEtfs.filter((item) => item.name !== etf.name);
       setSelectedEtfs(updatedEtfs);
-    }
-    else {
+    } else {
       if (selectedEtfs.length < 2) {
         setSelectedEtfs([...selectedEtfs, etf]);
         setShowScrollMessage(false);
@@ -306,34 +305,36 @@ export default function ComparePage() {
                 <tbody>
                   {filterdData.length > 0 ? (
                     filterdData
-                    .filter(etf => etf.price.toLocaleString() !== "0")
-                    .map((etf, index) => (
-                      <tr
-                        key={index}
-                        onClick={() => handleSelectedEtf(etf)}
-                        className={
-                          // 나중에 name => id로 바꿔야할 수도
-                          selectedEtfs.some((selected) => selected.name === etf.name) ? "etfSearch-Bottom-Selected" : ""
-                        }
-                      >
-                        <td className="etfSearch-Bottom-List-Title">
-                          <img
-                            src={SectorMapper[etf.sector] || SectorMapper.default}
-                            alt="섹터 이미지"
-                            className="etfSearch-Bottom-List-Img"
-                          />
-                          <span>{etf.name}</span>
-                        </td>
-                        <td className="etfSearch-Bottom-List-Price">
-                          <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
-                          <span style={{ color: etf.positive ? "#EB1B1D" : "#0249FF" }}>
-                            {etf.positive ? "+" : ""}
-                            {etf.profitRate}
-                          </span>
-                          )
-                        </td>
-                      </tr>
-                    ))
+                      .filter((etf) => etf.price.toLocaleString() !== "0")
+                      .map((etf, index) => (
+                        <tr
+                          key={index}
+                          onClick={() => handleSelectedEtf(etf)}
+                          className={
+                            // 나중에 name => id로 바꿔야할 수도
+                            selectedEtfs.some((selected) => selected.name === etf.name)
+                              ? "etfSearch-Bottom-Selected"
+                              : ""
+                          }
+                        >
+                          <td className="etfSearch-Bottom-List-Title">
+                            <img
+                              src={SectorMapper[etf.sector] || SectorMapper.default}
+                              alt="섹터 이미지"
+                              className="etfSearch-Bottom-List-Img"
+                            />
+                            <span>{etf.name}</span>
+                          </td>
+                          <td className="etfSearch-Bottom-List-Price">
+                            <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                            <span style={{ color: etf.positive ? "#EB1B1D" : "#0249FF" }}>
+                              {etf.positive ? "+" : ""}
+                              {etf.profitRate}
+                            </span>
+                            )
+                          </td>
+                        </tr>
+                      ))
                   ) : (
                     <div className="no-Result">
                       <div>검색결과가 없습니다.</div>
@@ -365,8 +366,10 @@ export default function ComparePage() {
           <div className={`comparison-result-summary ${showResult ? "active" : ""}`}>
             {showResult && (
               <>
-                <span>{scrollInfo.overlapCount}</span>개의 종목이 겹쳐요. <br /> 분산투자 효과가 충분히 유지될 수
-                있어요.👍🏻
+                <span>{scrollInfo.overlapCount}</span>개의 종목이 겹쳐요. <br />
+                {scrollInfo.overlapCount <= 5 && "분산투자 효과가 충분히 유지될 수 있어요.👍🏻"}
+                {scrollInfo.overlapCount > 5 && scrollInfo.overlapCount <= 10 && "분산 효과가 조금 줄어들 수 있어요.🤔"}
+                {scrollInfo.overlapCount > 10 && "분산 효과가 크게 줄어들 수 있어요.⚠️"}
               </>
             )}
           </div>
