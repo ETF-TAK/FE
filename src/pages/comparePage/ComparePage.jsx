@@ -9,6 +9,7 @@ import SectorKorea from "../../assets/images/common/sectors/korea.png";
 import SearchIcon from "../../assets/images/icons/search.png";
 import { getCompareETFList, postCompareETF } from "../../lib/apis/compare";
 import SectorMapper from "../../components/etf/sectorMapper/SectorMapper";
+import { SyncLoader } from "react-spinners";
 
 export default function ComparePage() {
   const location = useLocation();
@@ -27,8 +28,10 @@ export default function ComparePage() {
   const [basicInfo, setBasicInfo] = useState([]); // 기본정보
   const [overlappingStocks, setOverlappingStocks] = useState([]); // 중복종목
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getCompareETFList(category).then((data) => {
       setEtfData(data.result);
       console.log(data.result);
@@ -63,6 +66,10 @@ export default function ComparePage() {
 
   const handleCompareClick = async () => {
     if (isCompareEnabled) {
+
+      const controller = new AbortController();
+      const signal = controller.signal;
+
       setShowResult(true);
       setShowScrollMessage(true);
 
@@ -73,7 +80,7 @@ export default function ComparePage() {
       console.log("payload!!!!!!!!!!!!!!", payload);
 
       try {
-        const data = await postCompareETF(payload);
+        const data = await postCompareETF(payload, signal);
         console.log(data);
         setBasicInfo(data.basicInfo);
         setOverlappingStocks(data.overlappingStocks);
@@ -81,6 +88,9 @@ export default function ComparePage() {
       } catch (e) {
         console.error(e);
       }
+    }
+    return () => {
+      controller.abort()
     }
   };
 
@@ -145,7 +155,12 @@ export default function ComparePage() {
               </thead>
               <div className="etfSearch-Bottom-List">
                 <tbody>
-                  {filterdData.length > 0 ? (
+                  {loading ? (
+                    <div className="loading-spinner">
+                      <SyncLoader color="#123abc" loading={loading} size={8} />
+                      <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
+                      </div>
+                  ) : filterdData.length > 0 ? (
                     filterdData
                       .filter((etf) => etf.price.toLocaleString() !== "0")
                       .map((etf, index) => (
