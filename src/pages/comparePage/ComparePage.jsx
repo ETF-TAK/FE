@@ -61,24 +61,6 @@ export default function ComparePage() {
     }
   };
 
-  // const handleCompareClick = () => {
-  //   if (isCompareEnabled) {
-  //     setShowResult(true);
-  //     setShowScrollMessage(true);
-
-  //     const selectedData = selectedEtfs.map((etf) => ({
-  //       name: etf.name,
-  //       operator: etf.operator,
-  //       listedDate: etf.listedDate,
-  //       netAsset: etf.netAsset,
-  //       dividendRate: etf.dividendRate,
-  //       components: etf.components,
-  //     }));
-  //     setScrollInfo(selectedData);
-  //     setIsContentVisible(true);
-  //   }
-  // };
-
   const handleCompareClick = async () => {
     if (isCompareEnabled) {
       setShowResult(true);
