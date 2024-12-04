@@ -59,13 +59,12 @@ export default function CategoryCard({ index }) {
     "금": "GOLD",
     "미국": "US",
     "한국": "KOREA",
-};
+  };
 
   const cardList = (category) => {
     const filterValue = categoryMap[category.title];
     console.log(`${filterValue}`)
-    // console.log("Navigating to /compare with state:", { selectedTab: filterValue });
-    // navigate("/compare", { state: { selectedTab: filterValue } });
+    navigate("/compare", { state: { filterValue } })
   }
 
   return (

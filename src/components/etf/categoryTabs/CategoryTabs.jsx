@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./style.css";
 
 export default function CategoryTabs(props) {
-  const { fontsize, setCategory } = props;
-  const [selectedTab, setSelectedTab] = useState(0);
-
+  const { fontsize, setCategory, filterValue } = props;
+  
   const categoryList = ["성장", "레버리지", "배당", "금", "한국", "미국"];
   const categoryListEng = ["GROWTH", "LEVERAGE", "DIVIDEND", "GOLD", "KOREA", "US"];
+
+  const initialIndex = categoryListEng.indexOf(filterValue);
+  const [selectedTab, setSelectedTab] = useState(initialIndex >= 0 ? initialIndex : 0);
 
   return (
     <>
