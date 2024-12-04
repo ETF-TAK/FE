@@ -164,10 +164,18 @@ export default function ComparePage() {
   }, [category]);
 
   const handleSelectedEtf = (etf) => {
-    if (selectedEtfs.length < 2 && !selectedEtfs.some((item) => item.name === etf.name)) {
-      setSelectedEtfs([...selectedEtfs, etf]);
+    const isAlreadySelected = selectedEtfs.some((item) => item.name === etf.name);
+
+    if(isAlreadySelected) {
+      const updatedEtfs = selectedEtfs.filter((item) => item.name !== etf.name);
+      setSelectedEtfs(updatedEtfs);
     }
-    setShowScrollMessage(false);
+    else {
+      if (selectedEtfs.length < 2) {
+        setSelectedEtfs([...selectedEtfs, etf]);
+        setShowScrollMessage(false);
+      }
+    }
   };
 
   const handleRemoveEtf = (index) => {
