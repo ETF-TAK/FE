@@ -45,7 +45,7 @@ export default function ScrollPage({
       {basicInfo.length > 0 && (
         <>
           <div className="comparison-result">
-            <h1>기본 정보</h1>
+            <h1>기본정보</h1>
             <table>
               <thead>
                 <tr>
@@ -88,7 +88,7 @@ export default function ScrollPage({
             <br />
           </div>
           <div className="duplicated-result">
-            <h1>중복 정보</h1>
+            <h1>중복종목</h1>
             <table>
               <thead>
                 <tr>
