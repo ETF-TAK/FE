@@ -1,15 +1,85 @@
-import React, { useState } from "react";
-import { etfData } from "../lib/apis/data";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 import DetailTable from "../components/common/DetailTable";
-import ProductInfo from "../components/common/ProductInfo";
 import WeightedTreemap from "../components/common/WeightedTreemap";
 import questionIcon from "../assets/images/common/question.png";
+import ProductInfo from "../components/common/ProductInfo";
 
 export default function DetailPage() {
-  const [activeTab, setActiveTab] = useState("구성종목");
-  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [searchParams] = useSearchParams();
+  const etfId = searchParams.get("etfId");
+  const etfIdentifier = searchParams.get("etfNum") || searchParams.get("ticker");
+  const [etfData, setEtfData] = useState({
+    data: null,
+    distribution: [],
+    componentStocks: [],
+    investPoint: "",
+  });
+  const [isLoading, setIsLoading] = useState(true);
   const [tooltipContent, setTooltipContent] = useState("");
+  const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState("구성종목");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/compare/detail/${etfId}`);
+      console.log(response.data.result[0]);
+      const result = response.data.result?.[0];
+      setEtfData({
+        data: result.data,
+        distribution: result.distribution,
+        componentStocks: result.componentStocks,
+        investPoint: result.investPoint,
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    // if (etfIdentifier) {
+    //   axios
+    //     .get(`http://localhost:8080/api/compare/detail/484880`)
+    //     .then((response) => {
+    //       console.log(response)
+    //       const result = response.data.result?.[0];
+    //       if (result) {
+    //         setEtfData({
+    //           data: result.data,
+    //           distribution: result.distribution,
+    //           componentStocks: result.componentStocks,
+    //           investPoint: result.investPoint,
+    //         });
+    //       } else {
+    //         console.error("API 응답에 결과가 없습니다.");
+    //         setEtfData({
+    //           data: null,
+    //           distribution: [],
+    //           componentStocks: [],
+    //           investPoint: "",
+    //         });
+    //       }
+    //       setIsLoading(false);
+    //     })
+    //     .catch((error) => {
+    //       console.error("API 요청 실패:", error);
+    //       setEtfData({
+    //         data: null,
+    //         distribution: [],
+    //         componentStocks: [],
+    //         investPoint: "",
+    //       });
+    //       setIsLoading(false);
+    //     });
+    // } else {
+    //   console.error("etfNum 또는 ticker가 제공되지 않았습니다.");
+    //   setIsLoading(false);
+    // }
+  }, [etfIdentifier]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -25,6 +95,10 @@ export default function DetailPage() {
     setTooltipVisible(false);
     setTooltipContent("");
   };
+
+  if (isLoading) {
+    return <>로딩중</>;
+  }
 
   return (
     <div style={{ fontFamily: "Pretendard, sans-serif", backgroundColor: "#ffffff", minHeight: "100vh" }}>
@@ -47,17 +121,42 @@ export default function DetailPage() {
       >
         {/* 좌측 텍스트 */}
         <div style={{ marginLeft: "20px", marginTop: "10px" }}>
-          <p
+          <div
             style={{
-              fontFamily: "Pretendard",
-              fontSize: "16px",
-              fontWeight: "400",
-              color: "#FFFFFF",
+              display: "flex", // 수평 정렬
+              alignItems: "center", // 세로 가운데 정렬
               marginBottom: "10px", // 아래 간격
             }}
           >
-            한국 | 상장
-          </p>
+            {/* 국가 아이콘 */}
+            <img
+              src={
+                etfData.data.nation === "KOREA"
+                  ? "..\\src\\assets\\images\\common\\sectors\\korea.png"
+                  : "..\\src\\assets\\images\\common\\sectors\\us.png"
+              }
+              alt="국가 아이콘"
+              style={{
+                width: "30px",
+                height: "30px",
+                marginRight: "8px",
+              }}
+            />
+            {/* 국가와 섹터 */}
+            <p
+              style={{
+                fontFamily: "Pretendard",
+                fontSize: "16px",
+                fontWeight: "400",
+                color: "#FFFFFF",
+                margin: 0, // 기본 여백 제거
+              }}
+            >
+              {etfData.data.nation === "KOREA" ? "한국" : etfData.data.nation === "US" ? "미국" : etfData.data.nation}
+              {etfData.data.sector ? ` | ${etfData.data.sector}` : ""}
+            </p>
+          </div>
+          {/* ETF 이름 */}
           <h1
             style={{
               fontFamily: "Pretendard",
@@ -67,8 +166,9 @@ export default function DetailPage() {
               marginBottom: "10px",
             }}
           >
-            SOL 조선TOP3플러스
+            {etfData.data.name}
           </h1>
+          {/* ETF 번호 */}
           <p
             style={{
               fontFamily: "Pretendard",
@@ -77,19 +177,40 @@ export default function DetailPage() {
               color: "#FFFFFF",
             }}
           >
-            466920
+            {etfData.data.etfNum}
+            {etfData.data.ticker}
           </p>
         </div>
 
         {/* 우측 이미지 */}
-        <img
-          src="../asset/logo.png"
+        {/* <img
+          // src="..\src\assets\images\common\sectors\gold.png"
           alt="logo"
           style={{
             position: "absolute",
-            width: "250px",
+            width: "230px",
             height: "200px",
-            right: "20px", // 박스 우측 끝에서 여백
+            right: "50px", // 박스 우측 끝에서 여백
+            top: "20px", // 위쪽 정렬
+          }}
+        /> */}
+        <img
+          // Todo 섹터 전부 넣기
+          src={
+            etfData.data.sector === "금"
+              ? "..\\src\\assets\\images\\common\\sectors\\gold.png"
+              : etfData.data.sector === "금융"
+                ? "..\\src\\assets\\images\\common\\sectors\\finance.png"
+                : etfData.data.sector === "반도체"
+                  ? "..\\src\\assets\\images\\common\\sectors\\semiconductor.png"
+                  : ""
+          }
+          alt="sector logo"
+          style={{
+            position: "absolute",
+            width: "230px",
+            height: "200px",
+            right: "50px", // 박스 우측 끝에서 여백
             top: "20px", // 위쪽 정렬
           }}
         />
@@ -142,7 +263,7 @@ export default function DetailPage() {
                 }}
                 onMouseEnter={(e) =>
                   showTooltip(
-                    "ETF가 시장에서 매매되는 1좌당 거래가격을 말합니다.\nETF를 투자할 때에는 현재가와 실시간 추정 순자산가치(iNAV)와 차이가 얼마나 나는지 체크해보는 것이 중요합니다.",
+                    "ETF가 시장에서 매매되는 1주당 거래가격을 말합니다.\nETF를 투자할 때에는 현재가와 실시간 추정 순자산가치(iNAV)와 차이가 얼마나 나는지 체크해보는 것이 중요합니다.",
                     e,
                   )
                 }
@@ -150,8 +271,34 @@ export default function DetailPage() {
               />
               현재가
             </p>
-            <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>{etfData.marketPrice}</p>
-            <p style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.marketChange}</p>
+            <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>
+              <span style={{ fontSize: "22px", fontWeight: "400" }}>{etfData.data.ticker ? "$ " : ""}</span>
+              {new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+                etfData.data.price,
+              )}
+              <span style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.data.ticker ? "" : " 원"}</span>
+            </p>
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "400",
+                color:
+                  etfData.data.prdyVrssSign === "상승"
+                    ? "#EB1B1D" // 빨강
+                    : etfData.data.prdyVrssSign === "하락"
+                      ? "#0349FF" // 파랑
+                      : "#000000", // 검정 (동일 또는 기본값)
+              }}
+            >
+              {etfData.data.prdyVrssSign === "상승"
+                ? "▲"
+                : etfData.data.prdyVrssSign === "동일"
+                  ? "-"
+                  : etfData.data.prdyVrssSign === "하락"
+                    ? "▼"
+                    : ""}{" "}
+              {etfData.data.prdyVrss} ({etfData.data.prdyCtrt}%)
+            </p>
           </div>
 
           {/* 세로 선 */}
@@ -196,8 +343,68 @@ export default function DetailPage() {
               />
               기준가(iNAV)
             </p>
-            <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>{etfData.navPrice}</p>
-            <p style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.navChange}</p>
+            <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0" }}>
+              <span style={{ fontSize: "22px", fontWeight: "400" }}>{etfData.data.ticker ? "$ " : ""}</span>
+              {new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+                etfData.data.inav,
+              )}
+              <span style={{ fontSize: "16px", fontWeight: "400" }}>{etfData.data.ticker ? "" : " 원"}</span>
+            </p>
+
+            {/* <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "400",
+                color:
+                  etfData.data.navPrdyVrssSign === "상승"
+                    ? "#EB1B1D" // 빨강
+                    : etfData.data.navPrdyVrssSign === "하락"
+                      ? "#0349FF" // 파랑
+                      : "#000000", // 검정 (동일 또는 기본값)
+                visibility: etfData.data.etfNum ? "visible" : "hidden", // etfNum 없으면 보이지 않음
+              }}
+            >
+              {etfData.data.etfNum && ( // etfNum이 있을 때만 값 표시
+                <>
+                  {etfData.data.navPrdyVrssSign === "상승"
+                    ? "▲"
+                    : etfData.data.navPrdyVrssSign === "동일"
+                      ? "-"
+                      : etfData.data.navPrdyVrssSign === "하락"
+                        ? "▼"
+                        : ""}{" "}
+                  {etfData.data.navPrdyVrss} ({etfData.data.navPrdyCtrt}%)
+                </>
+              )}
+            </p> */}
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "400",
+                color:
+                  etfData.data.navPrdyVrssSign === "상승"
+                    ? "#EB1B1D" // 빨강
+                    : etfData.data.navPrdyVrssSign === "하락"
+                      ? "#0349FF" // 파랑
+                      : "#000000", // 검정 (동일 또는 기본값)
+              }}
+            >
+              {etfData.data.etfNum ? (
+                <>
+                  {etfData.data.navPrdyVrssSign === "상승"
+                    ? "▲"
+                    : etfData.data.navPrdyVrssSign === "동일"
+                      ? "-"
+                      : etfData.data.navPrdyVrssSign === "하락"
+                        ? "▼"
+                        : ""}{" "}
+                  {etfData.data.navPrdyVrss} ({etfData.data.navPrdyCtrt}%)
+                </>
+              ) : (
+                // 공간만 차지
+                <span style={{ visibility: "hidden" }}> ▲ 0 (0%)</span>
+              )}
+            </p>
           </div>
 
           {/* 세로 선 */}
@@ -213,8 +420,17 @@ export default function DetailPage() {
           {/* 수익률 */}
           <div style={{ textAlign: "center", flex: 1 }}>
             <p style={{ fontSize: "16px", fontWeight: "400" }}>수익률</p>
-            <p style={{ fontSize: "24px", fontWeight: "600", margin: "10px 0", color: "#FF3D00" }}>{etfData.yield}</p>
-            <p style={{ fontSize: "16px", fontWeight: "400" }}>1개월</p>
+            <p
+              style={{
+                fontSize: "24px",
+                fontWeight: "600",
+                margin: "10px 0",
+                color: etfData.data.isPositive ? "#EB1B1D" : "#0349FF", // 상승은 빨강, 하락은 파랑
+              }}
+            >
+              {etfData.data.profitRate}%
+            </p>
+            <p style={{ fontSize: "16px", fontWeight: "400", color: "rgba(0, 0, 0, 0.5)" }}>(1개월)</p>
           </div>
         </div>
       </div>
@@ -222,12 +438,12 @@ export default function DetailPage() {
       {/* 탭 부분 박스 */}
       <div
         style={{
-          width: "80%",
+          width: "75%",
           margin: "40px auto 40px",
           background: "#FFFFFF",
           boxShadow: "0px 4px 30px 1px rgba(0, 0, 0, 0.26)",
           borderRadius: "32px",
-          padding: "0 40px 40px 40px",
+          padding: "0 75px 40px 75px",
         }}
       >
         {/* 탭 메뉴 */}
@@ -241,8 +457,8 @@ export default function DetailPage() {
           <button
             style={{
               flex: 1,
-              padding: "15px",
-              fontSize: "24px",
+              padding: "25px 15px 25px 15px",
+              fontSize: "25px",
               fontWeight: activeTab === "구성종목" ? "600" : "400",
               color: activeTab === "구성종목" ? "#0249FF" : "#000000",
               position: "relative",
@@ -271,8 +487,8 @@ export default function DetailPage() {
           <button
             style={{
               flex: 1,
-              padding: "15px",
-              fontSize: "24px",
+              padding: "25px 15px 25px 15px",
+              fontSize: "25px",
               fontWeight: activeTab === "상품정보" ? "600" : "400",
               color: activeTab === "상품정보" ? "#0249FF" : "#000000",
               position: "relative",
@@ -303,19 +519,54 @@ export default function DetailPage() {
         {/* 탭 내용 */}
         {activeTab === "구성종목" && (
           <div>
-            <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>
+            <h2 style={{ fontSize: "25px", fontWeight: "500", marginBottom: "30px", marginTop: "30px" }}>
               구성종목(비율)
             </h2>
-            <WeightedTreemap data={etfData} />
-            <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>
+            {etfData.componentStocks.length > 0 ? (
+              <WeightedTreemap data={etfData.componentStocks} />
+            ) : (
+              // 한국투자증권 답변 메일
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
+                <img
+                  src="..\src\assets\images\common\koreaInvest_answer.png"
+                  alt="데이터 없음"
+                  style={{ width: "90%", height: "auto", opacity: 0.6 }}
+                />
+              </div>
+              // 미국 구성종목 준비 중 안내 문구
+              // <div
+              //   style={{
+              //     display: "flex",
+              //     flexDirection: "column",
+              //     justifyContent: "center",
+              //     alignItems: "center",
+              //     height: "200px",
+              //     backgroundColor: "#F5F5F5",
+              //     borderRadius: "16px", // 둥글게 만들기
+              //     margin: "20px auto",
+              //     width: "80%",
+              //   }}
+              // >
+              //   <p style={{ fontSize: "35px", fontWeight: "500", color: "#555" }}>미국 구성종목은 준비 중입니다.</p>
+              // </div>
+            )}
+
+            {/* <h2 style={{ fontSize: "20px", fontWeight: "500", marginBottom: "20px", marginTop: "20px" }}>
               구성종목(전체)
-            </h2>
-            <DetailTable details={etfData.details} />
+            </h2> */}
+            {etfData.componentStocks.length > 0 ? (
+              <h2 style={{ fontSize: "25px", fontWeight: "500", marginBottom: "30px", marginTop: "30px" }}>
+                구성종목(전체)
+              </h2>
+            ) : (
+              <p> </p>
+            )}
+            {etfData.componentStocks.length > 0 ? <DetailTable details={etfData.componentStocks} /> : <p> </p>}
           </div>
         )}
         {activeTab === "상품정보" && (
           <div>
-            <ProductInfo />
+            <ProductInfo distributions={etfData.distribution} investPoint={etfData.investPoint} />
           </div>
         )}
       </div>
