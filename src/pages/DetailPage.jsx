@@ -5,6 +5,7 @@ import DetailTable from "../components/common/DetailTable";
 import WeightedTreemap from "../components/common/WeightedTreemap";
 import questionIcon from "../assets/images/common/question.png";
 import ProductInfo from "../components/common/ProductInfo";
+import SectorMapperNoCircle from "../components/etf/sectorMapper/SectorMapperNoCircle";
 
 export default function DetailPage() {
   const [searchParams] = useSearchParams();
@@ -33,6 +34,8 @@ export default function DetailPage() {
         componentStocks: result.componentStocks,
         investPoint: result.investPoint,
       });
+
+      console.log(result.data);
       setIsLoading(false);
     } catch (e) {
       console.error(e);
@@ -196,15 +199,7 @@ export default function DetailPage() {
         /> */}
         <img
           // Todo 섹터 전부 넣기
-          src={
-            etfData.data.sector === "금"
-              ? "..\\src\\assets\\images\\common\\sectors\\gold.png"
-              : etfData.data.sector === "금융"
-                ? "..\\src\\assets\\images\\common\\sectors\\finance.png"
-                : etfData.data.sector === "반도체"
-                  ? "..\\src\\assets\\images\\common\\sectors\\semiconductor.png"
-                  : ""
-          }
+          src={SectorMapperNoCircle[etfData.data.sector] || SectorMapperNoCircle.default}
           alt="sector logo"
           style={{
             position: "absolute",
