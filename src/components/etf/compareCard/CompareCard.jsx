@@ -14,7 +14,9 @@ export default function CompareCard(props) {
       <div className="selected-compare-card-name">{etf.name}</div>
       <div className="selected-compare-card-content-wrapper">
         <div className="selected-compare-card-content-title">현재가</div>
-        <div className="selected-compare-card-content-value">{etf.price.toLocaleString()}원</div>
+        <div className="selected-compare-card-content-value">
+          {etf.etfNum === null ? `$${etf.price.toLocaleString()}` : `${etf.price.toLocaleString()}원`}
+        </div>
       </div>
 
       <div className="selected-compare-card-content-wrapper">

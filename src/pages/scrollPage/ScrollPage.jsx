@@ -45,7 +45,7 @@ export default function ScrollPage({
       {basicInfo.length > 0 && (
         <>
           <div className="comparison-result">
-            <h1>기본 정보</h1>
+            <h1>기본정보</h1>
             <table>
               <thead>
                 <tr>
@@ -71,7 +71,11 @@ export default function ScrollPage({
                 <tr>
                   <td className="label-cell">순자산</td>
                   {basicInfo.map((info, index) => (
-                    <td key={index}>{info.netWorth.toLocaleString()}원</td>
+                    <td key={index}>
+                      {info.etfNum === null
+                        ? `$${info.netWorth.toLocaleString()}`
+                        : `${info.netWorth.toLocaleString()}억원`}
+                    </td>
                   ))}
                 </tr>
                 <tr>
@@ -88,7 +92,7 @@ export default function ScrollPage({
             <br />
           </div>
           <div className="duplicated-result">
-            <h1>중복 정보</h1>
+            <h1>중복종목</h1>
             <table>
               <thead>
                 <tr>

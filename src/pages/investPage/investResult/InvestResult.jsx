@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 
 // Import Swiper React components
@@ -19,17 +19,39 @@ import InvestResultCard from "../../../components/invest/investResultCard/Invest
 export default function InvestResult() {
   const location = useLocation();
   const { data } = location.state || {};
-  console.log("data", location.state);
 
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (data && data.etfResults) {
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  if (isLoading || !data || !data.etfResults) {
+    return (
+      <div className="loading-container">
+        <p>로딩 중...</p>
+      </div>
+    );
+  }
+
+  const currentResult = data.etfResults[activeIdx];
 
   return (
     <div className="invest-result-wrapper">
-      {data.etfResults[activeIdx].positive ? <ResultConfetti /> : <ResultRain />}
+      {currentResult && currentResult.positive ? <ResultConfetti /> : <ResultRain />}
 
       <div className="invest-result-title">
-        총 {data.totalProfit.toLocaleString()}원의 <br />
-        수익금을 받았을거예요!
+        {data.totalProfit ? (
+          <>
+            총 {data.totalProfit.toLocaleString()}원의 <br />
+            수익금을 받았을거예요!
+          </>
+        ) : (
+          <>null</>
+        )}
       </div>
       <Swiper
         effect={"cards"}
