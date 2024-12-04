@@ -1,176 +1,196 @@
+/* 페이지 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .listContainer {
-    display: flex;
-    height: 100vh; 
+  display: flex;
+  gap: 80px;
+  height: 100vh;
+  animation: fadeInUp 0.6s ease-out;
+  opacity: 1;
 }
 
 .listContent1 {
-    flex: 1;
-    max-width: 50%;
-    height: 630px;
+  display: flex;
+  padding: 60px;
+  max-width: 50%;
+  height: 630px;
+  border-radius: 20px;
+  box-sizing: border-box;
 }
 
 .listContent2 {
-    flex: 1;
-    max-width: 50%;
-    height: 630px;
+  flex: 1;
+  max-width: 50%;
+  height: 630px;
 }
 
 .cardList {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .tagTitle {
-    color: #4E4E4E;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: 'Pretendard';
-    margin-top: 60px;
-    margin-left: 100px;
+  color: #4e4e4e;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Pretendard";
+  margin-bottom: 30px;
+}
+
+.tagSearch-wrapper {
+  position: relative;
+  width: 360px;
 }
 
 .tagSearch {
-    border: none;
-    border-radius: 60px;
-    padding-left: 30px;
-    padding-right: 20px;
-    height: 45px;
-    margin-top: 30px;
-    margin-left: 100px;
-    width: 40%;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  border: none;
+  border-radius: 60px;
+  height: 45px;
+  margin-bottom: 30px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 50px;
+  box-sizing: border-box;
+}
+
+.tagSearch-img {
+  width: 24px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
 }
 
 .tagSearch:focus {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
 .sectorTitle {
-    color: #4E4E4E;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Pretendard';
-    margin-top: 60px;
-    margin-left: 100px;
+  color: #4e4e4e;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Pretendard";
+  margin-top: 40px;
 }
 
 .tags-container {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-right: 50px;
-    margin-left: 100px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
 }
 
 .searchTitle {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Pretendard';
-    margin-top: 20px;
-    margin-left: 40px;
-    text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Pretendard";
+  text-align: left;
 }
 
 .searchCount {
-    color: #0349FD;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Pretendard';
+  color: #0349fd;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Pretendard";
 }
 
 .etflist-right {
-    padding-left: 20px;
-    padding-right: 20px;
-    overflow-y: auto;
-    max-height: 560px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: auto;
+  max-height: 560px;
 }
 
 .etflist-right table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 10px;
-    table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  table-layout: fixed;
 }
 
 .etflist-right tbody tr {
-    border-radius: 10px;
-    margin-bottom: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 
 .etflist-right th:first-child {
-    width: 70%;
+  width: 70%;
 }
 
 .etflist-right th:nth-child(2) {
-    width: 30%;
-    text-align: center;
+  width: 30%;
+  text-align: center;
 }
 
 .etflist-right thead th {
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 2px solid #ddd;
-    padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 2px solid #ddd;
+  padding: 10px;
 }
 
-.etflist-right td, th {
-    padding: 10px;
-    font-size: 14px;
-    font-family: 'Pretendard';
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.etflist-right td,
+th {
+  padding: 10px;
+  font-size: 14px;
+  font-family: "Pretendard";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .etflist-right tbody tr {
-    height: 50px;
-    padding-left: 15px;  
-    padding-right: 15px; 
-    border-bottom: 1px solid #eee;
+  height: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid #eee;
 }
 
 .etflist-right tbody tr:hover {
-    background-color: #f1f3f7;
-    cursor: pointer;
-    overflow: visible;
+  background-color: #f1f3f7;
+  cursor: pointer;
+  overflow: visible;
 }
 
 .etflist-right .price-list {
-    font-size: 14px;
-    text-align: left;
-    width: 120px;
-    color: #555;
+  font-size: 14px;
+  text-align: left;
+  width: 120px;
+  color: #555;
 }
 
-.etflist-right  .price-change-value {
-    font-size: 14px;
-    font-weight: bold;
+.etflist-right .price-change-value {
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.etflist-right  .price-change-value.positive {
-    color: #FF0000;
+.etflist-right .price-change-value.positive {
+  color: #ff0000;
 }
 
-.etflist-right  .price-change-value.negative {
-    color: #0349FD;
+.etflist-right .price-change-value.negative {
+  color: #0349fd;
 }
-
 
 .no-tag-Result {
-    padding-top: 200px;
-    padding-left: 250px;
-    color: #848484;
-    font-size: 16px;
-    font-weight: 500;
+  padding-top: 200px;
+  padding-left: 250px;
+  color: #848484;
+  font-size: 16px;
+  font-weight: 500;
 }

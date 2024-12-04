@@ -8,12 +8,26 @@
   }
 }
 
+/* 페이지 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .test-page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 52px;
+  animation: fadeInUp 0.6s ease-out;
+  opacity: 1;
 }
 
 .test-page-title {
