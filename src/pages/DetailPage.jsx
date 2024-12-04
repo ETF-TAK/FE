@@ -8,6 +8,7 @@ import ProductInfo from "../components/common/ProductInfo";
 import SectorMapperNoCircle from "../components/etf/sectorMapper/SectorMapperNoCircle";
 
 export default function DetailPage() {
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [searchParams] = useSearchParams();
   const etfId = searchParams.get("etfId");
   const etfIdentifier = searchParams.get("etfNum") || searchParams.get("ticker");
@@ -25,7 +26,7 @@ export default function DetailPage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/compare/detail/${etfId}`);
+      const response = await axios.get(`${baseURL}/api/compare/detail/${etfId}`);
       console.log(response.data.result[0]);
       const result = response.data.result?.[0];
       setEtfData({
