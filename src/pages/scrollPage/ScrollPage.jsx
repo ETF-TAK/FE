@@ -122,7 +122,11 @@ export default function ScrollPage({
           <div className="compare-detail-page">
             {basicInfo.map((info, index) => (
               // <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=484880")}>
-              <div key={index} className="button-container" onClick={() => navigate("/compare/detail?etfId=NVDY")}>
+              <div
+                key={index}
+                className="button-container"
+                onClick={() => navigate(`/compare/detail?etfId=${info.ticker || info.etfNum}`)}
+              >
                 <div className="footer">
                   <h1 className="footer-name">{info.name}</h1>
                   <h2>더 알아보기</h2>
