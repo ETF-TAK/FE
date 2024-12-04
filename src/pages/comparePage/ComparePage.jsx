@@ -293,7 +293,7 @@ export default function ComparePage() {
             </div>
           </div>
           <div className="etfSearch-Bottom">
-            <CategoryTabs fontsize="16px" filterValue={filterValue} />
+            <CategoryTabs fontsize="16px" filterValue={filterValue} setCategory={setCategory} />
 
             <table>
               <thead>
