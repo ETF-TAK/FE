@@ -168,7 +168,12 @@ export default function ComparePage() {
                             <span>{etf.name}</span>
                           </td>
                           <td className="etfSearch-Bottom-List-Price">
-                            <span className="etfSearch-Bottom-List-Price-Bold">{etf.price.toLocaleString()}원</span> (
+                            <span className="etfSearch-Bottom-List-Price-Bold">
+                              {etf.etfNum === null
+                                ? `$${etf.price.toLocaleString()}`
+                                : `${etf.price.toLocaleString()}원`}
+                            </span>{" "}
+                            (
                             <span style={{ color: etf.positive ? "#EB1B1D" : "#0249FF" }}>
                               {etf.positive ? "+" : ""}
                               {etf.profitRate}
