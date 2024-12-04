@@ -30,6 +30,7 @@ export default function ListPage() {
     미국: "US",
     한국: "KOREA",
   };
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
@@ -48,7 +49,7 @@ export default function ListPage() {
     console.log("현재 activeSectorTag 값:", activeSectorTag);
 
     axios
-      .get("http://localhost:8080/api/tag/search", {
+      .get(`${baseURL}/api/tag/search`, {
         params: {
           keyword: keyword,
           nation: validNation,
