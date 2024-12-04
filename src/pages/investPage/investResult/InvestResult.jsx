@@ -44,8 +44,14 @@ export default function InvestResult() {
       {currentResult && currentResult.positive ? <ResultConfetti /> : <ResultRain />}
 
       <div className="invest-result-title">
-        총 {data.totalProfit.toLocaleString()}원의 <br />
-        수익금을 받았을거예요!
+        {data.totalProfit ? (
+          <>
+            총 {data.totalProfit.toLocaleString()}원의 <br />
+            수익금을 받았을거예요!
+          </>
+        ) : (
+          <>null</>
+        )}
       </div>
       <Swiper
         effect={"cards"}
