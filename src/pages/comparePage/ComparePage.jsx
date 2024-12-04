@@ -202,9 +202,10 @@ export default function ComparePage() {
       setShowScrollMessage(true);
 
       const payload = {
-        // etfList: selectedEtfs.map((etf) => etf.ticker),
-        etfList: ["139240", "117680"],
+        etfList: selectedEtfs.map((etf) => etf.ticker || etf.etfNum),
       };
+
+      console.log("payload", payload);
 
       try {
         const data = await postCompareETF(payload);
