@@ -16,7 +16,7 @@ import TransportIcon from "../../../assets/images/sectors/circle/transport.png";
 import DefaultIcon from "../../../assets/images/sectors/circle/default.png";
 
 const SectorMapper = {
-  배터리: BatteryIcon,
+  "2차전지": BatteryIcon,
   소비재: ConsumerIcon,
   "에너지/화학": EnergyIcon,
   엔터테인먼트: EntertainmentIcon,
