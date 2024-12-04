@@ -71,7 +71,11 @@ export default function ScrollPage({
                 <tr>
                   <td className="label-cell">순자산</td>
                   {basicInfo.map((info, index) => (
-                    <td key={index}>{info.netWorth.toLocaleString()}원</td>
+                    <td key={index}>
+                      {info.etfNum === null
+                        ? `$${info.netWorth.toLocaleString()}`
+                        : `${info.netWorth.toLocaleString()}억원`}
+                    </td>
                   ))}
                 </tr>
                 <tr>
