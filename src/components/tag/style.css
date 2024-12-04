@@ -27,4 +27,6 @@
 
 .tag:hover {
     transform: scale(1.07);
+    background-color: #3b72ff;
+    color: white;
 }
