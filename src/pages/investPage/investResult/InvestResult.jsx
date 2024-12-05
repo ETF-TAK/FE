@@ -44,13 +44,13 @@ export default function InvestResult() {
       {currentResult && currentResult.positive ? <ResultConfetti /> : <ResultRain />}
 
       <div className="invest-result-title">
-        {data.totalProfit ? (
+        {data.totalProfit != null ? (
           <>
             총 {data.totalProfit.toLocaleString()}원의 <br />
             수익금을 받았을거예요!
           </>
         ) : (
-          <>null</>
+          <>1년 전 가격 정보가 없어요</>
         )}
       </div>
       <Swiper

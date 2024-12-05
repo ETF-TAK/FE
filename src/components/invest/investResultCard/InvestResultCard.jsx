@@ -9,7 +9,7 @@ export default function InvestResultCard(props) {
     <div className="invest-result-card-container">
       <ETFProfile etfData={etf} color="white" textWidth={textWidth} />
       <div className="invest-result-card-amount">
-        {etf.profitAmount ? (
+        {etf.profitAmount != null ? (
           <>{etf.profitAmount.toLocaleString()}원</>
         ) : (
           <>
@@ -17,7 +17,7 @@ export default function InvestResultCard(props) {
           </>
         )}
       </div>
-      {etf.profitAmount ? (
+      {etf.profitAmount != null ? (
         <div className={`invest-result-card-rate ${etf.positive ? "" : "blue"}`}>
           수익률 {etf.positive ? "+" : ""}
           {etf.profitAmount == 0 ? "0%" : <>{etf.profitRate}% </>}
