@@ -14,7 +14,6 @@ import { SyncLoader } from "react-spinners";
 export default function ComparePage() {
   const location = useLocation();
   const { filterValue } = location.state || {};
-  console.log("Filter Value:", filterValue);
 
   const [etfData, setEtfData] = useState([]);
   const [selectedEtfs, setSelectedEtfs] = useState([]);
@@ -34,7 +33,6 @@ export default function ComparePage() {
     setLoading(true);
     getCompareETFList(category).then((data) => {
       setEtfData(data.result);
-      console.log(data.result);
       setLoading(false);
     });
   }, [category]);
@@ -77,16 +75,13 @@ export default function ComparePage() {
         etfList: selectedEtfs.map((etf) => etf.ticker || etf.etfNum),
       };
 
-      console.log("payload!!!!!!!!!!!!!!", payload);
-
       try {
         const data = await postCompareETF(payload, signal);
-        console.log(data);
         setBasicInfo(data.basicInfo);
         setOverlappingStocks(data.overlappingStocks);
         setScrollInfo(data);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     }
     return () => {

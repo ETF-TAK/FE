@@ -23,8 +23,6 @@ export default function WeightedTreemap({ data }) {
 
   const uniqueProcessedData = Array.from(new Map(processedData.map((item) => [item.name, item])).values());
 
-  console.log("Filtered Unique Processed Data:", uniqueProcessedData);
-
   const CustomTooltip = ({ payload }) => {
     if (payload && payload.length) {
       const lines = payload[0].payload.name.split("\n");

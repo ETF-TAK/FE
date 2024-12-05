@@ -8,11 +8,10 @@ export const getCompareETFList = async (filter) => {
         filter: filter,
       },
     });
-    console.log(response.data);
 
     return response.data;
   } catch (e) {
-    console.error(e);
+    // console.error(e);
   }
 };
 
@@ -22,10 +21,9 @@ export const postCompareETF = async (data, signal) => {
       headers: { "Content-Type": "application/json" },
       signal,
     });
-    console.log(response.data);
 
     return response.data;
   } catch (e) {
-    console.error(e);
+    // console.error(e);
   }
 };
