@@ -9,7 +9,7 @@ import { getInvestETFList } from "../../lib/apis/invest";
 export default function InvestPage() {
   const [etfData, setEtfData] = useState([]);
   const [selectedETFList, setSelectedETFList] = useState([]);
-  const [category, setCategory] = useState("GROWTH");
+  const [category, setCategory] = useState("GOLD");
 
   useEffect(() => {
     getInvestETFList(category).then((data) => {

@@ -14,8 +14,6 @@ export default function ScrollPage({
   const [isScrolled, setIsScrolled] = useState(false); // 스크롤 여부 상태
   const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 표시 여부 상태
   const navigate = useNavigate();
-  console.log("basicInfo", basicInfo);
-  console.log("overlappingStocks", overlappingStocks);
 
   useEffect(() => {
     const handleScroll = () => {

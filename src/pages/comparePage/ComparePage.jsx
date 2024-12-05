@@ -14,7 +14,6 @@ import { SyncLoader } from "react-spinners";
 export default function ComparePage() {
   const location = useLocation();
   const { filterValue } = location.state || {};
-  console.log("Filter Value:", filterValue);
 
   const [etfData, setEtfData] = useState([]);
   const [selectedEtfs, setSelectedEtfs] = useState([]);
@@ -24,7 +23,7 @@ export default function ComparePage() {
   const [scrollInfo, setScrollInfo] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filterdData, setFilterdData] = useState(etfData);
-  const [category, setCategory] = useState("GROWTH");
+  const [category, setCategory] = useState("GOLD");
   const [basicInfo, setBasicInfo] = useState([]); // 기본정보
   const [overlappingStocks, setOverlappingStocks] = useState([]); // 중복종목
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ export default function ComparePage() {
     setLoading(true);
     getCompareETFList(category).then((data) => {
       setEtfData(data.result);
-      console.log(data.result);
+      setLoading(false);
     });
   }, [category]);
 
@@ -66,7 +65,6 @@ export default function ComparePage() {
 
   const handleCompareClick = async () => {
     if (isCompareEnabled) {
-
       const controller = new AbortController();
       const signal = controller.signal;
 
@@ -77,21 +75,18 @@ export default function ComparePage() {
         etfList: selectedEtfs.map((etf) => etf.ticker || etf.etfNum),
       };
 
-      console.log("payload!!!!!!!!!!!!!!", payload);
-
       try {
         const data = await postCompareETF(payload, signal);
-        console.log(data);
         setBasicInfo(data.basicInfo);
         setOverlappingStocks(data.overlappingStocks);
         setScrollInfo(data);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     }
     return () => {
-      controller.abort()
-    }
+      controller.abort();
+    };
   };
 
   const handleScroll = () => {
@@ -159,7 +154,7 @@ export default function ComparePage() {
                     <div className="loading-spinner">
                       <SyncLoader color="#123abc" loading={loading} size={8} />
                       <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
-                      </div>
+                    </div>
                   ) : filterdData.length > 0 ? (
                     filterdData
                       .filter((etf) => etf.price.toLocaleString() !== "0")

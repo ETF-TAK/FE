@@ -23,7 +23,7 @@ export default function InvestAmountPage() {
       const data = await postInvestETF(payload);
       navigate("/invest/result", { state: { data: data.result } });
     } catch (e) {
-      console.error(e);
+      // console.error(e);
     }
   };
 

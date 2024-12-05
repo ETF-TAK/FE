@@ -48,12 +48,9 @@ export default function ListPage() {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    setLoading(true)
+    setLoading(true);
     setData([]);
     const validNation = nationMap[activeTag] || "전체";
-    console.log("현재 validNation 값:", validNation);
-    console.log("현재 activeTag 값:", activeTag);
-    console.log("현재 activeSectorTag 값:", activeSectorTag);
 
     axios
       .get(`${baseURL}/api/tag/search`, {
@@ -65,7 +62,6 @@ export default function ListPage() {
         signal,
       })
       .then((res) => {
-        console.log("API Response:", res.data);
         const resultData = res.data.result;
         const filteredData = resultData.filter((item) => item.price !== 0);
         setCount(filteredData.length);
@@ -83,30 +79,26 @@ export default function ListPage() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log("error")
+        // console.log("error");
       });
     return () => {
       controller.abort();
-    }
+    };
   }, [keyword, activeTag, activeSectorTag]);
 
   const changeCountryTag = (tagTitle) => {
     if (activeTag === tagTitle) {
       setActiveTag("전체");
-      console.log(`Country 태그 ${tagTitle} 취소됨`);
     } else {
       setActiveTag(tagTitle);
-      console.log(`클릭된 Country 태그: ${tagTitle}`);
     }
   };
 
   const changeSectorTag = (tagTitle) => {
     if (activeSectorTag === tagTitle) {
       setActiveSectorTag("전체");
-      console.log(`Sector 태그 ${tagTitle} 취소됨`);
     } else {
       setActiveSectorTag(tagTitle);
-      console.log(`Sector 태그 ${tagTitle}`);
     }
   };
 
@@ -215,56 +207,46 @@ export default function ListPage() {
           <span className="searchCount">{count}</span>건의 검색결과
         </div>
         <div className="etflist-right">
-        {loading ? (
-          <div className="loading-spinner">
-            <SyncLoader color="#123abc" loading={loading} size={15} />
-            <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
-          </div>
-        ) : data.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>종목</th>
-                <th>현재가</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((etf, index) => (
-                <tr key={index}>
-                  <th
-                    onClick={() =>
-                      navigate(
-                        `/compare/detail?etfId=${
-                          etf.ticker !== null ? etf.ticker : etf.etfNum
-                        }`
-                      )
-                    }
-                  >
-                    {etf.name}
-                  </th>
-                  <th>
-                    {etf.price}
-                    <span className="price-list">원</span>
-                    <span> (</span>
-                    <span
-                      className={`price-change-value ${
-                        etf.positive ? "positive" : "negative"
-                      }`}
-                    >
-                      {etf.profitRate}
-                    </span>
-                    <span>)</span>
-                  </th>
+          {loading ? (
+            <div className="loading-spinner">
+              <SyncLoader color="#123abc" loading={loading} size={15} />
+              <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
+            </div>
+          ) : data.length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>종목</th>
+                  <th>현재가</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <div className="no-tag-Result">
-            <div>검색결과가 없습니다.</div>
-          </div>
-        )}
-      </div>
+              </thead>
+              <tbody>
+                {data.map((etf, index) => (
+                  <tr key={index}>
+                    <th
+                      onClick={() => navigate(`/compare/detail?etfId=${etf.ticker !== null ? etf.ticker : etf.etfNum}`)}
+                    >
+                      {etf.name}
+                    </th>
+                    <th>
+                      {etf.price}
+                      <span className="price-list">원</span>
+                      <span> (</span>
+                      <span className={`price-change-value ${etf.positive ? "positive" : "negative"}`}>
+                        {etf.profitRate}
+                      </span>
+                      <span>)</span>
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="no-tag-Result">
+              <div>검색결과가 없습니다.</div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
