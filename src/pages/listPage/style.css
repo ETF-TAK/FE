@@ -194,3 +194,19 @@ th {
   font-size: 16px;
   font-weight: 500;
 }
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.loading-message {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin-top: 40px;
+}
