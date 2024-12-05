@@ -7,6 +7,8 @@ import questionIcon from "../assets/images/common/question.png";
 import ProductInfo from "../components/common/ProductInfo";
 import SectorMapperNoCircle from "../components/etf/sectorMapper/SectorMapperNoCircle";
 import { SyncLoader } from "react-spinners";
+import KoreaIcon from "../assets/images/common/sectors/korea.png";
+import USIcon from "../assets/images/common/sectors/us.png";
 
 export default function DetailPage() {
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -157,11 +159,7 @@ export default function DetailPage() {
           >
             {/* 국가 아이콘 */}
             <img
-              src={
-                etfData.data.nation === "KOREA"
-                  ? "..\\src\\assets\\images\\common\\sectors\\korea.png"
-                  : "..\\src\\assets\\images\\common\\sectors\\us.png"
-              }
+              src={etfData.data.nation === "KOREA" ? KoreaIcon : USIcon}
               alt="국가 아이콘"
               style={{
                 width: "30px",
