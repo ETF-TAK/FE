@@ -23,7 +23,7 @@ export default function ComparePage() {
   const [scrollInfo, setScrollInfo] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filterdData, setFilterdData] = useState(etfData);
-  const [category, setCategory] = useState("GROWTH");
+  const [category, setCategory] = useState("GOLD");
   const [basicInfo, setBasicInfo] = useState([]); // 기본정보
   const [overlappingStocks, setOverlappingStocks] = useState([]); // 중복종목
   const navigate = useNavigate();

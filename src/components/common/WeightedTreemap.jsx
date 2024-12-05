@@ -77,7 +77,7 @@ export default function WeightedTreemap({ data }) {
           width={width - padding * 2}
           height={height - padding * 2}
           style={{
-            fill: "#CACACA",
+            fill: "#F2F6FF",
           }}
         />
         {/* 종목 이름 */}
