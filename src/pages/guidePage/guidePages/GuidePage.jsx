@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./style.css"
-import WordCard from "../../../components/word/WordCard"
+import "./style.css";
+import WordCard from "../../../components/word/WordCard";
 import wordImg from "../../../assets/images/word/word_card1.svg";
 import wordImg2 from "../../../assets/images/word/word_card2.svg";
 import wordImg3 from "../../../assets/images/word/word_card3.svg";
@@ -31,7 +31,6 @@ export default function GuidePage() {
   ];
 
   const handleCardClick = (num) => {
-    console.log(`Navigating to /guide/detail/${num}`);
     navigate(`/guide/detail/${num}`);
   };
 
@@ -40,12 +39,7 @@ export default function GuidePage() {
       <div className="etf-guide-title">ETF 투자 기초 가이드</div>
       <div className="grid-container">
         {wordCards.map(({ img, num, title }) => (
-          <WordCard
-            num={num}
-            img={img}
-            title={title}
-            onClick={() => handleCardClick(num)}
-          />
+          <WordCard num={num} img={img} title={title} onClick={() => handleCardClick(num)} />
         ))}
       </div>
     </div>

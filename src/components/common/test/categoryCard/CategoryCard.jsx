@@ -53,19 +53,18 @@ export default function CategoryCard({ index }) {
   const navigate = useNavigate();
   const category = categoryData[index] || categoryData[0];
   const categoryMap = {
-    "레버리지": "LEVERAGE",
-    "성장": "GROWTH",
-    "배당": "DIVIDEND",
-    "금": "GOLD",
-    "미국": "US",
-    "한국": "KOREA",
+    레버리지: "LEVERAGE",
+    성장: "GROWTH",
+    배당: "DIVIDEND",
+    금: "GOLD",
+    미국: "US",
+    한국: "KOREA",
   };
 
   const cardList = (category) => {
     const filterValue = categoryMap[category.title];
-    console.log(`${filterValue}`)
-    navigate("/compare", { state: { filterValue } })
-  }
+    navigate("/compare", { state: { filterValue } });
+  };
 
   return (
     <div className="category-card-container" onClick={() => cardList(category)}>

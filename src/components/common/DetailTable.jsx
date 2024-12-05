@@ -1,6 +1,4 @@
 function DetailTable({ details }) {
-  console.log("details", details);
-
   const formatNumberWithCommas = (number) => {
     return new Intl.NumberFormat("en-US").format(number);
   };

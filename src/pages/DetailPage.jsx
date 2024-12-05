@@ -29,7 +29,6 @@ export default function DetailPage() {
     setIsLoading(true);
     try {
       const response = await axios.get(`${baseURL}/api/compare/detail/${etfId}`);
-      console.log(response.data.result[0]);
       const result = response.data.result?.[0];
       setEtfData({
         data: result.data,
@@ -38,7 +37,6 @@ export default function DetailPage() {
         investPoint: result.investPoint,
       });
       setIsLoading(false);
-      console.log(result.data);
       setIsLoading(false);
     } catch (e) {
       console.error(e);
@@ -104,23 +102,29 @@ export default function DetailPage() {
 
   if (isLoading) {
     return (
-      <div style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "80vh",
-        fontFamily: "Pretendard, sans-serif",
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "80vh",
+          fontFamily: "Pretendard, sans-serif",
+        }}
+      >
         <SyncLoader color="#0249FF" loading={isLoading} size={15} />
-        <p style={{
-          marginTop: "40px",
-          fontSize: "16px",
-          color: "#555",
-          textAlign: "center",
-        }}>데이터를 불러오는 중입니다. 잠시만 기다려 주세요!</p>
+        <p
+          style={{
+            marginTop: "40px",
+            fontSize: "16px",
+            color: "#555",
+            textAlign: "center",
+          }}
+        >
+          데이터를 불러오는 중입니다. 잠시만 기다려 주세요!
+        </p>
       </div>
-    )
+    );
   }
 
   return (

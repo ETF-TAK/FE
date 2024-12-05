@@ -23,8 +23,6 @@ export default function WeightedTreemap({ data }) {
 
   const uniqueProcessedData = Array.from(new Map(processedData.map((item) => [item.name, item])).values());
 
-  console.log("Filtered Unique Processed Data:", uniqueProcessedData);
-
   const CustomTooltip = ({ payload }) => {
     if (payload && payload.length) {
       const lines = payload[0].payload.name.split("\n");
@@ -79,7 +77,7 @@ export default function WeightedTreemap({ data }) {
           width={width - padding * 2}
           height={height - padding * 2}
           style={{
-            fill: "#CACACA",
+            fill: "#F2F6FF",
           }}
         />
         {/* 종목 이름 */}

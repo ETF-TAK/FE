@@ -3,9 +3,9 @@ import "./style.css";
 
 export default function CategoryTabs(props) {
   const { fontsize, setCategory, filterValue } = props;
-  
-  const categoryList = ["성장", "레버리지", "배당", "금", "한국", "미국"];
-  const categoryListEng = ["GROWTH", "LEVERAGE", "DIVIDEND", "GOLD", "KOREA", "US"];
+
+  const categoryList = ["금", "레버리지", "배당", "성장", "한국", "미국"];
+  const categoryListEng = ["GOLD", "LEVERAGE", "DIVIDEND", "GROWTH", "KOREA", "US"];
 
   const initialIndex = categoryListEng.indexOf(filterValue);
   const [selectedTab, setSelectedTab] = useState(initialIndex >= 0 ? initialIndex : 0);
