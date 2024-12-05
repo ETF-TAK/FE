@@ -35,6 +35,7 @@ export default function ComparePage() {
     getCompareETFList(category).then((data) => {
       setEtfData(data.result);
       console.log(data.result);
+      setLoading(false);
     });
   }, [category]);
 
@@ -66,7 +67,6 @@ export default function ComparePage() {
 
   const handleCompareClick = async () => {
     if (isCompareEnabled) {
-
       const controller = new AbortController();
       const signal = controller.signal;
 
@@ -90,8 +90,8 @@ export default function ComparePage() {
       }
     }
     return () => {
-      controller.abort()
-    }
+      controller.abort();
+    };
   };
 
   const handleScroll = () => {
@@ -159,7 +159,7 @@ export default function ComparePage() {
                     <div className="loading-spinner">
                       <SyncLoader color="#123abc" loading={loading} size={8} />
                       <p className="loading-message">잠시만 기다려 주세요! 데이터를 불러오는 중입니다.</p>
-                      </div>
+                    </div>
                   ) : filterdData.length > 0 ? (
                     filterdData
                       .filter((etf) => etf.price.toLocaleString() !== "0")
